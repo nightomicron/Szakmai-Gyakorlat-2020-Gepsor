@@ -30,13 +30,12 @@ public class termekekJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        uj = new javax.swing.JButton();
-        mentes = new javax.swing.JButton();
-        betoltes = new javax.swing.JButton();
-        nyomtatas = new javax.swing.JButton();
-        fomenu = new javax.swing.JButton();
-        kilepes = new javax.swing.JButton();
-        fejkar = new javax.swing.JButton();
+        newButton = new javax.swing.JButton();
+        loadButton = new javax.swing.JButton();
+        generateButton = new javax.swing.JButton();
+        homeButton = new javax.swing.JButton();
+        exitButton = new javax.swing.JButton();
+        headnozzlesButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         bTextfield = new javax.swing.JTextField();
@@ -48,6 +47,8 @@ public class termekekJFrame extends javax.swing.JFrame {
         pTable = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         rTable = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Komponensek beállítása");
@@ -59,79 +60,80 @@ public class termekekJFrame extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        uj.setText("Új");
-        uj.addActionListener(new java.awt.event.ActionListener() {
+        newButton.setText("New");
+        newButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ujActionPerformed(evt);
+                newButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(uj, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, -1));
+        jPanel1.add(newButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, -1));
 
-        mentes.setText("Mentés");
-        jPanel1.add(mentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 100, -1));
+        loadButton.setText("Load");
+        jPanel1.add(loadButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 100, -1));
 
-        betoltes.setText("Betöltés");
-        jPanel1.add(betoltes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 100, -1));
+        generateButton.setText("Generate");
+        jPanel1.add(generateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 100, -1));
 
-        nyomtatas.setText("Nyomtatás");
-        jPanel1.add(nyomtatas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 100, -1));
-
-        fomenu.setText("Főmenü");
-        fomenu.addActionListener(new java.awt.event.ActionListener() {
+        homeButton.setText("Home");
+        homeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fomenuActionPerformed(evt);
+                homeButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(fomenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 100, -1));
+        jPanel1.add(homeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 100, -1));
 
-        kilepes.setText("Kilépés");
-        kilepes.addActionListener(new java.awt.event.ActionListener() {
+        exitButton.setText("Exit");
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kilepesActionPerformed(evt);
+                exitButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(kilepes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 100, -1));
+        jPanel1.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 100, -1));
 
-        fejkar.setText("Fej - Kar");
-        fejkar.addActionListener(new java.awt.event.ActionListener() {
+        headnozzlesButton.setText("Head-Nozzle");
+        headnozzlesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fejkarActionPerformed(evt);
+                headnozzlesButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(fejkar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 100, -1));
+        jPanel1.add(headnozzlesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 100, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/left menu bar komponensek.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jScrollPane1.setViewportView(aTextfield);
 
-        jLabel2.setText("PCB típusok száma (B): ");
+        jLabel2.setText("Number of PCB (B):");
 
-        jLabel3.setText("Komponens típusok száma (A):");
+        jLabel3.setText("Set of component types (A):");
 
         pTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null}
+                {"1", null, null},
+                {"2", null, null}
             },
             new String [] {
-                "PCB mérete (P)", "1", "2"
+                "", "1", "2"
             }
         ));
         jScrollPane2.setViewportView(pTable);
 
         rTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {"1", null, null, null},
+                {"2", null, null, null},
+                {"3", null, null, null}
             },
             new String [] {
-                "Komponensenkénti darab (R)", "2", "2"
+                "", "1", "2", "3"
             }
         ));
         jScrollPane3.setViewportView(rTable);
+
+        jLabel4.setText("Components (R)");
+
+        jLabel5.setText("Batch size of each PCB type (P)");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -150,7 +152,9 @@ public class termekekJFrame extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -165,8 +169,12 @@ public class termekekJFrame extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(bTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
@@ -195,27 +203,27 @@ public class termekekJFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ujActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ujActionPerformed
+    private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
          this.dispose();
         termekekJFrame termek= new termekekJFrame();
         termek.setVisible(true);
-    }//GEN-LAST:event_ujActionPerformed
+    }//GEN-LAST:event_newButtonActionPerformed
 
-    private void fomenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fomenuActionPerformed
+    private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
        
         feluletJFrame f= new feluletJFrame();
         f.setVisible(true);
-    }//GEN-LAST:event_fomenuActionPerformed
+    }//GEN-LAST:event_homeButtonActionPerformed
 
-    private void fejkarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fejkarActionPerformed
+    private void headnozzlesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_headnozzlesButtonActionPerformed
        
         tablazatJFrame t= new tablazatJFrame();
         t.setVisible(true);
-    }//GEN-LAST:event_fejkarActionPerformed
+    }//GEN-LAST:event_headnozzlesButtonActionPerformed
 
-    private void kilepesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kilepesActionPerformed
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         this.dispose();
-    }//GEN-LAST:event_kilepesActionPerformed
+    }//GEN-LAST:event_exitButtonActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         ImageIcon icon = new ImageIcon("material/icon.png");
@@ -260,22 +268,23 @@ public class termekekJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextPane aTextfield;
     private javax.swing.JTextField bTextfield;
-    private javax.swing.JButton betoltes;
-    private javax.swing.JButton fejkar;
-    private javax.swing.JButton fomenu;
+    private javax.swing.JButton exitButton;
+    private javax.swing.JButton generateButton;
+    private javax.swing.JButton headnozzlesButton;
+    private javax.swing.JButton homeButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JButton kilepes;
-    private javax.swing.JButton mentes;
-    private javax.swing.JButton nyomtatas;
+    private javax.swing.JButton loadButton;
+    private javax.swing.JButton newButton;
     private javax.swing.JTable pTable;
     private javax.swing.JTable rTable;
-    private javax.swing.JButton uj;
     // End of variables declaration//GEN-END:variables
 }

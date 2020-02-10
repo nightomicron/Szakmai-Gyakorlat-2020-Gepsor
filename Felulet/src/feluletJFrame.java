@@ -1,5 +1,6 @@
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -29,13 +30,12 @@ public class feluletJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        uj = new javax.swing.JButton();
-        fejkar = new javax.swing.JButton();
-        nyomtatas = new javax.swing.JButton();
-        mentes = new javax.swing.JButton();
-        betoltes = new javax.swing.JButton();
-        kilepes = new javax.swing.JButton();
-        komponens = new javax.swing.JButton();
+        newButton = new javax.swing.JButton();
+        headnozzlesButton = new javax.swing.JButton();
+        generalButton = new javax.swing.JButton();
+        loadButton = new javax.swing.JButton();
+        exitButton = new javax.swing.JButton();
+        componentButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -63,67 +63,64 @@ public class feluletJFrame extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        uj.setText("Új");
-        uj.addActionListener(new java.awt.event.ActionListener() {
+        newButton.setText("New");
+        newButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ujActionPerformed(evt);
+                newButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(uj, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, -1));
+        jPanel2.add(newButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, -1));
 
-        fejkar.setText("Fej - Kar");
-        fejkar.addActionListener(new java.awt.event.ActionListener() {
+        headnozzlesButton.setText("Head-Nozzle");
+        headnozzlesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fejkarActionPerformed(evt);
+                headnozzlesButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(fejkar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 100, -1));
+        jPanel2.add(headnozzlesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 100, -1));
 
-        nyomtatas.setText("Nyomtatás");
-        jPanel2.add(nyomtatas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 100, -1));
+        generalButton.setText("General");
+        jPanel2.add(generalButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 100, -1));
 
-        mentes.setText("Mentés");
-        jPanel2.add(mentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 100, -1));
+        loadButton.setText("Load");
+        jPanel2.add(loadButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 100, -1));
 
-        betoltes.setText("Betöltés");
-        jPanel2.add(betoltes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 100, -1));
-
-        kilepes.setText("Kilépés");
-        kilepes.addActionListener(new java.awt.event.ActionListener() {
+        exitButton.setText("Exit");
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kilepesActionPerformed(evt);
+                exitButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(kilepes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 100, -1));
+        jPanel2.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 100, -1));
 
-        komponens.setText("Komponens");
-        komponens.addActionListener(new java.awt.event.ActionListener() {
+        componentButton.setText("Component");
+        componentButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                komponensActionPerformed(evt);
+                componentButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(komponens, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 100, -1));
+        jPanel2.add(componentButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 100, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/left menu bar.png"))); // NOI18N
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 290));
 
         jLabel1.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jLabel1.setText("Gépek Száma (m):");
+        jLabel1.setText("Assembly line moduls (m):");
 
         jLabel2.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jLabel2.setText("Fej típusok száma (H):");
+        jLabel2.setText("Set of head types (H):");
 
         jLabel3.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jLabel3.setText("Kis karok száma (N):");
+        jLabel3.setText("Set of nozzles (N):");
 
         jLabel4.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jLabel4.setText("Komponens típusok száma (A):");
+        jLabel4.setText("Set of component types (A):");
 
         jLabel5.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jLabel5.setText("Feederek kapacitás (F):");
+        jLabel5.setText("Feederek capacity (F):");
 
         jLabel6.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jLabel6.setText("Fejek mozgási sebessége (Ttr):");
+        jLabel6.setText("Head time of travel (Ttr):");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -199,25 +196,25 @@ public class feluletJFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void fejkarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fejkarActionPerformed
+    private void headnozzlesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_headnozzlesButtonActionPerformed
         tablazatJFrame t= new tablazatJFrame();
         t.setVisible(true);
-    }//GEN-LAST:event_fejkarActionPerformed
+    }//GEN-LAST:event_headnozzlesButtonActionPerformed
 
-    private void kilepesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kilepesActionPerformed
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         this.dispose();
-    }//GEN-LAST:event_kilepesActionPerformed
+    }//GEN-LAST:event_exitButtonActionPerformed
 
-    private void ujActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ujActionPerformed
+    private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
         this.dispose();
         feluletJFrame f= new feluletJFrame();
         f.setVisible(true);
-    }//GEN-LAST:event_ujActionPerformed
+    }//GEN-LAST:event_newButtonActionPerformed
 
-    private void komponensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_komponensActionPerformed
+    private void componentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_componentButtonActionPerformed
         termekekJFrame termek= new termekekJFrame();
         termek.setVisible(true);
-    }//GEN-LAST:event_komponensActionPerformed
+    }//GEN-LAST:event_componentButtonActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         ImageIcon icon = new ImageIcon("material/icon.png");
@@ -261,10 +258,12 @@ public class feluletJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField aTextfield;
-    private javax.swing.JButton betoltes;
+    private javax.swing.JButton componentButton;
+    private javax.swing.JButton exitButton;
     private javax.swing.JTextField fTextfield;
-    private javax.swing.JButton fejkar;
+    private javax.swing.JButton generalButton;
     private javax.swing.JTextField hTextfield;
+    private javax.swing.JButton headnozzlesButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -274,13 +273,10 @@ public class feluletJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JButton kilepes;
-    private javax.swing.JButton komponens;
+    private javax.swing.JButton loadButton;
     private javax.swing.JTextField mTexttield;
-    private javax.swing.JButton mentes;
     private javax.swing.JTextField nTextfield;
-    private javax.swing.JButton nyomtatas;
+    private javax.swing.JButton newButton;
     private javax.swing.JTextField ttrTextfield;
-    private javax.swing.JButton uj;
     // End of variables declaration//GEN-END:variables
 }

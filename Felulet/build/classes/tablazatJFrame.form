@@ -30,17 +30,15 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Component id="jPanel1" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-          </Group>
           <Component id="jPanel3" alignment="1" min="-2" max="-2" attributes="0"/>
+          <Component id="jPanel1" alignment="0" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -51,12 +49,12 @@
         <Property name="useNullLayout" type="boolean" value="false"/>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="uj">
+        <Component class="javax.swing.JButton" name="newButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&#xda;j"/>
+            <Property name="text" type="java.lang.String" value="New"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ujActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newButtonActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -64,12 +62,12 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="fomenu">
+        <Component class="javax.swing.JButton" name="homeButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="F&#x151;men&#xfc;"/>
+            <Property name="text" type="java.lang.String" value="Home"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fomenuActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="homeButtonActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -77,33 +75,9 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="betoltes">
+        <Component class="javax.swing.JButton" name="loadButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Bet&#xf6;lt&#xe9;s"/>
-          </Properties>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="10" y="90" width="100" height="-1"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="javax.swing.JButton" name="komponens">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Komponens"/>
-            <Property name="toolTipText" type="java.lang.String" value=""/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="komponensActionPerformed"/>
-          </Events>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="10" y="210" width="100" height="-1"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="javax.swing.JButton" name="mentes">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Ment&#xe9;s"/>
+            <Property name="text" type="java.lang.String" value="Load"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -111,12 +85,26 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="kilepes">
+        <Component class="javax.swing.JButton" name="componentButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Kil&#xe9;p&#xe9;s"/>
+            <Property name="text" type="java.lang.String" value="Component"/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="kilepesActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="componentButtonActionPerformed"/>
+          </Events>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="10" y="210" width="100" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JButton" name="exitButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Exit"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exitButtonActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -124,13 +112,13 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="nyomtatas">
+        <Component class="javax.swing.JButton" name="generalButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nyomtat&#xe1;s"/>
+            <Property name="text" type="java.lang.String" value="Generate"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="10" y="130" width="100" height="-1"/>
+              <AbsoluteConstraints x="10" y="90" width="100" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -155,16 +143,20 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jScrollPane4" max="32767" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="jScrollPane2" min="-2" pref="330" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jScrollPane3" min="-2" pref="330" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" pref="330" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jScrollPane4" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="jScrollPane2" min="-2" pref="330" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jScrollPane3" min="-2" pref="330" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jScrollPane1" min="-2" pref="330" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jScrollPane5" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jScrollPane5" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="17" max="32767" attributes="0"/>
               </Group>
@@ -179,11 +171,15 @@
                       <Component id="jScrollPane3" min="-2" pref="160" max="-2" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="160" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane5" min="-2" pref="230" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane4" min="-2" pref="230" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -201,7 +197,7 @@
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="2" rowCount="4">
                     <Column editable="true" title="ID" type="java.lang.Object"/>
-                    <Column editable="true" title="Komponens sz&#xe9;less&#xe9;g (W)" type="java.lang.Object"/>
+                    <Column editable="true" title="Component width (W)" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -237,7 +233,7 @@
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="2" rowCount="4">
                     <Column editable="true" title="ID" type="java.lang.Object"/>
-                    <Column editable="true" title="Fejek kapacit&#xe1;sa (C)" type="java.lang.Object"/>
+                    <Column editable="true" title="Head capacity (C)" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -273,7 +269,7 @@
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="2" rowCount="4">
                     <Column editable="true" title="ID" type="java.lang.Object"/>
-                    <Column editable="true" title="Karok sebess&#xe9;ge(Tpp)" type="java.lang.Object"/>
+                    <Column editable="true" title="Head time (Tpp)" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -308,7 +304,12 @@
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="4" rowCount="4">
-                    <Column editable="true" title="Komponensek / Karok (AN)" type="java.lang.Object"/>
+                    <Column editable="true" title="" type="java.lang.Object">
+                      <Data value="null"/>
+                      <Data value="1"/>
+                      <Data value="2"/>
+                      <Data value="3"/>
+                    </Column>
                     <Column editable="true" title="1" type="java.lang.Object"/>
                     <Column editable="true" title="2" type="java.lang.Object"/>
                     <Column editable="true" title="3" type="java.lang.Object"/>
@@ -356,7 +357,12 @@
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="4" rowCount="4">
-                    <Column editable="true" title="Fejek / Karok (HN)" type="java.lang.Object"/>
+                    <Column editable="true" title="" type="java.lang.Object">
+                      <Data value=""/>
+                      <Data value="1"/>
+                      <Data value="2"/>
+                      <Data value="3"/>
+                    </Column>
                     <Column editable="true" title="1" type="java.lang.Object"/>
                     <Column editable="true" title="2" type="java.lang.Object"/>
                     <Column editable="true" title="3" type="java.lang.Object"/>
@@ -393,6 +399,16 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Head / Nozzles compatibility (HN)"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Component / Nozzles (AN)"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

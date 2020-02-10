@@ -49,12 +49,12 @@
         <Property name="useNullLayout" type="boolean" value="false"/>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="uj">
+        <Component class="javax.swing.JButton" name="newButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&#xda;j"/>
+            <Property name="text" type="java.lang.String" value="New"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ujActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newButtonActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -62,12 +62,12 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="fejkar">
+        <Component class="javax.swing.JButton" name="headnozzlesButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Fej - Kar"/>
+            <Property name="text" type="java.lang.String" value="Head-Nozzle"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fejkarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="headnozzlesButtonActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -75,29 +75,9 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="nyomtatas">
+        <Component class="javax.swing.JButton" name="generalButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nyomtat&#xe1;s"/>
-          </Properties>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="10" y="130" width="100" height="-1"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="javax.swing.JButton" name="mentes">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Ment&#xe9;s"/>
-          </Properties>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="10" y="50" width="100" height="-1"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="javax.swing.JButton" name="betoltes">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Bet&#xf6;lt&#xe9;s"/>
+            <Property name="text" type="java.lang.String" value="General"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -105,12 +85,22 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="kilepes">
+        <Component class="javax.swing.JButton" name="loadButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Kil&#xe9;p&#xe9;s"/>
+            <Property name="text" type="java.lang.String" value="Load"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="10" y="50" width="100" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JButton" name="exitButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Exit"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="kilepesActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exitButtonActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -118,12 +108,12 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="komponens">
+        <Component class="javax.swing.JButton" name="componentButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Komponens"/>
+            <Property name="text" type="java.lang.String" value="Component"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="komponensActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="componentButtonActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -227,7 +217,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Consolas" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="G&#xe9;pek Sz&#xe1;ma (m):"/>
+                <Property name="text" type="java.lang.String" value="Assembly line moduls (m):"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="ttrTextfield">
@@ -237,7 +227,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Consolas" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Fej t&#xed;pusok sz&#xe1;ma (H):"/>
+                <Property name="text" type="java.lang.String" value="Set of head types (H):"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="hTextfield">
@@ -247,7 +237,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Consolas" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Kis karok sz&#xe1;ma (N):"/>
+                <Property name="text" type="java.lang.String" value="Set of nozzles (N):"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="aTextfield">
@@ -257,7 +247,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Consolas" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Komponens t&#xed;pusok sz&#xe1;ma (A):"/>
+                <Property name="text" type="java.lang.String" value="Set of component types (A):"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="mTexttield">
@@ -269,7 +259,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Consolas" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Feederek kapacit&#xe1;s (F):"/>
+                <Property name="text" type="java.lang.String" value="Feederek capacity (F):"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="nTextfield">
@@ -279,7 +269,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Consolas" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Fejek mozg&#xe1;si sebess&#xe9;ge (Ttr):"/>
+                <Property name="text" type="java.lang.String" value="Head time of travel (Ttr):"/>
               </Properties>
             </Component>
           </SubComponents>
