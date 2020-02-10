@@ -1,3 +1,6 @@
+
+import javax.swing.ImageIcon;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -25,156 +28,245 @@ public class tablazatJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        uj = new javax.swing.JButton();
+        fomenu = new javax.swing.JButton();
+        betoltes = new javax.swing.JButton();
+        komponens = new javax.swing.JButton();
+        mentes = new javax.swing.JButton();
+        kilepes = new javax.swing.JButton();
+        nyomtatas = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        wTable = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        cTable = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        tppTable = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        anTable = new javax.swing.JTable();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
+        hnTable = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jButton1.setText("Új");
-
-        jButton2.setText("Vissza");
-
-        jButton3.setText("Mentés");
-
-        jButton4.setText("Kilépés");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"1", null},
-                {"2", null},
-                {"3", null},
-                {"4", null}
-            },
-            new String [] {
-                "ID", "Fejek kapacitasa (C)"
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Fej - Karok beállítása");
+        setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(50);
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(50);
-        }
+        });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"1", null},
-                {"2", null},
-                {"3", null},
-                {"4", null}
-            },
-            new String [] {
-                "ID", "Karok sebessege (C):"
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        uj.setText("Új");
+        uj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ujActionPerformed(evt);
             }
-        ));
-        jScrollPane2.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(0).setPreferredWidth(50);
-            jTable2.getColumnModel().getColumn(0).setMaxWidth(50);
-        }
+        });
+        jPanel3.add(uj, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, -1));
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        fomenu.setText("Főmenü");
+        fomenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fomenuActionPerformed(evt);
+            }
+        });
+        jPanel3.add(fomenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 100, -1));
+
+        betoltes.setText("Betöltés");
+        jPanel3.add(betoltes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 100, -1));
+
+        komponens.setText("Komponens");
+        komponens.setToolTipText("");
+        komponens.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                komponensActionPerformed(evt);
+            }
+        });
+        jPanel3.add(komponens, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 100, -1));
+
+        mentes.setText("Mentés");
+        jPanel3.add(mentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 100, -1));
+
+        kilepes.setText("Kilépés");
+        kilepes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kilepesActionPerformed(evt);
+            }
+        });
+        jPanel3.add(kilepes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 100, -1));
+
+        nyomtatas.setText("Nyomtatás");
+        jPanel3.add(nyomtatas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 100, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/left menu bar karfej.png"))); // NOI18N
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        wTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", null},
-                {"2", null},
-                {"3", null},
-                {"4", null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
                 "ID", "Komponens szélesség (W)"
             }
         ));
-        jScrollPane3.setViewportView(jTable3);
-        if (jTable3.getColumnModel().getColumnCount() > 0) {
-            jTable3.getColumnModel().getColumn(0).setPreferredWidth(50);
-            jTable3.getColumnModel().getColumn(0).setMaxWidth(50);
+        jScrollPane1.setViewportView(wTable);
+        if (wTable.getColumnModel().getColumnCount() > 0) {
+            wTable.getColumnModel().getColumn(0).setPreferredWidth(50);
+            wTable.getColumnModel().getColumn(0).setMaxWidth(50);
         }
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        cTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", null, null, null},
-                {"2", null, null, null},
-                {"3", null, null, null},
-                {"4", null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Fejek / Karok (HN)", "1", "2", "3"
+                "ID", "Fejek kapacitása (C)"
             }
         ));
-        jScrollPane4.setViewportView(jTable4);
+        jScrollPane2.setViewportView(cTable);
+        if (cTable.getColumnModel().getColumnCount() > 0) {
+            cTable.getColumnModel().getColumn(0).setPreferredWidth(50);
+            cTable.getColumnModel().getColumn(0).setMaxWidth(50);
+        }
 
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+        tppTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", null, null, null},
-                {"2", null, null, null},
-                {"3", null, null, null},
-                {"4", null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "ID", "Karok sebessége(Tpp)"
+            }
+        ));
+        jScrollPane3.setViewportView(tppTable);
+        if (tppTable.getColumnModel().getColumnCount() > 0) {
+            tppTable.getColumnModel().getColumn(0).setPreferredWidth(50);
+            tppTable.getColumnModel().getColumn(0).setMaxWidth(50);
+        }
+
+        anTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
                 "Komponensek / Karok (AN)", "1", "2", "3"
             }
         ));
-        jScrollPane5.setViewportView(jTable5);
+        jScrollPane4.setViewportView(anTable);
+        if (anTable.getColumnModel().getColumnCount() > 0) {
+            anTable.getColumnModel().getColumn(0).setPreferredWidth(200);
+            anTable.getColumnModel().getColumn(0).setMaxWidth(200);
+        }
+
+        hnTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Fejek / Karok (HN)", "1", "2", "3"
+            }
+        ));
+        jScrollPane5.setViewportView(hnTable);
+        if (hnTable.getColumnModel().getColumnCount() > 0) {
+            hnTable.getColumnModel().getColumn(0).setPreferredWidth(200);
+            hnTable.getColumnModel().getColumn(0).setMaxWidth(200);
+        }
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane4)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane5))
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane5)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane4)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(27, 27, 27)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(27, 27, 27)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(164, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void kilepesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kilepesActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_kilepesActionPerformed
+
+    private void ujActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ujActionPerformed
+        this.dispose();
+        tablazatJFrame t= new tablazatJFrame();
+        t.setVisible(true);
+    }//GEN-LAST:event_ujActionPerformed
+
+    private void fomenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fomenuActionPerformed
+
+        feluletJFrame f= new feluletJFrame();
+        f.setVisible(true);
+    }//GEN-LAST:event_fomenuActionPerformed
+
+    private void komponensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_komponensActionPerformed
+         termekekJFrame termek= new termekekJFrame();
+        termek.setVisible(true);
+    }//GEN-LAST:event_komponensActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        ImageIcon icon = new ImageIcon("material/icon.png");
+        setIconImage(icon.getImage());
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -212,19 +304,25 @@ public class tablazatJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JTable anTable;
+    private javax.swing.JButton betoltes;
+    private javax.swing.JTable cTable;
+    private javax.swing.JButton fomenu;
+    private javax.swing.JTable hnTable;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
-    private javax.swing.JTable jTable5;
+    private javax.swing.JButton kilepes;
+    private javax.swing.JButton komponens;
+    private javax.swing.JButton mentes;
+    private javax.swing.JButton nyomtatas;
+    private javax.swing.JTable tppTable;
+    private javax.swing.JButton uj;
+    private javax.swing.JTable wTable;
     // End of variables declaration//GEN-END:variables
 }
