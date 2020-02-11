@@ -109,11 +109,11 @@ public class termekekJFrame extends javax.swing.JFrame {
 
         pTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", null, null},
-                {"2", null, null}
+                {"1", null},
+                {"2", null}
             },
             new String [] {
-                "", "1", "2"
+                "", "1"
             }
         ));
         jScrollPane2.setViewportView(pTable);

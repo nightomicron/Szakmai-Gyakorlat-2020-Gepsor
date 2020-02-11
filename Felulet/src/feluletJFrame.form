@@ -149,7 +149,7 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="mTexttield" min="-2" pref="300" max="-2" attributes="0"/>
+                              <Component id="mTextfield" min="-2" pref="300" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
@@ -179,7 +179,7 @@
                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="mTexttield" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="mTextfield" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -250,7 +250,10 @@
                 <Property name="text" type="java.lang.String" value="Set of component types (A):"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="mTexttield">
+            <Component class="javax.swing.JTextField" name="mTextfield">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="fTextfield">
             </Component>

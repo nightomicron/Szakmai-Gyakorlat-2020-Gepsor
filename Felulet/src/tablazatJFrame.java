@@ -1,5 +1,6 @@
 
 import javax.swing.ImageIcon;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,9 +16,37 @@ public class tablazatJFrame extends javax.swing.JFrame {
     /**
      * Creates new form tablazatJFrame
      */
+    
     public tablazatJFrame() {
         initComponents();
     }
+    
+   public tablazatJFrame( int h, int n, int a){
+        initComponents();
+        
+        DefaultTableModel modelc = (DefaultTableModel)cTable.getModel();  
+        for(int i = 0; i < h; i++){
+        modelc.addRow(new Object[]{"", "", ""});
+        }
+        DefaultTableModel modeltpp = (DefaultTableModel)tppTable.getModel();  
+        for(int i = 0; i < h; i++){
+        modeltpp.addRow(new Object[]{"", "", ""});
+        }
+        DefaultTableModel modelhn = (DefaultTableModel)hnTable.getModel();  
+        for(int i = 0; i < h; i++){
+        modelhn.addRow(new Object[]{"", "", ""});
+       
+        }
+        for(int i = 0; i<n; i++){
+        modelhn.addColumn(new Object[]{"","",""});
+        } 
+        DefaultTableModel modela = (DefaultTableModel)wTable.getModel();  
+        for(int i = 0; i < a; i++){
+        modela.addRow(new Object[]{"", "", ""});
+       
+        }
+        
+   }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -105,13 +134,10 @@ public class tablazatJFrame extends javax.swing.JFrame {
 
         wTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
-                "ID", "Component width (W)"
+                "ID", "Component Width (W)"
             }
         ));
         jScrollPane1.setViewportView(wTable);
@@ -122,10 +148,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
 
         cTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "ID", "Head capacity (C)"
@@ -139,10 +162,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
 
         tppTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "ID", "Head time (Tpp)"
@@ -171,22 +191,17 @@ public class tablazatJFrame extends javax.swing.JFrame {
             anTable.getColumnModel().getColumn(0).setMaxWidth(200);
         }
 
+        jScrollPane5.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+
         hnTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"", null, null, null},
-                {"1", null, null, null},
-                {"2", null, null, null},
-                {"3", null, null, null}
+
             },
             new String [] {
-                "", "1", "2", "3"
+
             }
         ));
         jScrollPane5.setViewportView(hnTable);
-        if (hnTable.getColumnModel().getColumnCount() > 0) {
-            hnTable.getColumnModel().getColumn(0).setPreferredWidth(200);
-            hnTable.getColumnModel().getColumn(0).setMaxWidth(200);
-        }
 
         jLabel1.setText("Head / Nozzles compatibility (HN)");
 
@@ -209,7 +224,9 @@ public class tablazatJFrame extends javax.swing.JFrame {
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane5)))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(19, 19, 19)
+                            .addComponent(jScrollPane5))))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(

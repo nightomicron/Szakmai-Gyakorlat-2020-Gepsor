@@ -45,7 +45,7 @@ public class feluletJFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         aTextfield = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        mTexttield = new javax.swing.JTextField();
+        mTextfield = new javax.swing.JTextField();
         fTextfield = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         nTextfield = new javax.swing.JTextField();
@@ -132,7 +132,7 @@ public class feluletJFrame extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(mTexttield, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(mTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3)
@@ -155,7 +155,7 @@ public class feluletJFrame extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(mTexttield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(mTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -197,8 +197,25 @@ public class feluletJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void headnozzlesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_headnozzlesButtonActionPerformed
-        tablazatJFrame t= new tablazatJFrame();
-        t.setVisible(true);
+       // tablazatJFrame t= new tablazatJFrame();
+       // t.setVisible(true);
+       /* int m = Integer.parseInt(mTextfield.getText());
+        System.out.println(m);
+     */
+        int h = Integer.parseInt(hTextfield.getText());
+        System.out.println(h);
+        
+        int n = Integer.parseInt(nTextfield.getText());
+        System.out.println(n);
+        
+        int a = Integer.parseInt(aTextfield.getText());
+        System.out.println(a);
+        
+        
+        
+        new tablazatJFrame(h,n,a).setVisible(true);
+        
+        
     }//GEN-LAST:event_headnozzlesButtonActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
@@ -274,7 +291,7 @@ public class feluletJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton loadButton;
-    private javax.swing.JTextField mTexttield;
+    public static javax.swing.JTextField mTextfield;
     private javax.swing.JTextField nTextfield;
     private javax.swing.JButton newButton;
     private javax.swing.JTextField ttrTextfield;
