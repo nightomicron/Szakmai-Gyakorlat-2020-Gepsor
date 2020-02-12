@@ -40,6 +40,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
         for(int i = 0; i<n; i++){
         modelhn.addColumn(new Object[]{"","",""});
         } 
+        
         DefaultTableModel modela = (DefaultTableModel)wTable.getModel();  
         for(int i = 0; i < a; i++){
         modela.addRow(new Object[]{"", "", ""});
@@ -47,6 +48,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
         }
         
    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -79,7 +81,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Fej - Karok beállítása");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -223,10 +225,8 @@ public class tablazatJFrame extends javax.swing.JFrame {
                             .addGap(18, 18, 18)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(19, 19, 19)
-                            .addComponent(jScrollPane5))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1026, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(

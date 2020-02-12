@@ -51,9 +51,8 @@ public class feluletJFrame extends javax.swing.JFrame {
         nTextfield = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Főmenü - Alap adatok megadása");
-        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -202,6 +201,7 @@ public class feluletJFrame extends javax.swing.JFrame {
        /* int m = Integer.parseInt(mTextfield.getText());
         System.out.println(m);
      */
+       
         int h = Integer.parseInt(hTextfield.getText());
         System.out.println(h);
         
@@ -213,7 +213,7 @@ public class feluletJFrame extends javax.swing.JFrame {
         
         
         
-        new tablazatJFrame(h,n,a).setVisible(true);
+          new tablazatJFrame(h,n,a).setVisible(true);
         
         
     }//GEN-LAST:event_headnozzlesButtonActionPerformed
@@ -231,6 +231,7 @@ public class feluletJFrame extends javax.swing.JFrame {
     private void componentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_componentButtonActionPerformed
         termekekJFrame termek= new termekekJFrame();
         termek.setVisible(true);
+        
     }//GEN-LAST:event_componentButtonActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
