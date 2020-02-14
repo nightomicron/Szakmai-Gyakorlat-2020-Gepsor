@@ -23,29 +23,45 @@ public class tablazatJFrame extends javax.swing.JFrame {
     
    public tablazatJFrame( int h, int n, int a){
         initComponents();
-        
+        //C táblázat
         DefaultTableModel modelc = (DefaultTableModel)cTable.getModel();  
         for(int i = 0; i < h; i++){
         modelc.addRow(new Object[]{"", "", ""});
         }
+        //tpp táblázat
         DefaultTableModel modeltpp = (DefaultTableModel)tppTable.getModel();  
         for(int i = 0; i < h; i++){
-        modeltpp.addRow(new Object[]{"", "", ""});
+        modeltpp.addRow (new Object[]{"", "", ""});
         }
+        //HN táblázat
         DefaultTableModel modelhn = (DefaultTableModel)hnTable.getModel();  
         for(int i = 0; i < h; i++){
         modelhn.addRow(new Object[]{"", "", ""});
-       
         }
         for(int i = 0; i<n; i++){
         modelhn.addColumn(new Object[]{"","",""});
-        } 
         
-        DefaultTableModel modela = (DefaultTableModel)wTable.getModel();  
+        } 
+        //W táblázat
+        DefaultTableModel modela = (DefaultTableModel)wTable.getModel();
+        
         for(int i = 0; i < a; i++){
         modela.addRow(new Object[]{"", "", ""});
-       
         }
+        //AN táblázat
+        DefaultTableModel modelan = (DefaultTableModel)anTable.getModel();  
+        for(int i = 0; i < a-1; i++){
+        modelan.addRow(new Object[]{"", "", ""});
+        }
+        for(int i = 0; i<n-1; i++){
+        modelhn.addColumn(new Object[]{"","",""});
+        } 
+        DefaultTableModel modelttr = (DefaultTableModel)ttrTable.getModel();  
+        for(int i = 0; i < h; i++){
+        modelttr.addRow(new Object[]{"", "", ""});
+        }
+        
+        
         
    }
     
@@ -80,6 +96,8 @@ public class tablazatJFrame extends javax.swing.JFrame {
         hnTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        ttrTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Fej - Karok beállítása");
@@ -169,7 +187,15 @@ public class tablazatJFrame extends javax.swing.JFrame {
             new String [] {
                 "ID", "Head time (Tpp)"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane3.setViewportView(tppTable);
         if (tppTable.getColumnModel().getColumnCount() > 0) {
             tppTable.getColumnModel().getColumn(0).setPreferredWidth(50);
@@ -178,36 +204,58 @@ public class tablazatJFrame extends javax.swing.JFrame {
 
         anTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {"1", null, null, null},
-                {"2", null, null, null},
-                {"3", null, null, null}
+                {null, null}
             },
             new String [] {
-                "", "1", "2", "3"
+                "ID", "AN"
             }
         ));
         jScrollPane4.setViewportView(anTable);
         if (anTable.getColumnModel().getColumnCount() > 0) {
-            anTable.getColumnModel().getColumn(0).setPreferredWidth(200);
-            anTable.getColumnModel().getColumn(0).setMaxWidth(200);
+            anTable.getColumnModel().getColumn(0).setPreferredWidth(50);
+            anTable.getColumnModel().getColumn(0).setMaxWidth(50);
         }
 
         jScrollPane5.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jScrollPane5.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         hnTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-
+                "1"
             }
         ));
+        hnTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jScrollPane5.setViewportView(hnTable);
+        if (hnTable.getColumnModel().getColumnCount() > 0) {
+            hnTable.getColumnModel().getColumn(0).setMinWidth(50);
+            hnTable.getColumnModel().getColumn(0).setPreferredWidth(50);
+            hnTable.getColumnModel().getColumn(0).setMaxWidth(50);
+        }
 
         jLabel1.setText("Head / Nozzles compatibility (HN)");
 
         jLabel3.setText("Component / Nozzles (AN)");
+
+        jScrollPane6.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jScrollPane6.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        ttrTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "1", "Time to travel (Ttr)"
+            }
+        ));
+        jScrollPane6.setViewportView(ttrTable);
+        if (ttrTable.getColumnModel().getColumnCount() > 0) {
+            ttrTable.getColumnModel().getColumn(0).setMinWidth(50);
+            ttrTable.getColumnModel().getColumn(0).setPreferredWidth(50);
+            ttrTable.getColumnModel().getColumn(0).setMaxWidth(50);
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -215,19 +263,22 @@ public class tablazatJFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane4)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1026, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(17, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane4)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,7 +291,9 @@ public class tablazatJFrame extends javax.swing.JFrame {
                 .addGap(1, 1, 1)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -346,9 +399,11 @@ public class tablazatJFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JButton loadButton;
     private javax.swing.JButton newButton;
     private javax.swing.JTable tppTable;
+    private javax.swing.JTable ttrTable;
     private javax.swing.JTable wTable;
     // End of variables declaration//GEN-END:variables
 }

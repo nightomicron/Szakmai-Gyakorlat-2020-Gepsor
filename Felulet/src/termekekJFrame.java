@@ -17,11 +17,23 @@ public class termekekJFrame extends javax.swing.JFrame {
     /**
      * Creates new form termekekJFrame
      */
+   public static int A;
+ 
     public termekekJFrame() {
          initComponents();
          
         
     }
+   
+     public termekekJFrame(int a){
+            initComponents();
+            A += a;
+           // System.out.println(ASD+ "asdasdasdasdasdsad");
+           // String s=String.valueOf(ASD);
+          //  System.out.println(s);
+           
+            
+        }
         
        
              
@@ -129,14 +141,17 @@ public class termekekJFrame extends javax.swing.JFrame {
 
         pTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", null},
-                {"2", null}
+                {"1", null}
             },
             new String [] {
                 "ID", "1"
             }
         ));
         jScrollPane2.setViewportView(pTable);
+        if (pTable.getColumnModel().getColumnCount() > 0) {
+            pTable.getColumnModel().getColumn(0).setPreferredWidth(50);
+            pTable.getColumnModel().getColumn(0).setMaxWidth(50);
+        }
 
         rTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -272,11 +287,25 @@ public class termekekJFrame extends javax.swing.JFrame {
     private void bTextfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bTextfieldFocusLost
         int b = Integer.parseInt(bTextfield.getText());
         DefaultTableModel modelr = (DefaultTableModel)rTable.getModel(); 
-        
+        //R táblázat
+         modelr.setColumnCount(1);
         for(int i = 0; i < b-1; i++){
-        modelr.addRow(new Object[]{"", "", ""});
-       
+        modelr.addColumn(new Object[]{"", "", ""});
         }
+        
+        for(int i = 0; i < A; i++){
+                 modelr.addRow(new Object[]{"", "", ""});
+        }
+        
+        DefaultTableModel modelp = (DefaultTableModel)pTable.getModel(); 
+        for(int i = 0; i < b-1; i++){
+                 modelp.addRow(new Object[]{"", "", ""});
+        }
+      // 
+        
+        
+       
+        
     }//GEN-LAST:event_bTextfieldFocusLost
 
     /**
@@ -307,9 +336,12 @@ public class termekekJFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+               
                new termekekJFrame().setVisible(true);
+               
             }
         });
     }
