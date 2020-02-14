@@ -3,24 +3,37 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import Tube.SetUp;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author tanulo
- */
-public class feluletJFrame extends javax.swing.JFrame {
 
+public class feluletJFrame extends javax.swing.JFrame {
+    
+    //creating a conf object
+    private SetUp conf;
+    
     /**
      * Creates new form feluletJFrame
      */
     public feluletJFrame() {
         initComponents();
     }
-
+    
+    public feluletJFrame(SetUp valami) {
+        initComponents();
+        conf = valami;
+    }
+    
+    //method for setting up the values of the conf object
+    private void getdata(){
+        conf.setM(Integer.parseInt(mTextfield.getText()));
+        conf.setH(Integer.parseInt(hTextfield.getText()));
+        conf.setN(Integer.parseInt(nTextfield.getText()));
+        conf.setA(Integer.parseInt(aTextfield.getText()));
+        conf.setF(Integer.parseInt(fTextfield.getText()));
+        //m = modules, h = set of head types, n = set of nozzles, a = set of component types
+        //f = feeder capacity, ttr = head time to travel
+        
+        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -186,26 +199,10 @@ public class feluletJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void headnozzlesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_headnozzlesButtonActionPerformed
-       // tablazatJFrame t= new tablazatJFrame();
-       // t.setVisible(true);
-       /* int m = Integer.parseInt(mTextfield.getText());
-        System.out.println(m);
-     */
-       
-        int h = Integer.parseInt(hTextfield.getText());
-        System.out.println(h);
         
-        int n = Integer.parseInt(nTextfield.getText());
-        System.out.println(n);
-        
-        int a = Integer.parseInt(aTextfield.getText());
-        //System.out.println(a);
-        
-        
-        
-          new tablazatJFrame(h,n,a).setVisible(true);
-          new termekekJFrame(a).setVisible(false);
-          
+        getdata();
+        this.dispose();
+        new tablazatJFrame(conf).setVisible(true);
         
     }//GEN-LAST:event_headnozzlesButtonActionPerformed
 
@@ -215,12 +212,15 @@ public class feluletJFrame extends javax.swing.JFrame {
 
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
         this.dispose();
-        feluletJFrame f= new feluletJFrame();
+        feluletJFrame f= new feluletJFrame(conf);
         f.setVisible(true);
     }//GEN-LAST:event_newButtonActionPerformed
 
     private void componentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_componentButtonActionPerformed
-        termekekJFrame termek= new termekekJFrame();
+        
+        getdata();
+        this.dispose();
+        termekekJFrame termek= new termekekJFrame(conf);
         termek.setVisible(true);
         
     }//GEN-LAST:event_componentButtonActionPerformed

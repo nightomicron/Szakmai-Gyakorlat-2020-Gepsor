@@ -1,4 +1,5 @@
 
+import Tube.SetUp;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,22 +18,20 @@ public class termekekJFrame extends javax.swing.JFrame {
     /**
      * Creates new form termekekJFrame
      */
-   public static int A;
- 
+    private static int a=0;
+    private SetUp conf;
+    
     public termekekJFrame() {
          initComponents();
          
         
     }
    
-     public termekekJFrame(int a){
+     public termekekJFrame(SetUp configuration){
             initComponents();
-            A += a;
-           // System.out.println(ASD+ "asdasdasdasdasdsad");
-           // String s=String.valueOf(ASD);
-          //  System.out.println(s);
-           
-            
+            a += configuration.getA();
+            conf = configuration;
+            System.out.println(configuration.getA());
         }
         
        
@@ -248,21 +247,23 @@ public class termekekJFrame extends javax.swing.JFrame {
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
         
         this.dispose();
-        termekekJFrame termek= new termekekJFrame();
+        termekekJFrame termek= new termekekJFrame(conf);
         termek.setVisible(true);
         
     }//GEN-LAST:event_newButtonActionPerformed
 
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
        
-        feluletJFrame f= new feluletJFrame();
+        this.dispose();
+        feluletJFrame f= new feluletJFrame(conf);
         f.setVisible(true);
         
     }//GEN-LAST:event_homeButtonActionPerformed
 
     private void headnozzlesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_headnozzlesButtonActionPerformed
        
-        tablazatJFrame t= new tablazatJFrame();
+        this.dispose();
+        tablazatJFrame t= new tablazatJFrame(conf);
         t.setVisible(true);
         
     }//GEN-LAST:event_headnozzlesButtonActionPerformed
@@ -293,7 +294,7 @@ public class termekekJFrame extends javax.swing.JFrame {
         modelr.addColumn(new Object[]{"", "", ""});
         }
         
-        for(int i = 0; i < A; i++){
+        for(int i = 0; i < a; i++){
                  modelr.addRow(new Object[]{"", "", ""});
         }
         

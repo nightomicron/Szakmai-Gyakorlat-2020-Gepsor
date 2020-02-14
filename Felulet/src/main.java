@@ -1,3 +1,6 @@
+
+import Tube.SetUp;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -33,12 +36,13 @@ public class main {
             java.util.logging.Logger.getLogger(feluletJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
+        SetUp valami = new SetUp(0,0,0,0,0,null,null,null,null,null,null);
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-              new feluletJFrame().setVisible(true);
-              new tablazatJFrame().setVisible(true);
+              new feluletJFrame(valami).setVisible(true);
             }
        });
     }

@@ -1,4 +1,8 @@
 
+import Tube.SetUp;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
@@ -12,7 +16,9 @@ import javax.swing.table.DefaultTableModel;
  * @author tanulo
  */
 public class tablazatJFrame extends javax.swing.JFrame {
-
+    
+    private SetUp conf;
+    
     /**
      * Creates new form tablazatJFrame
      */
@@ -21,51 +27,101 @@ public class tablazatJFrame extends javax.swing.JFrame {
         initComponents();
     }
     
-   public tablazatJFrame( int h, int n, int a){
+   public tablazatJFrame(SetUp configuration){
         initComponents();
         //C táblázat
         DefaultTableModel modelc = (DefaultTableModel)cTable.getModel();  
-        for(int i = 0; i < h; i++){
+        for(int i = 0; i < configuration.getH(); i++){
         modelc.addRow(new Object[]{"", "", ""});
+        System.out.println(i);
         }
         //tpp táblázat
         DefaultTableModel modeltpp = (DefaultTableModel)tppTable.getModel();  
-        for(int i = 0; i < h; i++){
+        for(int i = 0; i < configuration.getH(); i++){
         modeltpp.addRow (new Object[]{"", "", ""});
         }
         //HN táblázat
         DefaultTableModel modelhn = (DefaultTableModel)hnTable.getModel();  
-        for(int i = 0; i < h; i++){
+        for(int i = 0; i < configuration.getH(); i++){
         modelhn.addRow(new Object[]{"", "", ""});
         }
-        for(int i = 0; i<n; i++){
+        for(int i = 0; i<configuration.getH(); i++){
         modelhn.addColumn(new Object[]{"","",""});
         
         } 
         //W táblázat
         DefaultTableModel modela = (DefaultTableModel)wTable.getModel();
         
-        for(int i = 0; i < a; i++){
+        for(int i = 0; i < configuration.getA(); i++){
         modela.addRow(new Object[]{"", "", ""});
         }
         //AN táblázat
         DefaultTableModel modelan = (DefaultTableModel)anTable.getModel();  
-        for(int i = 0; i < a-1; i++){
+        for(int i = 0; i < configuration.getA()-1; i++){
         modelan.addRow(new Object[]{"", "", ""});
         }
-        for(int i = 0; i<n-1; i++){
+        for(int i = 0; i<configuration.getN()-1; i++){
         modelhn.addColumn(new Object[]{"","",""});
         } 
         DefaultTableModel modelttr = (DefaultTableModel)ttrTable.getModel();  
-        for(int i = 0; i < h; i++){
+        for(int i = 0; i < configuration.getH(); i++){
         modelttr.addRow(new Object[]{"", "", ""});
         }
         
+        conf = configuration;
         
-        
-   }
+    }
     
-
+    
+    private void gettables(){
+        
+        //grabs the h n a variables from the conf object
+        int h = conf.getH();
+        int n = conf.getN();
+        int a = conf.getA();
+        
+        //arrays for the tables:
+        //c = head capacity, tpp = pick and place time, w = component width,
+        //hn = heads and nozzles compatibility, an = components and nozzles compatibility
+        Object[] c = new Object[h];
+        Object[] tpp = new Object[h];
+        Object[] ttr = new Object[h];
+        Object[] w = new Object[a];
+        Object[][] nh = new Object[n][h];
+        Object[][] an = new Object[a][n];
+        //getting values from tables and placing them into arrays
+        //note: getValueAt() returns an object, not an int!
+        for(int i=0; i<c.length; i++){
+            c[i]= cTable.getValueAt(i, 1);
+        }
+        for(int i=0; i<tpp.length; i++){
+            tpp[i]= tppTable.getValueAt(i, 1);
+        }
+        for(int i=0; i<w.length; i++){
+            w[i]= wTable.getValueAt(i, 1);
+        }
+        for(int i=0; i<ttr.length; i++){
+            ttr[i]= ttrTable.getValueAt(i, 1);
+        }
+        for(int i=0; i<n; i++){
+            for(int j=0; j<h; j++){
+                nh[i][j]=hnTable.getValueAt(i, j+1);
+            }
+        }
+        for(int i=0; i<a; i++){
+            for(int j=0; j<n; j++){
+                an[i][j]=anTable.getValueAt(i, j+1);
+            }
+        }
+        
+        conf.setC(c);
+        conf.setTpp(tpp);
+        conf.setW(w);
+        conf.setNh(nh);
+        conf.setTtr(ttr);
+        conf.setAn(an);
+    }
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -326,18 +382,21 @@ public class tablazatJFrame extends javax.swing.JFrame {
 
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
         this.dispose();
-        tablazatJFrame t= new tablazatJFrame();
+        tablazatJFrame t= new tablazatJFrame(conf);
         t.setVisible(true);
     }//GEN-LAST:event_newButtonActionPerformed
 
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
-
-        feluletJFrame f= new feluletJFrame();
+        //gettables();
+        this.dispose();
+        feluletJFrame f= new feluletJFrame(conf);
         f.setVisible(true);
     }//GEN-LAST:event_homeButtonActionPerformed
 
     private void componentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_componentButtonActionPerformed
-         termekekJFrame termek= new termekekJFrame();
+        //gettables();
+        this.dispose();
+        termekekJFrame termek= new termekekJFrame(conf);
         termek.setVisible(true);
     }//GEN-LAST:event_componentButtonActionPerformed
 
