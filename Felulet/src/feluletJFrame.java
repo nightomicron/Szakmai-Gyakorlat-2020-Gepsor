@@ -1,4 +1,5 @@
 
+import Tube.Product;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import Tube.SetUp;
@@ -8,7 +9,7 @@ public class feluletJFrame extends javax.swing.JFrame {
     
     //creating a conf object
     private SetUp conf;
-    
+    private Product pcb;
     /**
      * Creates new form feluletJFrame
      */
@@ -16,9 +17,10 @@ public class feluletJFrame extends javax.swing.JFrame {
         initComponents();
     }
     
-    public feluletJFrame(SetUp valami) {
+    public feluletJFrame(SetUp configuration, Product prod) {
         initComponents();
-        conf = valami;
+        conf = configuration;
+        pcb = prod;
     }
     
     //method for setting up the values of the conf object
@@ -202,7 +204,7 @@ public class feluletJFrame extends javax.swing.JFrame {
         
         getdata();
         this.dispose();
-        new tablazatJFrame(conf).setVisible(true);
+        new tablazatJFrame(conf, pcb).setVisible(true);
         
     }//GEN-LAST:event_headnozzlesButtonActionPerformed
 
@@ -212,7 +214,7 @@ public class feluletJFrame extends javax.swing.JFrame {
 
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
         this.dispose();
-        feluletJFrame f= new feluletJFrame(conf);
+        feluletJFrame f= new feluletJFrame(conf, pcb);
         f.setVisible(true);
     }//GEN-LAST:event_newButtonActionPerformed
 
@@ -220,7 +222,7 @@ public class feluletJFrame extends javax.swing.JFrame {
         
         getdata();
         this.dispose();
-        termekekJFrame termek= new termekekJFrame(conf);
+        termekekJFrame termek= new termekekJFrame(conf, pcb);
         termek.setVisible(true);
         
     }//GEN-LAST:event_componentButtonActionPerformed

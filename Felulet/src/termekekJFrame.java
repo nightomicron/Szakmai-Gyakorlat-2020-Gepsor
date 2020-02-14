@@ -1,4 +1,5 @@
 
+import Tube.Product;
 import Tube.SetUp;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
@@ -20,6 +21,7 @@ public class termekekJFrame extends javax.swing.JFrame {
      */
     private static int a=0;
     private SetUp conf;
+    private Product pcb;
     
     public termekekJFrame() {
          initComponents();
@@ -27,11 +29,14 @@ public class termekekJFrame extends javax.swing.JFrame {
         
     }
    
-     public termekekJFrame(SetUp configuration){
+     public termekekJFrame(SetUp configuration, Product prod){
             initComponents();
             a += configuration.getA();
             conf = configuration;
             System.out.println(configuration.getA());
+            aTextfield.setEnabled(false);
+            aTextfield.setText(Integer.toString(conf.getA()));
+            pcb = prod;
         }
         
        
@@ -247,7 +252,7 @@ public class termekekJFrame extends javax.swing.JFrame {
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
         
         this.dispose();
-        termekekJFrame termek= new termekekJFrame(conf);
+        termekekJFrame termek= new termekekJFrame(conf,pcb);
         termek.setVisible(true);
         
     }//GEN-LAST:event_newButtonActionPerformed
@@ -255,7 +260,7 @@ public class termekekJFrame extends javax.swing.JFrame {
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
        
         this.dispose();
-        feluletJFrame f= new feluletJFrame(conf);
+        feluletJFrame f= new feluletJFrame(conf,pcb);
         f.setVisible(true);
         
     }//GEN-LAST:event_homeButtonActionPerformed
@@ -263,7 +268,7 @@ public class termekekJFrame extends javax.swing.JFrame {
     private void headnozzlesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_headnozzlesButtonActionPerformed
        
         this.dispose();
-        tablazatJFrame t= new tablazatJFrame(conf);
+        tablazatJFrame t= new tablazatJFrame(conf,pcb);
         t.setVisible(true);
         
     }//GEN-LAST:event_headnozzlesButtonActionPerformed

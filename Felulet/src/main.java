@@ -1,4 +1,5 @@
 
+import Tube.Product;
 import Tube.SetUp;
 
 /*
@@ -37,12 +38,13 @@ public class main {
         }
         //</editor-fold>
         
-        SetUp valami = new SetUp(0,0,0,0,0,null,null,null,null,null,null);
+        SetUp configuration = new SetUp(0,0,0,0,0,null,null,null,null,null,null);
+        Product prod = new Product (0,null,null);
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-              new feluletJFrame(valami).setVisible(true);
+              new feluletJFrame(configuration,prod).setVisible(true);
             }
        });
     }

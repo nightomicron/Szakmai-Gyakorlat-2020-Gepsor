@@ -13,8 +13,11 @@ public class Product {
     private Object b;
     private Object [][] r;
     private Object [] p;
-    public Product() {
-        
+
+    public Product(Object b, Object[][] r, Object[] p) {
+        this.b = b;
+        this.r = r;
+        this.p = p;
     }
     
     public Object getB() {

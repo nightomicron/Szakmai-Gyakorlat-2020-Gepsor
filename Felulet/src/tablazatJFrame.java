@@ -1,4 +1,5 @@
 
+import Tube.Product;
 import Tube.SetUp;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -18,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
 public class tablazatJFrame extends javax.swing.JFrame {
     
     private SetUp conf;
-    
+    private Product pcb;
     /**
      * Creates new form tablazatJFrame
      */
@@ -27,7 +28,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
         initComponents();
     }
     
-   public tablazatJFrame(SetUp configuration){
+   public tablazatJFrame(SetUp configuration, Product prod){
         initComponents();
         //C táblázat
         DefaultTableModel modelc = (DefaultTableModel)cTable.getModel();  
@@ -69,7 +70,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
         }
         
         conf = configuration;
-        
+        pcb = prod;
     }
     
     
@@ -382,21 +383,21 @@ public class tablazatJFrame extends javax.swing.JFrame {
 
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
         this.dispose();
-        tablazatJFrame t= new tablazatJFrame(conf);
+        tablazatJFrame t= new tablazatJFrame(conf,pcb);
         t.setVisible(true);
     }//GEN-LAST:event_newButtonActionPerformed
 
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
         //gettables();
         this.dispose();
-        feluletJFrame f= new feluletJFrame(conf);
+        feluletJFrame f= new feluletJFrame(conf,pcb);
         f.setVisible(true);
     }//GEN-LAST:event_homeButtonActionPerformed
 
     private void componentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_componentButtonActionPerformed
         //gettables();
         this.dispose();
-        termekekJFrame termek= new termekekJFrame(conf);
+        termekekJFrame termek= new termekekJFrame(conf,pcb);
         termek.setVisible(true);
     }//GEN-LAST:event_componentButtonActionPerformed
 
