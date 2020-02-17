@@ -314,20 +314,41 @@ public class termekekJFrame extends javax.swing.JFrame {
     private void bTextfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bTextfieldFocusLost
         int b = Integer.parseInt(bTextfield.getText());
         DefaultTableModel modelr = (DefaultTableModel)rTable.getModel(); 
+        
+        
+        
         //R táblázat
          modelr.setColumnCount(1);
         for(int i = 0; i < b-1; i++){
-        modelr.addColumn(new Object[]{"", "", ""});
+                 modelr.addColumn(new Object[]{"", "", ""});
         }
-        
         for(int i = 0; i < a; i++){
-                 modelr.addRow(new Object[]{"", "", ""});
+                 modelr.addRow(new Object[]{"", "", ""});         
+        }
+        for(int i = 0; i < a+1; i++){
+            for(int j = 1 ; j < b ; j++){
+                
+                rTable.setValueAt((Object)(i+1), i, 0);
+                String s = "0";
+            rTable.setValueAt((Object)s, i, j);
+            }
         }
         
+        
+        
+        //P table
         DefaultTableModel modelp = (DefaultTableModel)pTable.getModel(); 
         for(int i = 0; i < b-1; i++){
                  modelp.addRow(new Object[]{"", "", ""});
         }
+        for(int i = 0; i < b; i++){
+                pTable.setValueAt((Object)(i+1), i, 0);
+                for(int j = 1 ;j < 2; j++){
+                    String s = "0";
+                     pTable.setValueAt((Object)s, i, j);
+                } 
+        }
+        
       // 
         
         

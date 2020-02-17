@@ -30,33 +30,71 @@ public class tablazatJFrame extends javax.swing.JFrame {
     
    public tablazatJFrame(SetUp configuration, Product prod){
         initComponents();
-        //C táblázat
+        //C table
         DefaultTableModel modelc = (DefaultTableModel)cTable.getModel();  
         for(int i = 0; i < configuration.getH(); i++){
         modelc.addRow(new Object[]{"", "", ""});
         System.out.println(i);
         }
-        //tpp táblázat
+        
+        
+        
+        for(int i = 0; i < configuration.getH(); i++){
+                cTable.setValueAt((Object)(i+1), i, 0);
+                for(int j = 0 ;j < configuration.getH(); j++){
+                    String s = "0";
+                     cTable.setValueAt((Object)s, j, 1);
+                } 
+        }
+        //TPP table
         DefaultTableModel modeltpp = (DefaultTableModel)tppTable.getModel();  
         for(int i = 0; i < configuration.getH(); i++){
         modeltpp.addRow (new Object[]{"", "", ""});
         }
-        //HN táblázat
-        DefaultTableModel modelhn = (DefaultTableModel)hnTable.getModel();  
         for(int i = 0; i < configuration.getH(); i++){
+                tppTable.setValueAt((Object)(i+1), i, 0);
+                for(int j = 0 ;j < configuration.getH(); j++){
+                    String s = "0";
+                     tppTable.setValueAt((Object)s, j, 1);
+                } 
+        }
+        //HN table
+        DefaultTableModel modelhn = (DefaultTableModel)hnTable.getModel();  
+        for(int i = 0; i < configuration.getN(); i++){
         modelhn.addRow(new Object[]{"", "", ""});
         }
         for(int i = 0; i<configuration.getH(); i++){
         modelhn.addColumn(new Object[]{"","",""});
-        
         } 
-        //W táblázat
+        
+        
+        for(int i = 0; i < configuration.getN(); i++){
+                hnTable.setValueAt((Object)(i+1), i, 0);
+                for(int j = 1 ;j < configuration.getH()+1; j++){
+                    String s = "0";
+                     hnTable.setValueAt((Object)s, i, j);
+                } 
+        }
+        
+        
+        
+        
+        
+        
+        //W table
         DefaultTableModel modela = (DefaultTableModel)wTable.getModel();
         
         for(int i = 0; i < configuration.getA(); i++){
         modela.addRow(new Object[]{"", "", ""});
         }
-        //AN táblázat
+        for(int i = 0; i < configuration.getA(); i++){
+                wTable.setValueAt((Object)(i+1), i, 0);
+                for(int j = 1 ;j < 2; j++){
+                    String s = "0";
+                     wTable.setValueAt((Object)s, i, j);
+                } 
+        }
+        //AN table
         DefaultTableModel modelan = (DefaultTableModel)anTable.getModel();  
         for(int i = 0; i < configuration.getA()-1; i++){
         modelan.addRow(new Object[]{"", "", ""});
@@ -64,9 +102,24 @@ public class tablazatJFrame extends javax.swing.JFrame {
         for(int i = 0; i<configuration.getN()-1; i++){
         modelan.addColumn(new Object[]{"","",""});
         } 
+        for(int i = 0; i < configuration.getA(); i++){
+                anTable.setValueAt((Object)(i+1), i, 0);
+                for(int j = 1 ;j < configuration.getN()+1; j++){
+                    String s = "0";
+                     anTable.setValueAt((Object)s, i, j);
+                } 
+        }
+        //TTR table
         DefaultTableModel modelttr = (DefaultTableModel)ttrTable.getModel();  
         for(int i = 0; i < configuration.getH(); i++){
         modelttr.addRow(new Object[]{"", "", ""});
+        }
+        for(int i = 0; i < configuration.getH(); i++){
+                ttrTable.setValueAt((Object)(i+1), i, 0);
+                for(int j = 1 ;j < 2; j++){
+                    String s = "0";
+                     ttrTable.setValueAt((Object)s, i, j);
+                } 
         }
         
         conf = configuration;
@@ -292,7 +345,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
             hnTable.getColumnModel().getColumn(0).setMaxWidth(50);
         }
 
-        jLabel1.setText("Head / Nozzles compatibility (HN)");
+        jLabel1.setText("Head / Nozzles compatibility (NH)");
 
         jLabel3.setText("Component / Nozzles (AN)");
 
