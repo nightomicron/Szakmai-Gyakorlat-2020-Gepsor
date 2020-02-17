@@ -10,21 +10,21 @@ package Tube;
  * @author nimrod
  */
 public class Product {
-    private Object b;
+    private int b;
     private Object [][] r;
     private Object [] p;
 
-    public Product(Object b, Object[][] r, Object[] p) {
+    public Product(int b, Object[][] r, Object[] p) {
         this.b = b;
         this.r = r;
         this.p = p;
     }
     
-    public Object getB() {
+    public int getB() {
         return b;
     }
 
-    public void setB(Object b) {
+    public void setB(int b) {
         this.b = b;
     }
 
@@ -40,7 +40,7 @@ public class Product {
         return p;
     }
 
-    public void setP(Object[] r) {
+    public void setP(Object[] p) {
         this.p = p;
     }
     

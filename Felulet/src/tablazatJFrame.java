@@ -62,7 +62,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
         modelan.addRow(new Object[]{"", "", ""});
         }
         for(int i = 0; i<configuration.getN()-1; i++){
-        modelhn.addColumn(new Object[]{"","",""});
+        modelan.addColumn(new Object[]{"","",""});
         } 
         DefaultTableModel modelttr = (DefaultTableModel)ttrTable.getModel();  
         for(int i = 0; i < configuration.getH(); i++){

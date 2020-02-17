@@ -29,7 +29,7 @@ public class termekekJFrame extends javax.swing.JFrame {
         
     }
    
-     public termekekJFrame(SetUp configuration, Product prod){
+    public termekekJFrame(SetUp configuration, Product prod){
             initComponents();
             a += configuration.getA();
             conf = configuration;
@@ -38,7 +38,28 @@ public class termekekJFrame extends javax.swing.JFrame {
             aTextfield.setText(Integer.toString(conf.getA()));
             pcb = prod;
         }
+    
+    private void getproducts(){
+                
+        pcb.setB(Integer.parseInt(bTextfield.getText()));
+        Object[] p = new Object[pcb.getB()];
+        Object[][] r = new Object[pcb.getB()][conf.getA()];
         
+        //getting values from tables and placing them into arrays
+        //note: getValueAt() returns an object, not an int!
+        for(int i=0; i<p.length; i++){
+            p[i]= pTable.getValueAt(i, 1);
+        }
+        
+        for(int i=0; i<pcb.getB(); i++){
+            for(int j=0; j<conf.getA(); j++){
+                r[i][j]=rTable.getValueAt(i, j+1);
+            }
+        }
+        
+        pcb.setP(p);
+        pcb.setR(r);
+    }
        
              
     /**
@@ -258,7 +279,7 @@ public class termekekJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_newButtonActionPerformed
 
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
-       
+        //getproducts();
         this.dispose();
         feluletJFrame f= new feluletJFrame(conf,pcb);
         f.setVisible(true);
@@ -266,7 +287,7 @@ public class termekekJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_homeButtonActionPerformed
 
     private void headnozzlesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_headnozzlesButtonActionPerformed
-       
+        //getproducts();
         this.dispose();
         tablazatJFrame t= new tablazatJFrame(conf,pcb);
         t.setVisible(true);
