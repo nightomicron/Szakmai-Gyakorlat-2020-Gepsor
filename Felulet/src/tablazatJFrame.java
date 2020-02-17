@@ -64,7 +64,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
         modelhn.addRow(new Object[]{"", "", ""});
         }
         for(int i = 0; i<configuration.getH(); i++){
-        modelhn.addColumn(new Object[]{"","",""});
+        modelhn.addColumn(i+1,new Object[]{"","",""});
         } 
         
         
@@ -99,12 +99,12 @@ public class tablazatJFrame extends javax.swing.JFrame {
         for(int i = 0; i < configuration.getA()-1; i++){
         modelan.addRow(new Object[]{"", "", ""});
         }
-        for(int i = 0; i<configuration.getN()-1; i++){
-        modelan.addColumn(new Object[]{"","",""});
+        for(int i = 0; i<configuration.getN(); i++){
+        modelan.addColumn(i+1,new Object[]{"","",""});
         } 
         for(int i = 0; i < configuration.getA(); i++){
                 anTable.setValueAt((Object)(i+1), i, 0);
-                for(int j = 1 ;j < configuration.getN()+1; j++){
+                for(int j = 1 ;j < configuration.getN()+2; j++){
                     String s = "0";
                      anTable.setValueAt((Object)s, i, j);
                 } 
@@ -317,24 +317,22 @@ public class tablazatJFrame extends javax.swing.JFrame {
                 {null, null}
             },
             new String [] {
-                "ID", "AN"
+                "ID", "1"
             }
         ));
+        anTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jScrollPane4.setViewportView(anTable);
         if (anTable.getColumnModel().getColumnCount() > 0) {
             anTable.getColumnModel().getColumn(0).setPreferredWidth(50);
             anTable.getColumnModel().getColumn(0).setMaxWidth(50);
         }
 
-        jScrollPane5.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-        jScrollPane5.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-
         hnTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "1"
+                "ID"
             }
         ));
         hnTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
@@ -349,15 +347,12 @@ public class tablazatJFrame extends javax.swing.JFrame {
 
         jLabel3.setText("Component / Nozzles (AN)");
 
-        jScrollPane6.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-        jScrollPane6.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-
         ttrTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "1", "Time to travel (Ttr)"
+                "ID", "Time to travel (Ttr)"
             }
         ));
         jScrollPane6.setViewportView(ttrTable);
