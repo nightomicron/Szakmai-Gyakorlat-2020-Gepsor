@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -506,8 +507,21 @@ public class tablazatJFrame extends javax.swing.JFrame {
     private void generalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generalButtonActionPerformed
         try {
             gettables();
-            Genconf.saveconf(conf, "conf.txt");
-            Genpcb.savepcb(pcb, conf, "pcb.txt");
+            JFileChooser fcconf=new JFileChooser();
+            int retconf=fcconf.showSaveDialog(this);
+            if(retconf==JFileChooser.APPROVE_OPTION)
+            {
+                String fnameconf=fcconf.getSelectedFile().getPath();
+                Genconf.saveconf(conf, fnameconf);
+            }
+            
+            JFileChooser fcpcb=new JFileChooser();
+            int retpcb=fcpcb.showSaveDialog(this);
+            if(retpcb==JFileChooser.APPROVE_OPTION)
+            {
+                String fnamepcb=fcpcb.getSelectedFile().getPath();
+                Genpcb.savepcb(pcb, conf, fnamepcb);
+            }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(feluletJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
