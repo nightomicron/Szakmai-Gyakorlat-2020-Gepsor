@@ -321,6 +321,11 @@ public class tablazatJFrame extends javax.swing.JFrame {
             }
         ));
         anTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        anTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                anTableMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(anTable);
         if (anTable.getColumnModel().getColumnCount() > 0) {
             anTable.getColumnModel().getColumn(0).setPreferredWidth(50);
@@ -336,6 +341,11 @@ public class tablazatJFrame extends javax.swing.JFrame {
             }
         ));
         hnTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        hnTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hnTableMouseClicked(evt);
+            }
+        });
         jScrollPane5.setViewportView(hnTable);
         if (hnTable.getColumnModel().getColumnCount() > 0) {
             hnTable.getColumnModel().getColumn(0).setMinWidth(50);
@@ -453,6 +463,30 @@ public class tablazatJFrame extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon("material/icon.png");
         setIconImage(icon.getImage());
     }//GEN-LAST:event_formWindowActivated
+
+    private void hnTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hnTableMouseClicked
+       int row = hnTable.rowAtPoint(evt.getPoint());
+        int col = hnTable.columnAtPoint(evt.getPoint());
+        if (hnTable.getModel().getValueAt(row, col) == "1" && col !=0 ) {
+           hnTable.setValueAt("0", row, col);
+        }else if(col != 0){
+            hnTable.setValueAt("1", row, col);
+        }
+
+        
+    }//GEN-LAST:event_hnTableMouseClicked
+
+    private void anTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_anTableMouseClicked
+        int row = anTable.rowAtPoint(evt.getPoint());
+        int col = anTable.columnAtPoint(evt.getPoint());
+        if (anTable.getModel().getValueAt(row, col) == "1" && col!=0) {
+           anTable.setValueAt("0", row, col);
+        }else if ( col != 0){
+            anTable.setValueAt("1", row, col);
+        }
+
+        
+    }//GEN-LAST:event_anTableMouseClicked
 
     /**
      * @param args the command line arguments

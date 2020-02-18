@@ -82,7 +82,7 @@ public class feluletJFrame extends javax.swing.JFrame {
                 newButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(newButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, -1));
+        jPanel2.add(newButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 110, -1));
 
         headnozzlesButton.setText("Head-Nozzle");
         headnozzlesButton.addActionListener(new java.awt.event.ActionListener() {
@@ -90,13 +90,13 @@ public class feluletJFrame extends javax.swing.JFrame {
                 headnozzlesButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(headnozzlesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 100, -1));
+        jPanel2.add(headnozzlesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 110, -1));
 
         generalButton.setText("Generate");
-        jPanel2.add(generalButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 100, -1));
+        jPanel2.add(generalButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 110, -1));
 
         loadButton.setText("Load");
-        jPanel2.add(loadButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 100, -1));
+        jPanel2.add(loadButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 110, -1));
 
         exitButton.setText("Exit");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -104,7 +104,7 @@ public class feluletJFrame extends javax.swing.JFrame {
                 exitButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 100, -1));
+        jPanel2.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 110, -1));
 
         componentButton.setText("Component");
         componentButton.addActionListener(new java.awt.event.ActionListener() {
@@ -112,9 +112,9 @@ public class feluletJFrame extends javax.swing.JFrame {
                 componentButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(componentButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 100, -1));
+        jPanel2.add(componentButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 110, -1));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/left menu bar.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/left menu bar2.png"))); // NOI18N
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 290));
 
         jLabel1.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N

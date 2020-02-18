@@ -176,8 +176,12 @@ public class termekekJFrame extends javax.swing.JFrame {
                 "ID", "1"
             }
         ));
-        pTable.setColumnSelectionAllowed(true);
         pTable.setFocusTraversalPolicyProvider(true);
+        pTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pTableMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(pTable);
         if (pTable.getColumnModel().getColumnCount() > 0) {
             pTable.getColumnModel().getColumn(0).setPreferredWidth(50);
@@ -193,6 +197,12 @@ public class termekekJFrame extends javax.swing.JFrame {
             }
         ));
         rTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        rTable.setRowSelectionAllowed(false);
+        rTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rTableMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(rTable);
         if (rTable.getColumnModel().getColumnCount() > 0) {
             rTable.getColumnModel().getColumn(0).setPreferredWidth(50);
@@ -278,12 +288,12 @@ public class termekekJFrame extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addComponent(jLabel8)))
-                .addGap(40, 40, 40))
+                        .addComponent(jLabel8))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(22, 22, 22))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -362,6 +372,7 @@ public class termekekJFrame extends javax.swing.JFrame {
         for(int i = 0; i < a; i++){
                  modelr.addColumn(i+1,new Object[]{"", "", ""});
         }
+        
         for(int i = 0; i < b-1; i++){
                  modelr.addRow(new Object[]{"", "", ""});
                  temp++;
@@ -401,6 +412,24 @@ public class termekekJFrame extends javax.swing.JFrame {
        
         
     }//GEN-LAST:event_bTextfieldFocusLost
+
+    private void rTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rTableMouseClicked
+       
+        int row = rTable.rowAtPoint(evt.getPoint());
+        int col = rTable.columnAtPoint(evt.getPoint());
+        if (rTable.getModel().getValueAt(row, col) == "1" && col != 0) {
+           rTable.setValueAt("0", row, col);
+        }else if ( col != 0){
+            rTable.setValueAt("1", row, col);
+        }
+
+        
+    
+    }//GEN-LAST:event_rTableMouseClicked
+
+    private void pTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pTableMouseClicked
+        
+    }//GEN-LAST:event_pTableMouseClicked
 
     /**
      * @param args the command line arguments
