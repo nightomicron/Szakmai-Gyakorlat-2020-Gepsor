@@ -1,6 +1,7 @@
 
 import Tube.Product;
 import Tube.SetUp;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -59,12 +60,16 @@ public class tablazatJFrame extends javax.swing.JFrame {
                 } 
         }
         //HN table
-        DefaultTableModel modelhn = (DefaultTableModel)hnTable.getModel();  
-        for(int i = 0; i < configuration.getN(); i++){
-        modelhn.addRow(new Object[]{"", "", ""});
+        DefaultTableModel modelhn = (DefaultTableModel)hnTable.getModel();
+        modelhn.setColumnCount(1);
+        modelhn.setRowCount(1);
+        int temp = 0;
+        for(int i = 0; i < configuration.getN()-1; i++){
+            modelhn.addRow(new Object[]{"", "", ""});
+            temp++;
         }
         for(int i = 0; i<configuration.getH(); i++){
-        modelhn.addColumn(i+1,new Object[]{"","",""});
+            modelhn.addColumn(i+1,new Object[]{"","",""});
         } 
         
         
@@ -75,7 +80,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
                      hnTable.setValueAt((Object)s, i, j);
                 } 
         }
-        
+        modelhn.setRowCount(temp+1);
         
         
         
@@ -95,20 +100,25 @@ public class tablazatJFrame extends javax.swing.JFrame {
                 } 
         }
         //AN table
-        DefaultTableModel modelan = (DefaultTableModel)anTable.getModel();  
+        DefaultTableModel modelan = (DefaultTableModel)anTable.getModel();
+        modelan.setColumnCount(1);
+        modelan.setRowCount(1);
+        temp = 0;
         for(int i = 0; i < configuration.getA()-1; i++){
-        modelan.addRow(new Object[]{"", "", ""});
+            modelan.addRow(new Object[]{"", "", ""});
+            temp++;
         }
         for(int i = 0; i<configuration.getN(); i++){
-        modelan.addColumn(i+1,new Object[]{"","",""});
+            modelan.addColumn(i+1,new Object[]{"","",""});
         } 
         for(int i = 0; i < configuration.getA(); i++){
-                anTable.setValueAt((Object)(i+1), i, 0);
-                for(int j = 1 ;j < configuration.getN()+2; j++){
-                    String s = "0";
-                     anTable.setValueAt((Object)s, i, j);
-                } 
+            anTable.setValueAt((Object)(i+1), i, 0);
+            for(int j = 1 ;j < configuration.getN()+1; j++){
+                String s = "0";
+                anTable.setValueAt((Object)s, i, j);
+            } 
         }
+        modelan.setRowCount(temp+1);
         //TTR table
         DefaultTableModel modelttr = (DefaultTableModel)ttrTable.getModel();  
         for(int i = 0; i < configuration.getH(); i++){
@@ -257,6 +267,11 @@ public class tablazatJFrame extends javax.swing.JFrame {
         jPanel3.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 100, -1));
 
         generalButton.setText("Generate");
+        generalButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generalButtonActionPerformed(evt);
+            }
+        });
         jPanel3.add(generalButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 100, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/left menu bar karfej.png"))); // NOI18N
@@ -314,10 +329,10 @@ public class tablazatJFrame extends javax.swing.JFrame {
 
         anTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null}
+
             },
             new String [] {
-                "ID", "1"
+                "ID"
             }
         ));
         anTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
@@ -446,14 +461,14 @@ public class tablazatJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_newButtonActionPerformed
 
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
-        //gettables();
+        gettables();
         this.dispose();
         feluletJFrame f= new feluletJFrame(conf,pcb);
         f.setVisible(true);
     }//GEN-LAST:event_homeButtonActionPerformed
 
     private void componentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_componentButtonActionPerformed
-        //gettables();
+        gettables();
         this.dispose();
         termekekJFrame termek= new termekekJFrame(conf,pcb);
         termek.setVisible(true);
@@ -487,6 +502,16 @@ public class tablazatJFrame extends javax.swing.JFrame {
 
         
     }//GEN-LAST:event_anTableMouseClicked
+
+    private void generalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generalButtonActionPerformed
+        try {
+            gettables();
+            Genconf.saveconf(conf, "conf.txt");
+            Genpcb.savepcb(pcb, conf, "pcb.txt");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(feluletJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_generalButtonActionPerformed
 
     /**
      * @param args the command line arguments

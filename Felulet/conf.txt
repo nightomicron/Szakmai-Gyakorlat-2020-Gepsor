@@ -1,0 +1,23 @@
+#### parameters for machine configuration ####
+# number of machine modules
+numM=2
+# number of head types
+numH=2
+# number of nozzle types
+numN=3
+# number of component types
+numA=2
+# capacity of feeder
+capF=1
+# capacity of head types
+capH=6 6
+# width of the component types (in tapes)
+widthA=3 1
+# traveling time of head types
+travTimeH=6 6
+# pick-and-place time of head types
+ppTimeH=4 2
+# component-nozzle compatibility matrix
+compatAN=1 0 1;1 0 0;
+# nozzle-head compatibility matrix
+compatNH=1 1;1 0;1 1;

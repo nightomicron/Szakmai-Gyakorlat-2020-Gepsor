@@ -1,0 +1,6 @@
+# number of PCB types
+numPCB=4
+# number of pieces of each PBC type to produce
+numPiecesPCB=7 8 9 10
+# number of component placements of each PCB by component types
+numPiecesCompPCB=1 0;0 1;1 1;0 0;

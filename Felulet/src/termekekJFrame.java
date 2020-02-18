@@ -1,6 +1,9 @@
 
 import Tube.Product;
 import Tube.SetUp;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
@@ -119,6 +122,11 @@ public class termekekJFrame extends javax.swing.JFrame {
         jPanel1.add(loadButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 100, -1));
 
         generateButton.setText("Generate");
+        generateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generateButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(generateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 100, -1));
 
         homeButton.setText("Home");
@@ -327,7 +335,7 @@ public class termekekJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_newButtonActionPerformed
 
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
-        //getproducts();
+        getproducts();
         this.dispose();
         feluletJFrame f= new feluletJFrame(conf,pcb);
         f.setVisible(true);
@@ -335,7 +343,7 @@ public class termekekJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_homeButtonActionPerformed
 
     private void headnozzlesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_headnozzlesButtonActionPerformed
-        //getproducts();
+        getproducts();
         this.dispose();
         tablazatJFrame t= new tablazatJFrame(conf,pcb);
         t.setVisible(true);
@@ -430,6 +438,16 @@ public class termekekJFrame extends javax.swing.JFrame {
     private void pTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pTableMouseClicked
         
     }//GEN-LAST:event_pTableMouseClicked
+
+    private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
+        try {
+            getproducts();
+            Genconf.saveconf(conf, "conf.txt");
+            Genpcb.savepcb(pcb, conf, "pcb.txt");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(feluletJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_generateButtonActionPerformed
 
     /**
      * @param args the command line arguments

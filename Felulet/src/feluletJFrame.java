@@ -3,6 +3,9 @@ import Tube.Product;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import Tube.SetUp;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class feluletJFrame extends javax.swing.JFrame {
@@ -93,6 +96,11 @@ public class feluletJFrame extends javax.swing.JFrame {
         jPanel2.add(headnozzlesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 110, -1));
 
         generalButton.setText("Generate");
+        generalButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generalButtonActionPerformed(evt);
+            }
+        });
         jPanel2.add(generalButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 110, -1));
 
         loadButton.setText("Load");
@@ -231,6 +239,17 @@ public class feluletJFrame extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon("material/icon.png");
         setIconImage(icon.getImage());
     }//GEN-LAST:event_formWindowActivated
+
+    private void generalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generalButtonActionPerformed
+
+        try {
+            getdata();
+            Genconf.saveconf(conf, "conf.txt");
+            Genpcb.savepcb(pcb, conf, "pcb.txt");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(feluletJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_generalButtonActionPerformed
 
     /**
      * @param args the command line arguments
