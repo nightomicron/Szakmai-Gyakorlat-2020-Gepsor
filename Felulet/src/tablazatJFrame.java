@@ -229,11 +229,9 @@ public class tablazatJFrame extends javax.swing.JFrame {
 
         jPanel3 = new javax.swing.JPanel();
         newButton = new javax.swing.JButton();
-        homeButton = new javax.swing.JButton();
         loadButton = new javax.swing.JButton();
         componentButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
-        generalButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -262,21 +260,13 @@ public class tablazatJFrame extends javax.swing.JFrame {
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        newButton.setText("New");
+        newButton.setText("Reset");
         newButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newButtonActionPerformed(evt);
             }
         });
         jPanel3.add(newButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, -1));
-
-        homeButton.setText("Home");
-        homeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                homeButtonActionPerformed(evt);
-            }
-        });
-        jPanel3.add(homeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 100, -1));
 
         loadButton.setText("Load");
         loadButton.addActionListener(new java.awt.event.ActionListener() {
@@ -293,7 +283,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
                 componentButtonActionPerformed(evt);
             }
         });
-        jPanel3.add(componentButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 100, -1));
+        jPanel3.add(componentButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 100, -1));
 
         exitButton.setText("Exit");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -301,15 +291,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
                 exitButtonActionPerformed(evt);
             }
         });
-        jPanel3.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 100, -1));
-
-        generalButton.setText("Generate");
-        generalButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                generalButtonActionPerformed(evt);
-            }
-        });
-        jPanel3.add(generalButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 100, -1));
+        jPanel3.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 660, 100, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/left menu bar karfej.png"))); // NOI18N
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -497,13 +479,6 @@ public class tablazatJFrame extends javax.swing.JFrame {
         t.setVisible(true);
     }//GEN-LAST:event_newButtonActionPerformed
 
-    private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
-        gettables();
-        this.dispose();
-        feluletJFrame f= new feluletJFrame(conf,pcb);
-        f.setVisible(true);
-    }//GEN-LAST:event_homeButtonActionPerformed
-
     private void componentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_componentButtonActionPerformed
         gettables();
         this.dispose();
@@ -539,39 +514,6 @@ public class tablazatJFrame extends javax.swing.JFrame {
 
         
     }//GEN-LAST:event_anTableMouseClicked
-
-    private void generalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generalButtonActionPerformed
-        final ImageIcon icon = new ImageIcon("icon_small.png");
-        try {
-            gettables();
-            JFileChooser fcconf=new JFileChooser();
-            fcconf.setDialogTitle("Save setup configuration");
-            int retconf=fcconf.showSaveDialog(this);
-            if(retconf==JFileChooser.APPROVE_OPTION)
-            {
-                String fnameconf=fcconf.getSelectedFile().getPath();
-                Genconf.saveconf(conf, fnameconf);
-                JOptionPane.showMessageDialog(null,"Succesfull Save! \n "
-                                                   + "Save path: "+fnameconf, "---Save---",JOptionPane.INFORMATION_MESSAGE, icon);
-            }
-            
-            JFileChooser fcpcb=new JFileChooser();
-            fcpcb.setDialogTitle("Save pcb configuration");
-            int retpcb=fcpcb.showSaveDialog(this);
-            if(retpcb==JFileChooser.APPROVE_OPTION)
-            {
-                String fnamepcb=fcpcb.getSelectedFile().getPath();
-                Genpcb.savepcb(pcb, conf, fnamepcb);
-                JOptionPane.showMessageDialog(null,"Succesfull Save! \n "
-                                                   + "Save path: "+fnamepcb, "---Save---",JOptionPane.INFORMATION_MESSAGE, icon);
-            }
-            
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(feluletJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-    }//GEN-LAST:event_generalButtonActionPerformed
 
     private void loadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadButtonActionPerformed
         final ImageIcon icon = new ImageIcon("icon_small.png");
@@ -649,9 +591,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
     private javax.swing.JTable cTable;
     private javax.swing.JButton componentButton;
     private javax.swing.JButton exitButton;
-    private javax.swing.JButton generalButton;
     private javax.swing.JTable hnTable;
-    private javax.swing.JButton homeButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

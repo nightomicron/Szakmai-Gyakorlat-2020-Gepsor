@@ -46,6 +46,8 @@ public class feluletJFrame extends javax.swing.JFrame {
         pcb.setB(0);
         pcb.setP(null);
         pcb.setR(null);
+        SplashScreen.confloaded = false;
+        SplashScreen.pcbloaded = false;
     }
     
     //method for setting up the values of the conf object
@@ -118,12 +120,8 @@ public class feluletJFrame extends javax.swing.JFrame {
         }
         if(mTextfield.getText().isEmpty() || hTextfield.getText().isEmpty() || nTextfield.getText().isEmpty() || aTextfield.getText().isEmpty() || fTextfield.getText().isEmpty()){
             headnozzlesButton.setEnabled(false);
-            generalButton.setEnabled(false);
-            componentButton.setEnabled(false);
         }else{
             headnozzlesButton.setEnabled(true);
-            generalButton.setEnabled(true);
-            componentButton.setEnabled(true);
         }
     }
     
@@ -140,10 +138,8 @@ public class feluletJFrame extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         newButton = new javax.swing.JButton();
         headnozzlesButton = new javax.swing.JButton();
-        generalButton = new javax.swing.JButton();
         loadButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
-        componentButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -168,7 +164,7 @@ public class feluletJFrame extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        newButton.setText("New");
+        newButton.setText("Reset");
         newButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newButtonActionPerformed(evt);
@@ -176,21 +172,13 @@ public class feluletJFrame extends javax.swing.JFrame {
         });
         jPanel2.add(newButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 110, -1));
 
-        headnozzlesButton.setText("Head-Nozzle");
+        headnozzlesButton.setText("Next");
         headnozzlesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 headnozzlesButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(headnozzlesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 110, -1));
-
-        generalButton.setText("Generate");
-        generalButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                generalButtonActionPerformed(evt);
-            }
-        });
-        jPanel2.add(generalButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 110, -1));
+        jPanel2.add(headnozzlesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 110, -1));
 
         loadButton.setText("Load");
         loadButton.addActionListener(new java.awt.event.ActionListener() {
@@ -207,14 +195,6 @@ public class feluletJFrame extends javax.swing.JFrame {
             }
         });
         jPanel2.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 110, -1));
-
-        componentButton.setText("Component");
-        componentButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                componentButtonActionPerformed(evt);
-            }
-        });
-        jPanel2.add(componentButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 110, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/left menu bar2.png"))); // NOI18N
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 290));
@@ -333,7 +313,7 @@ public class feluletJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void headnozzlesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_headnozzlesButtonActionPerformed
-      getdata();
+        getdata();
         this.dispose();
         new tablazatJFrame(conf, pcb).setVisible(true);
         
@@ -345,54 +325,15 @@ public class feluletJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_exitButtonActionPerformed
 
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
-        this.dispose();
-        feluletJFrame f= new feluletJFrame(conf, pcb);
-        f.setVisible(true);
+        changed();
+        setdata();
+        check();
     }//GEN-LAST:event_newButtonActionPerformed
-
-    private void componentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_componentButtonActionPerformed
-        
-        getdata();
-        this.dispose();
-        termekekJFrame termek= new termekekJFrame(conf, pcb);
-        termek.setVisible(true);
-        
-    }//GEN-LAST:event_componentButtonActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         ImageIcon icon = new ImageIcon("material/icon.png");
         setIconImage(icon.getImage());
     }//GEN-LAST:event_formWindowActivated
-
-    private void generalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generalButtonActionPerformed
-        final ImageIcon icon = new ImageIcon("icon_small.png");
-        try {
-            getdata();
-            JFileChooser fcconf=new JFileChooser();
-            fcconf.setDialogTitle("Save setup configuration");
-            int retconf=fcconf.showSaveDialog(this);
-            if(retconf==JFileChooser.APPROVE_OPTION)
-            {
-                String fnameconf=fcconf.getSelectedFile().getPath();
-                Genconf.saveconf(conf, fnameconf);
-                JOptionPane.showMessageDialog(null,"Succesfull Save! \n "
-                                                   + "Save path: "+fnameconf, "---Save---",JOptionPane.INFORMATION_MESSAGE, icon);
-            }
-            
-            JFileChooser fcpcb=new JFileChooser();
-            fcpcb.setDialogTitle("Save pcb configuration");
-            int retpcb=fcpcb.showSaveDialog(this);
-            if(retpcb==JFileChooser.APPROVE_OPTION)
-            {
-                String fnamepcb=fcpcb.getSelectedFile().getPath();
-                Genpcb.savepcb(pcb, conf, fnamepcb);
-                JOptionPane.showMessageDialog(null,"Succesfull Save! \n "
-                                                   + "Save path: "+fnamepcb, "---Save---",JOptionPane.INFORMATION_MESSAGE, icon);
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(feluletJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_generalButtonActionPerformed
 
     private void mTextfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mTextfieldFocusLost
        check();
@@ -492,10 +433,8 @@ public class feluletJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField aTextfield;
-    private javax.swing.JButton componentButton;
     private javax.swing.JButton exitButton;
     private javax.swing.JTextField fTextfield;
-    private javax.swing.JButton generalButton;
     private javax.swing.JTextField hTextfield;
     private javax.swing.JButton headnozzlesButton;
     private javax.swing.JLabel jLabel1;

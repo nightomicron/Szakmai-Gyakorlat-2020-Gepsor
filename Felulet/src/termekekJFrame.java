@@ -185,9 +185,7 @@ public class termekekJFrame extends javax.swing.JFrame {
         newButton = new javax.swing.JButton();
         loadButton = new javax.swing.JButton();
         generateButton = new javax.swing.JButton();
-        homeButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
-        headnozzlesButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         bTextfield = new javax.swing.JTextField();
@@ -216,7 +214,7 @@ public class termekekJFrame extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        newButton.setText("New");
+        newButton.setText("Reset");
         newButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newButtonActionPerformed(evt);
@@ -240,29 +238,13 @@ public class termekekJFrame extends javax.swing.JFrame {
         });
         jPanel1.add(generateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 100, -1));
 
-        homeButton.setText("Home");
-        homeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                homeButtonActionPerformed(evt);
-            }
-        });
-        jPanel1.add(homeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 100, -1));
-
         exitButton.setText("Exit");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 100, -1));
-
-        headnozzlesButton.setText("Head-Nozzle");
-        headnozzlesButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                headnozzlesButtonActionPerformed(evt);
-            }
-        });
-        jPanel1.add(headnozzlesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 100, -1));
+        jPanel1.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 660, 100, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/left menu bar karfej.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -445,21 +427,6 @@ public class termekekJFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_newButtonActionPerformed
 
-    private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
-        getproducts();
-        this.dispose();
-        feluletJFrame f= new feluletJFrame(conf,pcb);
-        f.setVisible(true);
-        
-    }//GEN-LAST:event_homeButtonActionPerformed
-
-    private void headnozzlesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_headnozzlesButtonActionPerformed
-        getproducts();
-        this.dispose();
-        tablazatJFrame t= new tablazatJFrame(conf,pcb);
-        t.setVisible(true);
-    }//GEN-LAST:event_headnozzlesButtonActionPerformed
-
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         this.dispose();
     }//GEN-LAST:event_exitButtonActionPerformed
@@ -613,8 +580,6 @@ public class termekekJFrame extends javax.swing.JFrame {
     public javax.swing.JTextField bTextfield;
     public javax.swing.JButton exitButton;
     public javax.swing.JButton generateButton;
-    public javax.swing.JButton headnozzlesButton;
-    public javax.swing.JButton homeButton;
     public javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabel3;
