@@ -3,6 +3,7 @@ import Tube.Product;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import Tube.SetUp;
+import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,6 +40,49 @@ public class feluletJFrame extends javax.swing.JFrame {
         
         
     }
+    
+    private void check(){
+        //mTextField
+        if(mTextfield.getText().isEmpty()){
+            mTextfield.setBackground(Color.RED);
+        }else{
+            mTextfield.setBackground(Color.WHITE);
+        }
+        //hTextfield
+        if(hTextfield.getText().isEmpty()){
+            hTextfield.setBackground(Color.RED);
+        }else{
+            hTextfield.setBackground(Color.WHITE);
+        }
+        //nTextfield
+        if(nTextfield.getText().isEmpty()){
+            nTextfield.setBackground(Color.RED);
+        }else{
+            nTextfield.setBackground(Color.WHITE);
+        }
+        //aTextfield
+        if(aTextfield.getText().isEmpty()){
+            aTextfield.setBackground(Color.RED);
+        }else{
+            aTextfield.setBackground(Color.WHITE);
+        }
+        //fTextfield
+        if(fTextfield.getText().isEmpty()){
+            fTextfield.setBackground(Color.RED);
+        }else{
+            fTextfield.setBackground(Color.WHITE);
+        }
+        if(mTextfield.getText().isEmpty() || hTextfield.getText().isEmpty() || nTextfield.getText().isEmpty() || aTextfield.getText().isEmpty() || fTextfield.getText().isEmpty()){
+            headnozzlesButton.setEnabled(false);
+            generalButton.setEnabled(false);
+            componentButton.setEnabled(false);
+        }else{
+            headnozzlesButton.setEnabled(true);
+            generalButton.setEnabled(true);
+            componentButton.setEnabled(true);
+        }
+    }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -132,14 +176,44 @@ public class feluletJFrame extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jLabel2.setText("Set of head types (H):");
 
+        hTextfield.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                hTextfieldFocusLost(evt);
+            }
+        });
+
         jLabel3.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jLabel3.setText("Set of nozzles (N):");
+
+        aTextfield.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                aTextfieldFocusLost(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jLabel4.setText("Set of component types (A):");
 
+        mTextfield.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                mTextfieldFocusLost(evt);
+            }
+        });
+
+        fTextfield.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                fTextfieldFocusLost(evt);
+            }
+        });
+
         jLabel5.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jLabel5.setText("Feederek capacity (F):");
+
+        nTextfield.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                nTextfieldFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -210,10 +284,10 @@ public class feluletJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void headnozzlesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_headnozzlesButtonActionPerformed
-        
-        getdata();
+      getdata();
         this.dispose();
         new tablazatJFrame(conf, pcb).setVisible(true);
+        
         
     }//GEN-LAST:event_headnozzlesButtonActionPerformed
 
@@ -242,28 +316,56 @@ public class feluletJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void generalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generalButtonActionPerformed
-
+        final ImageIcon icon = new ImageIcon("icon_small.png");
         try {
             getdata();
             JFileChooser fcconf=new JFileChooser();
+            fcconf.setDialogTitle("Save setup configuration");
             int retconf=fcconf.showSaveDialog(this);
             if(retconf==JFileChooser.APPROVE_OPTION)
             {
                 String fnameconf=fcconf.getSelectedFile().getPath();
                 Genconf.saveconf(conf, fnameconf);
+                JOptionPane.showMessageDialog(null,"Succesfull Sava! \n "
+                                                   + "Save path: "+fnameconf, "---Save---",JOptionPane.INFORMATION_MESSAGE, icon);
             }
             
             JFileChooser fcpcb=new JFileChooser();
+            fcpcb.setDialogTitle("Save pcb configuration");
             int retpcb=fcpcb.showSaveDialog(this);
             if(retpcb==JFileChooser.APPROVE_OPTION)
             {
                 String fnamepcb=fcpcb.getSelectedFile().getPath();
                 Genpcb.savepcb(pcb, conf, fnamepcb);
+                JOptionPane.showMessageDialog(null,"Succesfull Sava! \n "
+                                                   + "Save path: "+fnamepcb, "---Save---",JOptionPane.INFORMATION_MESSAGE, icon);
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(feluletJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_generalButtonActionPerformed
+
+    private void mTextfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mTextfieldFocusLost
+
+       check();
+       
+    }//GEN-LAST:event_mTextfieldFocusLost
+
+    private void hTextfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_hTextfieldFocusLost
+        check();
+    }//GEN-LAST:event_hTextfieldFocusLost
+
+    private void nTextfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nTextfieldFocusLost
+        check();
+    }//GEN-LAST:event_nTextfieldFocusLost
+
+    private void aTextfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_aTextfieldFocusLost
+        check();
+    }//GEN-LAST:event_aTextfieldFocusLost
+
+    private void fTextfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fTextfieldFocusLost
+        check();
+    }//GEN-LAST:event_fTextfieldFocusLost
 
     /**
      * @param args the command line arguments
@@ -295,7 +397,7 @@ public class feluletJFrame extends javax.swing.JFrame {
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new feluletJFrame().setVisible(true);
+//                
 //            }
 //        });
 //    }

@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -505,26 +506,36 @@ public class tablazatJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_anTableMouseClicked
 
     private void generalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generalButtonActionPerformed
+        final ImageIcon icon = new ImageIcon("icon_small.png");
         try {
             gettables();
             JFileChooser fcconf=new JFileChooser();
+            fcconf.setDialogTitle("Save setup configuration");
             int retconf=fcconf.showSaveDialog(this);
             if(retconf==JFileChooser.APPROVE_OPTION)
             {
                 String fnameconf=fcconf.getSelectedFile().getPath();
                 Genconf.saveconf(conf, fnameconf);
+                JOptionPane.showMessageDialog(null,"Succesfull Sava! \n "
+                                                   + "Save path: "+fnameconf, "---Save---",JOptionPane.INFORMATION_MESSAGE, icon);
             }
             
             JFileChooser fcpcb=new JFileChooser();
+            fcpcb.setDialogTitle("Save pcb configuration");
             int retpcb=fcpcb.showSaveDialog(this);
             if(retpcb==JFileChooser.APPROVE_OPTION)
             {
                 String fnamepcb=fcpcb.getSelectedFile().getPath();
                 Genpcb.savepcb(pcb, conf, fnamepcb);
+                JOptionPane.showMessageDialog(null,"Succesfull Sava! \n "
+                                                   + "Save path: "+fnamepcb, "---Save---",JOptionPane.INFORMATION_MESSAGE, icon);
             }
+            
         } catch (FileNotFoundException ex) {
             Logger.getLogger(feluletJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
     }//GEN-LAST:event_generalButtonActionPerformed
 
     /**
@@ -558,6 +569,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new tablazatJFrame().setVisible(true);
+                
             }
         });
     }
