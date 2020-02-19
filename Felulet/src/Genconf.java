@@ -118,17 +118,11 @@ public class Genconf {
         int n = 0;
         int a = 0;
         int f = 0;
-        Object[] c = new Object[h];
-        Object[] w = new Object[a];
-        Object[] ttr = new Object[h];
-        Object[] tpp = new Object[h];
-        Object[][] an = new Object[a][n];
-        Object[][] nh = new Object[n][h];
         
         File file = new File(fname);
         final Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
-           final String lineFromFile = scanner.nextLine();
+            final String lineFromFile = scanner.nextLine();
            
             //M
             if(lineFromFile.contains("numM=")) { 
@@ -166,13 +160,13 @@ public class Genconf {
             }
             
             //C
+            Object[] c = new Object[h];
             if(lineFromFile.contains("capH=")) {
                 int counter=0;
                 for(int i=0; i<lineFromFile.length()-5; i++){
                     if(lineFromFile.charAt(5+i)!=' '){
                         temp = lineFromFile.charAt(5+i);
                         c[counter] = temp-'0';
-                        System.out.print(c[counter] + " ");
                         counter++;
                     }
                 }
@@ -180,6 +174,7 @@ public class Genconf {
             }
             
             //W
+            Object[] w = new Object[a];
             if(lineFromFile.contains("widthA=")) {
                 int counter=0;
                 for(int i=0; i<lineFromFile.length()-7; i++){
@@ -193,6 +188,7 @@ public class Genconf {
             }
             
             //TTR
+            Object[] ttr = new Object[h];
             if(lineFromFile.contains("travTimeH=")) {
                 int counter=0;
                 for(int i=0; i<lineFromFile.length()-10; i++){
@@ -206,6 +202,7 @@ public class Genconf {
             }
             
             //TPP
+            Object[] tpp = new Object[h];
             if(lineFromFile.contains("ppTimeH=")) {
                 int counter=0;
                 for(int i=0; i<lineFromFile.length()-8; i++){
@@ -219,6 +216,7 @@ public class Genconf {
             }
             
             //AN
+            Object[][] an = new Object[a][n];
             if(lineFromFile.contains("compatAN=")) {
                 int counterA=0;
                 int counterN=0;
@@ -229,12 +227,14 @@ public class Genconf {
                     }else if(lineFromFile.charAt(9+i)!=' '){
                         temp = lineFromFile.charAt(9+i);
                         an[counterA][counterN] = temp-'0';
+                        counterN++;
                     }
                 }
                 conf.setAn(an);
             }
             
             //NH
+            Object[][] nh = new Object[n][h];
             if(lineFromFile.contains("compatNH=")) {
                 int counterN=0;
                 int counterH=0;
@@ -245,6 +245,7 @@ public class Genconf {
                     }else if(lineFromFile.charAt(9+i)!=' '){
                         temp = lineFromFile.charAt(9+i);
                         nh[counterN][counterH] = temp-'0';
+                        counterH++;
                     }
                 }
                 conf.setNh(nh);

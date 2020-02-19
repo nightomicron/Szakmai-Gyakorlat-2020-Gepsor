@@ -51,13 +51,11 @@ public class Genpcb {
         System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
     }
     
-    public static Product loadB(String fname, SetUp conf) throws FileNotFoundException{
+    public static Product loadpcb(String fname, SetUp conf) throws FileNotFoundException{
         Product pcb = new Product(0,null,null);
         
         int a = conf.getA();
         int b = 0;
-        Object[] p = new Object[b];
-        Object[][] r = new Object[b][a];
         char temp = 0;
         
         File file = new File(fname);
@@ -73,6 +71,7 @@ public class Genpcb {
             }
             
             //P
+            Object[] p = new Object[b];
             if(lineFromFile.contains("numPiecesPCB=")) {
                 int counter=0;
                 for(int i=0; i<lineFromFile.length()-13; i++){
@@ -86,6 +85,7 @@ public class Genpcb {
             }
             
             //R
+            Object[][] r = new Object[b][a];
             if(lineFromFile.contains("numPiecesCompPCB=")) {
                 int counterB=0;
                 int counterA=0;
@@ -96,6 +96,7 @@ public class Genpcb {
                     }else if(lineFromFile.charAt(17+i)!=' '){
                         temp = lineFromFile.charAt(17+i);
                         r[counterB][counterA] = temp-'0';
+                        counterA++;
                     }
                 }
                 pcb.setR(r);

@@ -2,18 +2,11 @@
 import Tube.Product;
 import Tube.SetUp;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author nimrod
- */
 public class SplashScreen extends javax.swing.JFrame {
-
+    
+    public static boolean confloaded = false;
+    public static boolean pcbloaded = false;
     /**
      * Creates new form SplashScreen
      */
@@ -142,7 +135,6 @@ public class SplashScreen extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
         SetUp configuration = new SetUp(0,0,0,0,0,null,null,null,null,null,null);
         Product prod = new Product (0,null,null);
         SplashScreen sc = new SplashScreen();

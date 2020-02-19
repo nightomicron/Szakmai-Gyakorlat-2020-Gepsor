@@ -9,16 +9,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author nimrod
- */
 public class termekekJFrame extends javax.swing.JFrame {
 
     /**
@@ -35,14 +25,111 @@ public class termekekJFrame extends javax.swing.JFrame {
     }
    
     public termekekJFrame(SetUp configuration, Product prod){
-            initComponents();
-            a += configuration.getA();
-            conf = configuration;
-            System.out.println(configuration.getA());
-            aTextfield.setEnabled(false);
-            aTextfield.setText(Integer.toString(conf.getA()));
-            pcb = prod;
+        initComponents();
+        a = configuration.getA();
+        conf = configuration;
+        aTextfield.setEnabled(false);
+        aTextfield.setText(Integer.toString(conf.getA()));
+        pcb = prod;
+        if(SplashScreen.pcbloaded == true){
+            createtable();
+            setproducts();
         }
+    }
+    
+    private void createtable(){
+        int b = pcb.getB();
+        DefaultTableModel modelr = (DefaultTableModel)rTable.getModel(); 
+        
+        
+        
+        //R táblázat
+        modelr.setColumnCount(1);
+        modelr.setRowCount(1);
+        int temp = 0;
+        for(int i = 0; i < a; i++){
+                 modelr.addColumn(i+1,new Object[]{"", "", ""});
+        }
+        
+        for(int i = 0; i < b-1; i++){
+                 modelr.addRow(new Object[]{"", "", ""});
+                 temp++;
+        }
+        for(int i = 0; i < b; i++){
+            rTable.setValueAt((Object)(i+1), i, 0);
+            for(int j = 1 ; j < a+1; j++){
+                
+                
+                String s = "0";
+            rTable.setValueAt((Object)s, i, j);
+
+            }
+        }
+        modelr.setRowCount(temp+1);
+        
+        
+        
+        
+        //P table
+        DefaultTableModel modelp = (DefaultTableModel)pTable.getModel();
+        modelp.setRowCount(1);
+        for(int i = 0; i < b-1; i++){
+                 modelp.addRow(new Object[]{"", "", ""});
+        }
+        for(int i = 0; i < b; i++){
+                pTable.setValueAt((Object)(i+1), i, 0);
+                for(int j = 1 ;j < 2; j++){
+                    String s = "0";
+                     pTable.setValueAt((Object)s, i, j);
+                } 
+        }
+    }
+    
+    private void adjusttables(){
+        int b = Integer.parseInt(bTextfield.getText());
+        DefaultTableModel modelr = (DefaultTableModel)rTable.getModel(); 
+        
+        //R táblázat
+        modelr.setColumnCount(1);
+        modelr.setRowCount(1);
+        int temp = 0;
+        for(int i = 0; i < a; i++){
+                 modelr.addColumn(i+1,new Object[]{"", "", ""});
+        }
+        
+        for(int i = 0; i < b-1; i++){
+                 modelr.addRow(new Object[]{"", "", ""});
+                 temp++;
+        }
+        for(int i = 0; i < b; i++){
+            rTable.setValueAt((Object)(i+1), i, 0);
+            for(int j = 1 ; j < a+1; j++){
+                
+                
+                String s = "0";
+            rTable.setValueAt((Object)s, i, j);
+
+            }
+        }
+        modelr.setRowCount(temp+1);
+        
+        
+        
+        
+        //P table
+        DefaultTableModel modelp = (DefaultTableModel)pTable.getModel();
+        modelp.setRowCount(1);
+        for(int i = 0; i < b-1; i++){
+                 modelp.addRow(new Object[]{"", "", ""});
+        }
+        for(int i = 0; i < b; i++){
+                pTable.setValueAt((Object)(i+1), i, 0);
+                for(int j = 1 ;j < 2; j++){
+                    String s = "0";
+                     pTable.setValueAt((Object)s, i, j);
+                } 
+        }
+    }
     
     private void getproducts(){
                 
@@ -57,7 +144,6 @@ public class termekekJFrame extends javax.swing.JFrame {
         }
         
         for(int i=0; i<pcb.getB(); i++){
-            
             for(int j=0; j<conf.getA(); j++){
                 r[i][j]=rTable.getValueAt(i, j+1);
             }
@@ -66,7 +152,25 @@ public class termekekJFrame extends javax.swing.JFrame {
         pcb.setP(p);
         pcb.setR(r);
     }
-       
+    
+    private void setproducts(){
+        aTextfield.setText(Integer.toString(conf.getA()));
+        bTextfield.setText(Integer.toString(pcb.getB()));
+        
+        
+        Object[] p = pcb.getP();
+        Object[][] r = pcb.getR();
+        
+        for(int i=0; i<p.length; i++){
+            pTable.setValueAt(p[i], i, 1);
+        }
+        
+        for(int i=0; i<pcb.getB(); i++){
+            for(int j=0; j<conf.getA(); j++){
+                rTable.setValueAt(r[i][j], i, j+1);
+            }
+        }
+    }
              
     /**
      * This method is called from within the constructor to initialize the form.
@@ -121,6 +225,11 @@ public class termekekJFrame extends javax.swing.JFrame {
         jPanel1.add(newButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, -1));
 
         loadButton.setText("Load");
+        loadButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(loadButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 100, -1));
 
         generateButton.setText("Generate");
@@ -349,7 +458,6 @@ public class termekekJFrame extends javax.swing.JFrame {
         this.dispose();
         tablazatJFrame t= new tablazatJFrame(conf,pcb);
         t.setVisible(true);
-        
     }//GEN-LAST:event_headnozzlesButtonActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
@@ -370,56 +478,8 @@ public class termekekJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_bTextfieldMouseClicked
 
     private void bTextfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bTextfieldFocusLost
-        int b = Integer.parseInt(bTextfield.getText());
-        DefaultTableModel modelr = (DefaultTableModel)rTable.getModel(); 
         
-        
-        
-        //R táblázat
-        modelr.setColumnCount(1);
-        modelr.setRowCount(1);
-        int temp = 0;
-        for(int i = 0; i < a; i++){
-                 modelr.addColumn(i+1,new Object[]{"", "", ""});
-        }
-        
-        for(int i = 0; i < b-1; i++){
-                 modelr.addRow(new Object[]{"", "", ""});
-                 temp++;
-        }
-        for(int i = 0; i < b; i++){
-            rTable.setValueAt((Object)(i+1), i, 0);
-            for(int j = 1 ; j < a+1; j++){
-                
-                
-                String s = "0";
-            rTable.setValueAt((Object)s, i, j);
-
-            }
-        }
-        modelr.setRowCount(temp+1);
-        
-        
-        
-        
-        //P table
-        DefaultTableModel modelp = (DefaultTableModel)pTable.getModel();
-        modelp.setRowCount(1);
-        for(int i = 0; i < b-1; i++){
-                 modelp.addRow(new Object[]{"", "", ""});
-        }
-        for(int i = 0; i < b; i++){
-                pTable.setValueAt((Object)(i+1), i, 0);
-                for(int j = 1 ;j < 2; j++){
-                    String s = "0";
-                     pTable.setValueAt((Object)s, i, j);
-                } 
-        }
-        
-      // 
-        
-        
-       
+        adjusttables();
         
     }//GEN-LAST:event_bTextfieldFocusLost
 
@@ -455,8 +515,9 @@ public class termekekJFrame extends javax.swing.JFrame {
                 String fnameconf=fcconf.getSelectedFile().getPath();
                 Genconf.saveconf(conf, fnameconf);
                 
-                JOptionPane.showMessageDialog(null,"Succesfull Sava! \n "
+                JOptionPane.showMessageDialog(null,"Succesfull Save! \n "
                                                    + "Save path: "+fnameconf, "---Save---",JOptionPane.INFORMATION_MESSAGE, icon);
+                SplashScreen.confloaded = true;
             }
             
             JFileChooser fcpcb=new JFileChooser();
@@ -466,14 +527,48 @@ public class termekekJFrame extends javax.swing.JFrame {
             {
                 String fnamepcb=fcpcb.getSelectedFile().getPath();
                 Genpcb.savepcb(pcb, conf, fnamepcb);
-                JOptionPane.showMessageDialog(null,"Succesfull Sava! \n "
+                JOptionPane.showMessageDialog(null,"Succesfull Save! \n "
                                                    + "Save path: "+fnamepcb, "---Save---",JOptionPane.INFORMATION_MESSAGE, icon);
+                SplashScreen.pcbloaded = true;
             }
             
         } catch (FileNotFoundException ex) {
             Logger.getLogger(feluletJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_generateButtonActionPerformed
+
+    private void loadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadButtonActionPerformed
+        final ImageIcon icon = new ImageIcon("icon_small.png");
+        JFileChooser fcconf=new JFileChooser();
+        fcconf.setDialogTitle("Load setup configuration");
+        int retconf=fcconf.showOpenDialog(this);
+        if(retconf==JFileChooser.APPROVE_OPTION)
+        {
+            try {
+                String fnameconf=fcconf.getSelectedFile().getPath();
+                conf = Genconf.loadconf(fnameconf);
+                JOptionPane.showMessageDialog(null,"Succesfull Load! \n "
+                                                   + "Load path: "+fnameconf, "---Load---",JOptionPane.INFORMATION_MESSAGE, icon);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(feluletJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        JFileChooser fcpcb=new JFileChooser();
+        fcpcb.setDialogTitle("Load pcb configuration");
+        int retpcb=fcpcb.showOpenDialog(this);
+        if(retpcb==JFileChooser.APPROVE_OPTION)
+        {
+            try {
+                String fnamepcb=fcpcb.getSelectedFile().getPath();
+                pcb = Genpcb.loadpcb(fnamepcb, conf);
+                JOptionPane.showMessageDialog(null,"Succesfull Load! \n "
+                                                   + "Load path: "+fnamepcb, "---Load---",JOptionPane.INFORMATION_MESSAGE, icon);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(feluletJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        setproducts();
+    }//GEN-LAST:event_loadButtonActionPerformed
 
     /**
      * @param args the command line arguments

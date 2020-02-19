@@ -10,15 +10,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author tanulo
- */
 public class tablazatJFrame extends javax.swing.JFrame {
     
     private SetUp conf;
@@ -37,7 +28,6 @@ public class tablazatJFrame extends javax.swing.JFrame {
         DefaultTableModel modelc = (DefaultTableModel)cTable.getModel();  
         for(int i = 0; i < configuration.getH(); i++){
         modelc.addRow(new Object[]{"", "", ""});
-        System.out.println(i);
         }
         
         
@@ -136,6 +126,9 @@ public class tablazatJFrame extends javax.swing.JFrame {
         
         conf = configuration;
         pcb = prod;
+        if(SplashScreen.confloaded == true){
+            settables();
+        }
     }
     
     
@@ -186,6 +179,43 @@ public class tablazatJFrame extends javax.swing.JFrame {
         conf.setNh(nh);
         conf.setTtr(ttr);
         conf.setAn(an);
+    }
+    
+    private void settables(){
+        
+        int h = conf.getH();
+        int n = conf.getN();
+        int a = conf.getA();
+        
+        Object[] c = conf.getC();
+        Object[] tpp = conf.getTpp();
+        Object[] ttr = conf.getTtr();
+        Object[] w = conf.getW();
+        Object[][] nh = conf.getNh();
+        Object[][] an = conf.getAn();
+        
+        for(int i=0; i<c.length; i++){
+            cTable.setValueAt(c[i], i, 1);
+        }
+        for(int i=0; i<tpp.length; i++){
+            tppTable.setValueAt(tpp[i], i, 1);
+        }
+        for(int i=0; i<w.length; i++){
+            wTable.setValueAt(w[i], i, 1);
+        }
+        for(int i=0; i<ttr.length; i++){
+            ttrTable.setValueAt(ttr[i], i, 1);
+        }
+        for(int i=0; i<n; i++){
+            for(int j=0; j<h; j++){
+                hnTable.setValueAt(nh[i][j], i, j+1);
+            }
+        }
+        for(int i=0; i<a; i++){
+            for(int j=0; j<n; j++){
+                anTable.setValueAt(an[i][j], i, j+1);
+            }
+        }
     }
    
     /**
@@ -249,6 +279,11 @@ public class tablazatJFrame extends javax.swing.JFrame {
         jPanel3.add(homeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 100, -1));
 
         loadButton.setText("Load");
+        loadButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadButtonActionPerformed(evt);
+            }
+        });
         jPanel3.add(loadButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 100, -1));
 
         componentButton.setText("Component");
@@ -516,7 +551,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
             {
                 String fnameconf=fcconf.getSelectedFile().getPath();
                 Genconf.saveconf(conf, fnameconf);
-                JOptionPane.showMessageDialog(null,"Succesfull Sava! \n "
+                JOptionPane.showMessageDialog(null,"Succesfull Save! \n "
                                                    + "Save path: "+fnameconf, "---Save---",JOptionPane.INFORMATION_MESSAGE, icon);
             }
             
@@ -527,7 +562,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
             {
                 String fnamepcb=fcpcb.getSelectedFile().getPath();
                 Genpcb.savepcb(pcb, conf, fnamepcb);
-                JOptionPane.showMessageDialog(null,"Succesfull Sava! \n "
+                JOptionPane.showMessageDialog(null,"Succesfull Save! \n "
                                                    + "Save path: "+fnamepcb, "---Save---",JOptionPane.INFORMATION_MESSAGE, icon);
             }
             
@@ -537,6 +572,41 @@ public class tablazatJFrame extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_generalButtonActionPerformed
+
+    private void loadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadButtonActionPerformed
+        final ImageIcon icon = new ImageIcon("icon_small.png");
+        JFileChooser fcconf=new JFileChooser();
+        fcconf.setDialogTitle("Load setup configuration");
+        int retconf=fcconf.showOpenDialog(this);
+        if(retconf==JFileChooser.APPROVE_OPTION)
+        {
+            try {
+                String fnameconf=fcconf.getSelectedFile().getPath();
+                conf = Genconf.loadconf(fnameconf);
+                JOptionPane.showMessageDialog(null,"Succesfull Load! \n "
+                                                   + "Load path: "+fnameconf, "---Load---",JOptionPane.INFORMATION_MESSAGE, icon);
+                SplashScreen.confloaded = true;
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(feluletJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        JFileChooser fcpcb=new JFileChooser();
+        fcpcb.setDialogTitle("Load pcb configuration");
+        int retpcb=fcpcb.showOpenDialog(this);
+        if(retpcb==JFileChooser.APPROVE_OPTION)
+        {
+            try {
+                String fnamepcb=fcpcb.getSelectedFile().getPath();
+                pcb = Genpcb.loadpcb(fnamepcb, conf);
+                JOptionPane.showMessageDialog(null,"Succesfull Load! \n "
+                                                   + "Load path: "+fnamepcb, "---Load---",JOptionPane.INFORMATION_MESSAGE, icon);
+                SplashScreen.pcbloaded = true;
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(feluletJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        settables();
+    }//GEN-LAST:event_loadButtonActionPerformed
 
     /**
      * @param args the command line arguments

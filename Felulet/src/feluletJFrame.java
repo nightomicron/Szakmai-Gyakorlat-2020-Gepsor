@@ -15,6 +15,7 @@ public class feluletJFrame extends javax.swing.JFrame {
     //creating a conf object
     private SetUp conf;
     private Product pcb;
+    
     /**
      * Creates new form feluletJFrame
      */
@@ -26,6 +27,25 @@ public class feluletJFrame extends javax.swing.JFrame {
         initComponents();
         conf = configuration;
         pcb = prod;
+        setdata();
+        check();
+    }
+    
+    private void changed(){
+        conf.setM(0);
+        conf.setH(0);
+        conf.setN(0);
+        conf.setA(0);
+        conf.setF(0);
+        conf.setC(null);
+        conf.setAn(null);
+        conf.setNh(null);
+        conf.setTpp(null);
+        conf.setTtr(null);
+        conf.setW(null);
+        pcb.setB(0);
+        pcb.setP(null);
+        pcb.setR(null);
     }
     
     //method for setting up the values of the conf object
@@ -36,9 +56,33 @@ public class feluletJFrame extends javax.swing.JFrame {
         conf.setA(Integer.parseInt(aTextfield.getText()));
         conf.setF(Integer.parseInt(fTextfield.getText()));
         //m = modules, h = set of head types, n = set of nozzles, a = set of component types
-        //f = feeder capacity, ttr = head time to travel
+        //f = feeder capacity
+    }
+    
+    private void setdata(){
+        mTextfield.setText(Integer.toString(conf.getM()));
+        if(Integer.parseInt(mTextfield.getText()) == 0){
+            mTextfield.setText("");
+        }
+        hTextfield.setText(Integer.toString(conf.getH()));
+        if(Integer.parseInt(hTextfield.getText()) == 0){
+            hTextfield.setText("");
+        }
+        nTextfield.setText(Integer.toString(conf.getN()));
+        if(Integer.parseInt(nTextfield.getText()) == 0){
+            nTextfield.setText("");
+        }
+        aTextfield.setText(Integer.toString(conf.getA()));
+        if(Integer.parseInt(aTextfield.getText()) == 0){
+            aTextfield.setText("");
+        }
+        fTextfield.setText(Integer.toString(conf.getF()));
+        if(Integer.parseInt(fTextfield.getText()) == 0){
+            fTextfield.setText("");
+        }
         
-        
+        //m = modules, h = set of head types, n = set of nozzles, a = set of component types
+        //f = feeder capacity
     }
     
     private void check(){
@@ -149,6 +193,11 @@ public class feluletJFrame extends javax.swing.JFrame {
         jPanel2.add(generalButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 110, -1));
 
         loadButton.setText("Load");
+        loadButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadButtonActionPerformed(evt);
+            }
+        });
         jPanel2.add(loadButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 110, -1));
 
         exitButton.setText("Exit");
@@ -326,7 +375,7 @@ public class feluletJFrame extends javax.swing.JFrame {
             {
                 String fnameconf=fcconf.getSelectedFile().getPath();
                 Genconf.saveconf(conf, fnameconf);
-                JOptionPane.showMessageDialog(null,"Succesfull Sava! \n "
+                JOptionPane.showMessageDialog(null,"Succesfull Save! \n "
                                                    + "Save path: "+fnameconf, "---Save---",JOptionPane.INFORMATION_MESSAGE, icon);
             }
             
@@ -337,7 +386,7 @@ public class feluletJFrame extends javax.swing.JFrame {
             {
                 String fnamepcb=fcpcb.getSelectedFile().getPath();
                 Genpcb.savepcb(pcb, conf, fnamepcb);
-                JOptionPane.showMessageDialog(null,"Succesfull Sava! \n "
+                JOptionPane.showMessageDialog(null,"Succesfull Save! \n "
                                                    + "Save path: "+fnamepcb, "---Save---",JOptionPane.INFORMATION_MESSAGE, icon);
             }
         } catch (FileNotFoundException ex) {
@@ -346,26 +395,65 @@ public class feluletJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_generalButtonActionPerformed
 
     private void mTextfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mTextfieldFocusLost
-
        check();
-       
+       changed();
     }//GEN-LAST:event_mTextfieldFocusLost
 
     private void hTextfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_hTextfieldFocusLost
         check();
+        changed();
     }//GEN-LAST:event_hTextfieldFocusLost
 
     private void nTextfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nTextfieldFocusLost
         check();
+        changed();
     }//GEN-LAST:event_nTextfieldFocusLost
 
     private void aTextfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_aTextfieldFocusLost
         check();
+        changed();
     }//GEN-LAST:event_aTextfieldFocusLost
 
     private void fTextfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fTextfieldFocusLost
         check();
+        changed();
     }//GEN-LAST:event_fTextfieldFocusLost
+
+    private void loadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadButtonActionPerformed
+        final ImageIcon icon = new ImageIcon("icon_small.png");
+        JFileChooser fcconf=new JFileChooser();
+        fcconf.setDialogTitle("Load setup configuration");
+        int retconf=fcconf.showOpenDialog(this);
+        if(retconf==JFileChooser.APPROVE_OPTION)
+        {
+            try {
+                String fnameconf=fcconf.getSelectedFile().getPath();
+                conf = Genconf.loadconf(fnameconf);
+                JOptionPane.showMessageDialog(null,"Succesfull Load! \n "
+                                                   + "Load path: "+fnameconf, "---Load---",JOptionPane.INFORMATION_MESSAGE, icon);
+                SplashScreen.confloaded = true;
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(feluletJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        JFileChooser fcpcb=new JFileChooser();
+        fcpcb.setDialogTitle("Load pcb configuration");
+        int retpcb=fcpcb.showOpenDialog(this);
+        if(retpcb==JFileChooser.APPROVE_OPTION)
+        {
+            try {
+                String fnamepcb=fcpcb.getSelectedFile().getPath();
+                pcb = Genpcb.loadpcb(fnamepcb, conf);
+                JOptionPane.showMessageDialog(null,"Succesfull Load! \n "
+                                                   + "Load path: "+fnamepcb, "---Load---",JOptionPane.INFORMATION_MESSAGE, icon);
+                SplashScreen.pcbloaded = true;
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(feluletJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        setdata();
+        check();
+    }//GEN-LAST:event_loadButtonActionPerformed
 
     /**
      * @param args the command line arguments
