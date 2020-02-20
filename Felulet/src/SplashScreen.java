@@ -7,6 +7,10 @@ public class SplashScreen extends javax.swing.JFrame {
     
     public static boolean confloaded = false;
     public static boolean pcbloaded = false;
+    public static boolean confsaved = false;
+    public static boolean pcbsaved = false;
+    public static SetUp conf = new SetUp(0,0,0,0,0,null,null,null,null,null,null);
+    public static Product pcb = new Product (0,null,null);
     /**
      * Creates new form SplashScreen
      */
@@ -135,8 +139,7 @@ public class SplashScreen extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        SetUp configuration = new SetUp(0,0,0,0,0,null,null,null,null,null,null);
-        Product prod = new Product (0,null,null);
+        
         SplashScreen sc = new SplashScreen();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -153,7 +156,7 @@ public class SplashScreen extends javax.swing.JFrame {
         }catch(Exception e){
         }
         sc.dispose();
-        new feluletJFrame(configuration,prod).setVisible(true);
+        new feluletJFrame().setVisible(true);
         
     }
 

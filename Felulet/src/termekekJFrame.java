@@ -14,31 +14,20 @@ public class termekekJFrame extends javax.swing.JFrame {
     /**
      * Creates new form termekekJFrame
      */
-    private static int a=0;
-    private SetUp conf;
-    private Product pcb;
-    
-    public termekekJFrame() {
-         initComponents();
-         
-        
-    }
    
-    public termekekJFrame(SetUp configuration, Product prod){
+    public termekekJFrame(){
         initComponents();
-        a = configuration.getA();
-        conf = configuration;
         aTextfield.setEnabled(false);
-        aTextfield.setText(Integer.toString(conf.getA()));
-        pcb = prod;
-        if(SplashScreen.pcbloaded == true){
+        aTextfield.setText(Integer.toString(SplashScreen.conf.getA()));
+        if(SplashScreen.pcbloaded == true || SplashScreen.pcbsaved == true){
             createtable();
             setproducts();
         }
+        loadButton.setEnabled(false);
     }
     
     private void createtable(){
-        int b = pcb.getB();
+        int b = SplashScreen.pcb.getB();
         DefaultTableModel modelr = (DefaultTableModel)rTable.getModel(); 
         
         
@@ -47,7 +36,7 @@ public class termekekJFrame extends javax.swing.JFrame {
         modelr.setColumnCount(1);
         modelr.setRowCount(1);
         int temp = 0;
-        for(int i = 0; i < a; i++){
+        for(int i = 0; i < SplashScreen.conf.getA(); i++){
                  modelr.addColumn(i+1,new Object[]{"", "", ""});
         }
         
@@ -57,7 +46,7 @@ public class termekekJFrame extends javax.swing.JFrame {
         }
         for(int i = 0; i < b; i++){
             rTable.setValueAt((Object)(i+1), i, 0);
-            for(int j = 1 ; j < a+1; j++){
+            for(int j = 1 ; j < SplashScreen.conf.getA()+1; j++){
                 
                 
                 String s = "0";
@@ -93,7 +82,7 @@ public class termekekJFrame extends javax.swing.JFrame {
         modelr.setColumnCount(1);
         modelr.setRowCount(1);
         int temp = 0;
-        for(int i = 0; i < a; i++){
+        for(int i = 0; i < SplashScreen.conf.getA(); i++){
                  modelr.addColumn(i+1,new Object[]{"", "", ""});
         }
         
@@ -103,7 +92,7 @@ public class termekekJFrame extends javax.swing.JFrame {
         }
         for(int i = 0; i < b; i++){
             rTable.setValueAt((Object)(i+1), i, 0);
-            for(int j = 1 ; j < a+1; j++){
+            for(int j = 1 ; j < SplashScreen.conf.getA()+1; j++){
                 
                 
                 String s = "0";
@@ -133,9 +122,9 @@ public class termekekJFrame extends javax.swing.JFrame {
     
     private void getproducts(){
                 
-        pcb.setB(Integer.parseInt(bTextfield.getText()));
-        Object[] p = new Object[pcb.getB()];
-        Object[][] r = new Object[pcb.getB()][conf.getA()];
+        SplashScreen.pcb.setB(Integer.parseInt(bTextfield.getText()));
+        Object[] p = new Object[SplashScreen.pcb.getB()];
+        Object[][] r = new Object[SplashScreen.pcb.getB()][SplashScreen.conf.getA()];
         
         //getting values from tables and placing them into arrays
         //note: getValueAt() returns an object, not an int!
@@ -143,30 +132,30 @@ public class termekekJFrame extends javax.swing.JFrame {
             p[i]= pTable.getValueAt(i, 1);
         }
         
-        for(int i=0; i<pcb.getB(); i++){
-            for(int j=0; j<conf.getA(); j++){
+        for(int i=0; i<SplashScreen.pcb.getB(); i++){
+            for(int j=0; j<SplashScreen.conf.getA(); j++){
                 r[i][j]=rTable.getValueAt(i, j+1);
             }
         }
         
-        pcb.setP(p);
-        pcb.setR(r);
+        SplashScreen.pcb.setP(p);
+        SplashScreen.pcb.setR(r);
     }
     
     private void setproducts(){
-        aTextfield.setText(Integer.toString(conf.getA()));
-        bTextfield.setText(Integer.toString(pcb.getB()));
+        aTextfield.setText(Integer.toString(SplashScreen.conf.getA()));
+        bTextfield.setText(Integer.toString(SplashScreen.pcb.getB()));
         
         
-        Object[] p = pcb.getP();
-        Object[][] r = pcb.getR();
+        Object[] p = SplashScreen.pcb.getP();
+        Object[][] r = SplashScreen.pcb.getR();
         
         for(int i=0; i<p.length; i++){
             pTable.setValueAt(p[i], i, 1);
         }
         
-        for(int i=0; i<pcb.getB(); i++){
-            for(int j=0; j<conf.getA(); j++){
+        for(int i=0; i<SplashScreen.pcb.getB(); i++){
+            for(int j=0; j<SplashScreen.conf.getA(); j++){
                 rTable.setValueAt(r[i][j], i, j+1);
             }
         }
@@ -185,7 +174,9 @@ public class termekekJFrame extends javax.swing.JFrame {
         newButton = new javax.swing.JButton();
         loadButton = new javax.swing.JButton();
         generateButton = new javax.swing.JButton();
+        homeButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
+        headnozzlesButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         bTextfield = new javax.swing.JTextField();
@@ -214,13 +205,13 @@ public class termekekJFrame extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        newButton.setText("Reset");
+        newButton.setText("Restore");
         newButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(newButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, -1));
+        jPanel1.add(newButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 100, -1));
 
         loadButton.setText("Load");
         loadButton.addActionListener(new java.awt.event.ActionListener() {
@@ -238,13 +229,29 @@ public class termekekJFrame extends javax.swing.JFrame {
         });
         jPanel1.add(generateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 100, -1));
 
+        homeButton.setText("Restart");
+        homeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(homeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, -1));
+
         exitButton.setText("Exit");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 660, 100, -1));
+        jPanel1.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 100, -1));
+
+        headnozzlesButton.setText("Head-Nozzle");
+        headnozzlesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                headnozzlesButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(headnozzlesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 100, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/left menu bar karfej.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -422,10 +429,27 @@ public class termekekJFrame extends javax.swing.JFrame {
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
         
         this.dispose();
-        termekekJFrame termek= new termekekJFrame(conf,pcb);
+        termekekJFrame termek= new termekekJFrame();
         termek.setVisible(true);
         
     }//GEN-LAST:event_newButtonActionPerformed
+
+    private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
+        getproducts();
+        SplashScreen.pcbsaved = true;
+        this.dispose();
+        feluletJFrame f= new feluletJFrame();
+        f.setVisible(true);
+        
+    }//GEN-LAST:event_homeButtonActionPerformed
+
+    private void headnozzlesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_headnozzlesButtonActionPerformed
+        getproducts();
+        SplashScreen.pcbsaved = true;
+        this.dispose();
+        tablazatJFrame t= new tablazatJFrame();
+        t.setVisible(true);
+    }//GEN-LAST:event_headnozzlesButtonActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         this.dispose();
@@ -473,14 +497,14 @@ public class termekekJFrame extends javax.swing.JFrame {
       
         try {
             getproducts();
-            
+            SplashScreen.pcbsaved = true;
             JFileChooser fcconf=new JFileChooser();
             fcconf.setDialogTitle("Save setup configuration");
             int retconf=fcconf.showSaveDialog(this);
             if(retconf==JFileChooser.APPROVE_OPTION)
             {
                 String fnameconf=fcconf.getSelectedFile().getPath();
-                Genconf.saveconf(conf, fnameconf);
+                Genconf.saveconf(SplashScreen.conf, fnameconf);
                 
                 JOptionPane.showMessageDialog(null,"Succesfull Save! \n "
                                                    + "Save path: "+fnameconf, "---Save---",JOptionPane.INFORMATION_MESSAGE, icon);
@@ -493,7 +517,7 @@ public class termekekJFrame extends javax.swing.JFrame {
             if(retpcb==JFileChooser.APPROVE_OPTION)
             {
                 String fnamepcb=fcpcb.getSelectedFile().getPath();
-                Genpcb.savepcb(pcb, conf, fnamepcb);
+                Genpcb.savepcb(SplashScreen.pcb, SplashScreen.conf, fnamepcb);
                 JOptionPane.showMessageDialog(null,"Succesfull Save! \n "
                                                    + "Save path: "+fnamepcb, "---Save---",JOptionPane.INFORMATION_MESSAGE, icon);
                 SplashScreen.pcbloaded = true;
@@ -513,9 +537,10 @@ public class termekekJFrame extends javax.swing.JFrame {
         {
             try {
                 String fnameconf=fcconf.getSelectedFile().getPath();
-                conf = Genconf.loadconf(fnameconf);
+                SplashScreen.conf = Genconf.loadconf(fnameconf);
                 JOptionPane.showMessageDialog(null,"Succesfull Load! \n "
                                                    + "Load path: "+fnameconf, "---Load---",JOptionPane.INFORMATION_MESSAGE, icon);
+                SplashScreen.confloaded = true;
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(feluletJFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -527,9 +552,10 @@ public class termekekJFrame extends javax.swing.JFrame {
         {
             try {
                 String fnamepcb=fcpcb.getSelectedFile().getPath();
-                pcb = Genpcb.loadpcb(fnamepcb, conf);
+                SplashScreen.pcb = Genpcb.loadpcb(fnamepcb, SplashScreen.conf);
                 JOptionPane.showMessageDialog(null,"Succesfull Load! \n "
                                                    + "Load path: "+fnamepcb, "---Load---",JOptionPane.INFORMATION_MESSAGE, icon);
+                SplashScreen.pcbloaded = true;
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(feluletJFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -580,6 +606,8 @@ public class termekekJFrame extends javax.swing.JFrame {
     public javax.swing.JTextField bTextfield;
     public javax.swing.JButton exitButton;
     public javax.swing.JButton generateButton;
+    public javax.swing.JButton headnozzlesButton;
+    public javax.swing.JButton homeButton;
     public javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabel3;

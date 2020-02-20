@@ -12,41 +12,36 @@ import javax.swing.table.DefaultTableModel;
 
 public class tablazatJFrame extends javax.swing.JFrame {
     
-    private SetUp conf;
-    private Product pcb;
     /**
      * Creates new form tablazatJFrame
      */
     
-    public tablazatJFrame() {
-        initComponents();
-    }
     
-   public tablazatJFrame(SetUp configuration, Product prod){
+   public tablazatJFrame(){
         initComponents();
         //C table
         DefaultTableModel modelc = (DefaultTableModel)cTable.getModel();  
-        for(int i = 0; i < configuration.getH(); i++){
+        for(int i = 0; i < SplashScreen.conf.getH(); i++){
         modelc.addRow(new Object[]{"", "", ""});
         }
         
         
         
-        for(int i = 0; i < configuration.getH(); i++){
+        for(int i = 0; i < SplashScreen.conf.getH(); i++){
                 cTable.setValueAt((Object)(i+1), i, 0);
-                for(int j = 0 ;j < configuration.getH(); j++){
+                for(int j = 0 ;j < SplashScreen.conf.getH(); j++){
                     String s = "0";
                      cTable.setValueAt((Object)s, j, 1);
                 } 
         }
         //TPP table
         DefaultTableModel modeltpp = (DefaultTableModel)tppTable.getModel();  
-        for(int i = 0; i < configuration.getH(); i++){
+        for(int i = 0; i < SplashScreen.conf.getH(); i++){
         modeltpp.addRow (new Object[]{"", "", ""});
         }
-        for(int i = 0; i < configuration.getH(); i++){
+        for(int i = 0; i < SplashScreen.conf.getH(); i++){
                 tppTable.setValueAt((Object)(i+1), i, 0);
-                for(int j = 0 ;j < configuration.getH(); j++){
+                for(int j = 0 ;j < SplashScreen.conf.getH(); j++){
                     String s = "0";
                      tppTable.setValueAt((Object)s, j, 1);
                 } 
@@ -56,18 +51,18 @@ public class tablazatJFrame extends javax.swing.JFrame {
         modelhn.setColumnCount(1);
         modelhn.setRowCount(1);
         int temp = 0;
-        for(int i = 0; i < configuration.getN()-1; i++){
+        for(int i = 0; i < SplashScreen.conf.getN()-1; i++){
             modelhn.addRow(new Object[]{"", "", ""});
             temp++;
         }
-        for(int i = 0; i<configuration.getH(); i++){
+        for(int i = 0; i<SplashScreen.conf.getH(); i++){
             modelhn.addColumn(i+1,new Object[]{"","",""});
         } 
         
         
-        for(int i = 0; i < configuration.getN(); i++){
+        for(int i = 0; i < SplashScreen.conf.getN(); i++){
                 hnTable.setValueAt((Object)(i+1), i, 0);
-                for(int j = 1 ;j < configuration.getH()+1; j++){
+                for(int j = 1 ;j < SplashScreen.conf.getH()+1; j++){
                     String s = "0";
                      hnTable.setValueAt((Object)s, i, j);
                 } 
@@ -81,10 +76,10 @@ public class tablazatJFrame extends javax.swing.JFrame {
         //W table
         DefaultTableModel modela = (DefaultTableModel)wTable.getModel();
         
-        for(int i = 0; i < configuration.getA(); i++){
+        for(int i = 0; i < SplashScreen.conf.getA(); i++){
         modela.addRow(new Object[]{"", "", ""});
         }
-        for(int i = 0; i < configuration.getA(); i++){
+        for(int i = 0; i < SplashScreen.conf.getA(); i++){
                 wTable.setValueAt((Object)(i+1), i, 0);
                 for(int j = 1 ;j < 2; j++){
                     String s = "0";
@@ -96,16 +91,16 @@ public class tablazatJFrame extends javax.swing.JFrame {
         modelan.setColumnCount(1);
         modelan.setRowCount(1);
         temp = 0;
-        for(int i = 0; i < configuration.getA()-1; i++){
+        for(int i = 0; i < SplashScreen.conf.getA()-1; i++){
             modelan.addRow(new Object[]{"", "", ""});
             temp++;
         }
-        for(int i = 0; i<configuration.getN(); i++){
+        for(int i = 0; i<SplashScreen.conf.getN(); i++){
             modelan.addColumn(i+1,new Object[]{"","",""});
         } 
-        for(int i = 0; i < configuration.getA(); i++){
+        for(int i = 0; i < SplashScreen.conf.getA(); i++){
             anTable.setValueAt((Object)(i+1), i, 0);
-            for(int j = 1 ;j < configuration.getN()+1; j++){
+            for(int j = 1 ;j < SplashScreen.conf.getN()+1; j++){
                 String s = "0";
                 anTable.setValueAt((Object)s, i, j);
             } 
@@ -113,10 +108,10 @@ public class tablazatJFrame extends javax.swing.JFrame {
         modelan.setRowCount(temp+1);
         //TTR table
         DefaultTableModel modelttr = (DefaultTableModel)ttrTable.getModel();  
-        for(int i = 0; i < configuration.getH(); i++){
+        for(int i = 0; i < SplashScreen.conf.getH(); i++){
         modelttr.addRow(new Object[]{"", "", ""});
         }
-        for(int i = 0; i < configuration.getH(); i++){
+        for(int i = 0; i < SplashScreen.conf.getH(); i++){
                 ttrTable.setValueAt((Object)(i+1), i, 0);
                 for(int j = 1 ;j < 2; j++){
                     String s = "0";
@@ -124,20 +119,19 @@ public class tablazatJFrame extends javax.swing.JFrame {
                 } 
         }
         
-        conf = configuration;
-        pcb = prod;
-        if(SplashScreen.confloaded == true){
+        if(SplashScreen.confloaded == true || SplashScreen.confsaved == true){
             settables();
         }
+        loadButton.setEnabled(false);
     }
     
     
     private void gettables(){
         
         //grabs the h n a variables from the conf object
-        int h = conf.getH();
-        int n = conf.getN();
-        int a = conf.getA();
+        int h = SplashScreen.conf.getH();
+        int n = SplashScreen.conf.getN();
+        int a = SplashScreen.conf.getA();
         
         //arrays for the tables:
         //c = head capacity, tpp = pick and place time, w = component width,
@@ -173,26 +167,26 @@ public class tablazatJFrame extends javax.swing.JFrame {
             }
         }
         
-        conf.setC(c);
-        conf.setTpp(tpp);
-        conf.setW(w);
-        conf.setNh(nh);
-        conf.setTtr(ttr);
-        conf.setAn(an);
+        SplashScreen.conf.setC(c);
+        SplashScreen.conf.setTpp(tpp);
+        SplashScreen.conf.setW(w);
+        SplashScreen.conf.setNh(nh);
+        SplashScreen.conf.setTtr(ttr);
+        SplashScreen.conf.setAn(an);
     }
     
     private void settables(){
         
-        int h = conf.getH();
-        int n = conf.getN();
-        int a = conf.getA();
+        int h = SplashScreen.conf.getH();
+        int n = SplashScreen.conf.getN();
+        int a = SplashScreen.conf.getA();
         
-        Object[] c = conf.getC();
-        Object[] tpp = conf.getTpp();
-        Object[] ttr = conf.getTtr();
-        Object[] w = conf.getW();
-        Object[][] nh = conf.getNh();
-        Object[][] an = conf.getAn();
+        Object[] c = SplashScreen.conf.getC();
+        Object[] tpp = SplashScreen.conf.getTpp();
+        Object[] ttr = SplashScreen.conf.getTtr();
+        Object[] w = SplashScreen.conf.getW();
+        Object[][] nh = SplashScreen.conf.getNh();
+        Object[][] an = SplashScreen.conf.getAn();
         
         for(int i=0; i<c.length; i++){
             cTable.setValueAt(c[i], i, 1);
@@ -229,9 +223,11 @@ public class tablazatJFrame extends javax.swing.JFrame {
 
         jPanel3 = new javax.swing.JPanel();
         newButton = new javax.swing.JButton();
+        homeButton = new javax.swing.JButton();
         loadButton = new javax.swing.JButton();
         componentButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
+        generalButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -260,13 +256,21 @@ public class tablazatJFrame extends javax.swing.JFrame {
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        newButton.setText("Reset");
+        newButton.setText("Restore");
         newButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newButtonActionPerformed(evt);
             }
         });
-        jPanel3.add(newButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, -1));
+        jPanel3.add(newButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 100, -1));
+
+        homeButton.setText("Restart");
+        homeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeButtonActionPerformed(evt);
+            }
+        });
+        jPanel3.add(homeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, -1));
 
         loadButton.setText("Load");
         loadButton.addActionListener(new java.awt.event.ActionListener() {
@@ -283,7 +287,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
                 componentButtonActionPerformed(evt);
             }
         });
-        jPanel3.add(componentButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 100, -1));
+        jPanel3.add(componentButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 100, -1));
 
         exitButton.setText("Exit");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -291,7 +295,15 @@ public class tablazatJFrame extends javax.swing.JFrame {
                 exitButtonActionPerformed(evt);
             }
         });
-        jPanel3.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 660, 100, -1));
+        jPanel3.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 100, -1));
+
+        generalButton.setText("Generate");
+        generalButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generalButtonActionPerformed(evt);
+            }
+        });
+        jPanel3.add(generalButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 100, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/left menu bar karfej.png"))); // NOI18N
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -475,14 +487,23 @@ public class tablazatJFrame extends javax.swing.JFrame {
 
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
         this.dispose();
-        tablazatJFrame t= new tablazatJFrame(conf,pcb);
+        tablazatJFrame t= new tablazatJFrame();
         t.setVisible(true);
     }//GEN-LAST:event_newButtonActionPerformed
 
+    private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
+        gettables();
+        SplashScreen.confsaved = true;
+        this.dispose();
+        feluletJFrame f= new feluletJFrame();
+        f.setVisible(true);
+    }//GEN-LAST:event_homeButtonActionPerformed
+
     private void componentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_componentButtonActionPerformed
         gettables();
+        SplashScreen.confsaved = true;
         this.dispose();
-        termekekJFrame termek= new termekekJFrame(conf,pcb);
+        termekekJFrame termek= new termekekJFrame();
         termek.setVisible(true);
     }//GEN-LAST:event_componentButtonActionPerformed
 
@@ -515,6 +536,40 @@ public class tablazatJFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_anTableMouseClicked
 
+    private void generalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generalButtonActionPerformed
+        final ImageIcon icon = new ImageIcon("icon_small.png");
+        try {
+            gettables();
+            SplashScreen.confsaved = true;
+            JFileChooser fcconf=new JFileChooser();
+            fcconf.setDialogTitle("Save setup configuration");
+            int retconf=fcconf.showSaveDialog(this);
+            if(retconf==JFileChooser.APPROVE_OPTION)
+            {
+                String fnameconf=fcconf.getSelectedFile().getPath();
+                Genconf.saveconf(SplashScreen.conf, fnameconf);
+                JOptionPane.showMessageDialog(null,"Succesfull Save! \n "
+                                                   + "Save path: "+fnameconf, "---Save---",JOptionPane.INFORMATION_MESSAGE, icon);
+            }
+            
+            JFileChooser fcpcb=new JFileChooser();
+            fcpcb.setDialogTitle("Save pcb configuration");
+            int retpcb=fcpcb.showSaveDialog(this);
+            if(retpcb==JFileChooser.APPROVE_OPTION)
+            {
+                String fnamepcb=fcpcb.getSelectedFile().getPath();
+                Genpcb.savepcb(SplashScreen.pcb, SplashScreen.conf, fnamepcb);
+                JOptionPane.showMessageDialog(null,"Succesfull Save! \n "
+                                                   + "Save path: "+fnamepcb, "---Save---",JOptionPane.INFORMATION_MESSAGE, icon);
+            }
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(feluletJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_generalButtonActionPerformed
+
     private void loadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadButtonActionPerformed
         final ImageIcon icon = new ImageIcon("icon_small.png");
         JFileChooser fcconf=new JFileChooser();
@@ -524,7 +579,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
         {
             try {
                 String fnameconf=fcconf.getSelectedFile().getPath();
-                conf = Genconf.loadconf(fnameconf);
+                SplashScreen.conf = Genconf.loadconf(fnameconf);
                 JOptionPane.showMessageDialog(null,"Succesfull Load! \n "
                                                    + "Load path: "+fnameconf, "---Load---",JOptionPane.INFORMATION_MESSAGE, icon);
                 SplashScreen.confloaded = true;
@@ -539,7 +594,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
         {
             try {
                 String fnamepcb=fcpcb.getSelectedFile().getPath();
-                pcb = Genpcb.loadpcb(fnamepcb, conf);
+                SplashScreen.pcb = Genpcb.loadpcb(fnamepcb, SplashScreen.conf);
                 JOptionPane.showMessageDialog(null,"Succesfull Load! \n "
                                                    + "Load path: "+fnamepcb, "---Load---",JOptionPane.INFORMATION_MESSAGE, icon);
                 SplashScreen.pcbloaded = true;
@@ -591,7 +646,9 @@ public class tablazatJFrame extends javax.swing.JFrame {
     private javax.swing.JTable cTable;
     private javax.swing.JButton componentButton;
     private javax.swing.JButton exitButton;
+    private javax.swing.JButton generalButton;
     private javax.swing.JTable hnTable;
+    private javax.swing.JButton homeButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

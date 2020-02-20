@@ -13,72 +13,68 @@ import javax.swing.JFileChooser;
 public class feluletJFrame extends javax.swing.JFrame {
     
     //creating a conf object
-    private SetUp conf;
-    private Product pcb;
+    
     
     /**
      * Creates new form feluletJFrame
      */
+    
     public feluletJFrame() {
         initComponents();
-    }
-    
-    public feluletJFrame(SetUp configuration, Product prod) {
-        initComponents();
-        conf = configuration;
-        pcb = prod;
         setdata();
         check();
     }
     
     private void changed(){
-        conf.setM(0);
-        conf.setH(0);
-        conf.setN(0);
-        conf.setA(0);
-        conf.setF(0);
-        conf.setC(null);
-        conf.setAn(null);
-        conf.setNh(null);
-        conf.setTpp(null);
-        conf.setTtr(null);
-        conf.setW(null);
-        pcb.setB(0);
-        pcb.setP(null);
-        pcb.setR(null);
-        SplashScreen.confloaded = false;
+        SplashScreen.conf.setM(0);
+        SplashScreen.conf.setH(0);
+        SplashScreen.conf.setN(0);
+        SplashScreen.conf.setA(0);
+        SplashScreen.conf.setF(0);
+        SplashScreen.conf.setC(null);
+        SplashScreen.conf.setAn(null);
+        SplashScreen.conf.setNh(null);
+        SplashScreen.conf.setTpp(null);
+        SplashScreen.conf.setTtr(null);
+        SplashScreen.conf.setW(null);
+        SplashScreen.pcb.setB(0);
+        SplashScreen.pcb.setP(null);
+        SplashScreen.pcb.setR(null);
         SplashScreen.pcbloaded = false;
+        SplashScreen.confloaded = false;
+        SplashScreen.pcbsaved = false;
+        SplashScreen.confsaved = false;
     }
     
     //method for setting up the values of the conf object
     private void getdata(){
-        conf.setM(Integer.parseInt(mTextfield.getText()));
-        conf.setH(Integer.parseInt(hTextfield.getText()));
-        conf.setN(Integer.parseInt(nTextfield.getText()));
-        conf.setA(Integer.parseInt(aTextfield.getText()));
-        conf.setF(Integer.parseInt(fTextfield.getText()));
+        SplashScreen.conf.setM(Integer.parseInt(mTextfield.getText()));
+        SplashScreen.conf.setH(Integer.parseInt(hTextfield.getText()));
+        SplashScreen.conf.setN(Integer.parseInt(nTextfield.getText()));
+        SplashScreen.conf.setA(Integer.parseInt(aTextfield.getText()));
+        SplashScreen.conf.setF(Integer.parseInt(fTextfield.getText()));
         //m = modules, h = set of head types, n = set of nozzles, a = set of component types
         //f = feeder capacity
     }
     
     private void setdata(){
-        mTextfield.setText(Integer.toString(conf.getM()));
+        mTextfield.setText(Integer.toString(SplashScreen.conf.getM()));
         if(Integer.parseInt(mTextfield.getText()) == 0){
             mTextfield.setText("");
         }
-        hTextfield.setText(Integer.toString(conf.getH()));
+        hTextfield.setText(Integer.toString(SplashScreen.conf.getH()));
         if(Integer.parseInt(hTextfield.getText()) == 0){
             hTextfield.setText("");
         }
-        nTextfield.setText(Integer.toString(conf.getN()));
+        nTextfield.setText(Integer.toString(SplashScreen.conf.getN()));
         if(Integer.parseInt(nTextfield.getText()) == 0){
             nTextfield.setText("");
         }
-        aTextfield.setText(Integer.toString(conf.getA()));
+        aTextfield.setText(Integer.toString(SplashScreen.conf.getA()));
         if(Integer.parseInt(aTextfield.getText()) == 0){
             aTextfield.setText("");
         }
-        fTextfield.setText(Integer.toString(conf.getF()));
+        fTextfield.setText(Integer.toString(SplashScreen.conf.getF()));
         if(Integer.parseInt(fTextfield.getText()) == 0){
             fTextfield.setText("");
         }
@@ -120,8 +116,12 @@ public class feluletJFrame extends javax.swing.JFrame {
         }
         if(mTextfield.getText().isEmpty() || hTextfield.getText().isEmpty() || nTextfield.getText().isEmpty() || aTextfield.getText().isEmpty() || fTextfield.getText().isEmpty()){
             headnozzlesButton.setEnabled(false);
+            generalButton.setEnabled(false);
+            componentButton.setEnabled(false);
         }else{
             headnozzlesButton.setEnabled(true);
+            generalButton.setEnabled(true);
+            componentButton.setEnabled(true);
         }
     }
     
@@ -138,8 +138,10 @@ public class feluletJFrame extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         newButton = new javax.swing.JButton();
         headnozzlesButton = new javax.swing.JButton();
+        generalButton = new javax.swing.JButton();
         loadButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
+        componentButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -164,21 +166,29 @@ public class feluletJFrame extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        newButton.setText("Reset");
+        newButton.setText("Restore");
         newButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(newButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 110, -1));
+        jPanel2.add(newButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 110, -1));
 
-        headnozzlesButton.setText("Next");
+        headnozzlesButton.setText("Head-Nozzle");
         headnozzlesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 headnozzlesButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(headnozzlesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 110, -1));
+        jPanel2.add(headnozzlesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 110, -1));
+
+        generalButton.setText("Generate");
+        generalButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generalButtonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(generalButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 110, -1));
 
         loadButton.setText("Load");
         loadButton.addActionListener(new java.awt.event.ActionListener() {
@@ -195,6 +205,14 @@ public class feluletJFrame extends javax.swing.JFrame {
             }
         });
         jPanel2.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 110, -1));
+
+        componentButton.setText("Component");
+        componentButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                componentButtonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(componentButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 110, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/left menu bar2.png"))); // NOI18N
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 290));
@@ -313,9 +331,9 @@ public class feluletJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void headnozzlesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_headnozzlesButtonActionPerformed
-        getdata();
+      getdata();
         this.dispose();
-        new tablazatJFrame(conf, pcb).setVisible(true);
+        new tablazatJFrame().setVisible(true);
         
         
     }//GEN-LAST:event_headnozzlesButtonActionPerformed
@@ -325,15 +343,54 @@ public class feluletJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_exitButtonActionPerformed
 
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
-        changed();
-        setdata();
-        check();
+        this.dispose();
+        feluletJFrame f= new feluletJFrame();
+        f.setVisible(true);
     }//GEN-LAST:event_newButtonActionPerformed
+
+    private void componentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_componentButtonActionPerformed
+        
+        getdata();
+        this.dispose();
+        termekekJFrame termek= new termekekJFrame();
+        termek.setVisible(true);
+        
+    }//GEN-LAST:event_componentButtonActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         ImageIcon icon = new ImageIcon("material/icon.png");
         setIconImage(icon.getImage());
     }//GEN-LAST:event_formWindowActivated
+
+    private void generalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generalButtonActionPerformed
+        final ImageIcon icon = new ImageIcon("icon_small.png");
+        try {
+            getdata();
+            JFileChooser fcconf=new JFileChooser();
+            fcconf.setDialogTitle("Save setup configuration");
+            int retconf=fcconf.showSaveDialog(this);
+            if(retconf==JFileChooser.APPROVE_OPTION)
+            {
+                String fnameconf=fcconf.getSelectedFile().getPath();
+                Genconf.saveconf(SplashScreen.conf, fnameconf);
+                JOptionPane.showMessageDialog(null,"Succesfull Save! \n "
+                                                   + "Save path: "+fnameconf, "---Save---",JOptionPane.INFORMATION_MESSAGE, icon);
+            }
+            
+            JFileChooser fcpcb=new JFileChooser();
+            fcpcb.setDialogTitle("Save pcb configuration");
+            int retpcb=fcpcb.showSaveDialog(this);
+            if(retpcb==JFileChooser.APPROVE_OPTION)
+            {
+                String fnamepcb=fcpcb.getSelectedFile().getPath();
+                Genpcb.savepcb(SplashScreen.pcb, SplashScreen.conf, fnamepcb);
+                JOptionPane.showMessageDialog(null,"Succesfull Save! \n "
+                                                   + "Save path: "+fnamepcb, "---Save---",JOptionPane.INFORMATION_MESSAGE, icon);
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(feluletJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_generalButtonActionPerformed
 
     private void mTextfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mTextfieldFocusLost
        check();
@@ -369,7 +426,7 @@ public class feluletJFrame extends javax.swing.JFrame {
         {
             try {
                 String fnameconf=fcconf.getSelectedFile().getPath();
-                conf = Genconf.loadconf(fnameconf);
+                SplashScreen.conf = Genconf.loadconf(fnameconf);
                 JOptionPane.showMessageDialog(null,"Succesfull Load! \n "
                                                    + "Load path: "+fnameconf, "---Load---",JOptionPane.INFORMATION_MESSAGE, icon);
                 SplashScreen.confloaded = true;
@@ -384,7 +441,7 @@ public class feluletJFrame extends javax.swing.JFrame {
         {
             try {
                 String fnamepcb=fcpcb.getSelectedFile().getPath();
-                pcb = Genpcb.loadpcb(fnamepcb, conf);
+                SplashScreen.pcb = Genpcb.loadpcb(fnamepcb, SplashScreen.conf);
                 JOptionPane.showMessageDialog(null,"Succesfull Load! \n "
                                                    + "Load path: "+fnamepcb, "---Load---",JOptionPane.INFORMATION_MESSAGE, icon);
                 SplashScreen.pcbloaded = true;
@@ -433,8 +490,10 @@ public class feluletJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField aTextfield;
+    private javax.swing.JButton componentButton;
     private javax.swing.JButton exitButton;
     private javax.swing.JTextField fTextfield;
+    private javax.swing.JButton generalButton;
     private javax.swing.JTextField hTextfield;
     private javax.swing.JButton headnozzlesButton;
     private javax.swing.JLabel jLabel1;
