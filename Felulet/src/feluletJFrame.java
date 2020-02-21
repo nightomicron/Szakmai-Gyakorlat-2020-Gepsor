@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 
-
+//Class for the first sheet
 public class feluletJFrame extends javax.swing.JFrame {
     
     //creating a conf object
@@ -18,13 +18,13 @@ public class feluletJFrame extends javax.swing.JFrame {
     /**
      * Creates new form feluletJFrame
      */
-    
+    //method that runs when opening the sheet
     public feluletJFrame() {
         initComponents();
         setdata();
         check();
     }
-    
+    //method for setting the conf, pcb instances and the booleans to default
     private void changed(){
         SplashScreen.conf.setM(0);
         SplashScreen.conf.setH(0);
@@ -46,7 +46,7 @@ public class feluletJFrame extends javax.swing.JFrame {
         SplashScreen.confsaved = false;
     }
     
-    //method for setting up the values of the conf object
+    //method for setting up the values of the conf instance
     private void getdata(){
         SplashScreen.conf.setM(Integer.parseInt(mTextfield.getText()));
         SplashScreen.conf.setH(Integer.parseInt(hTextfield.getText()));
@@ -56,7 +56,7 @@ public class feluletJFrame extends javax.swing.JFrame {
         //m = modules, h = set of head types, n = set of nozzles, a = set of component types
         //f = feeder capacity
     }
-    
+    //method for reading values from the conf instance and placing them into the sheet
     private void setdata(){
         mTextfield.setText(Integer.toString(SplashScreen.conf.getM()));
         if(Integer.parseInt(mTextfield.getText()) == 0){
@@ -82,7 +82,8 @@ public class feluletJFrame extends javax.swing.JFrame {
         //m = modules, h = set of head types, n = set of nozzles, a = set of component types
         //f = feeder capacity
     }
-    
+    //method for checking the textfields if they contain any values
+    //if they are empty then it colors them to red and also disables the headnozzles, generate and component buttons
     private void check(){
         //mTextField
         if(mTextfield.getText().isEmpty()){
@@ -114,6 +115,7 @@ public class feluletJFrame extends javax.swing.JFrame {
         }else{
             fTextfield.setBackground(Color.WHITE);
         }
+        //enabling disabling buttons
         if(mTextfield.getText().isEmpty() || hTextfield.getText().isEmpty() || nTextfield.getText().isEmpty() || aTextfield.getText().isEmpty() || fTextfield.getText().isEmpty()){
             headnozzlesButton.setEnabled(false);
             generalButton.setEnabled(false);
@@ -329,25 +331,26 @@ public class feluletJFrame extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    //method for constructing and opening the tablazatJFrame sheet, also closes the current sheet after running the getdata() method
     private void headnozzlesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_headnozzlesButtonActionPerformed
       getdata();
-        this.dispose();
-        new tablazatJFrame().setVisible(true);
+      this.dispose();
+      new tablazatJFrame().setVisible(true);
         
         
     }//GEN-LAST:event_headnozzlesButtonActionPerformed
-
+    //method for closing the program
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         this.dispose();
     }//GEN-LAST:event_exitButtonActionPerformed
-
+    //method for opening the feluletJFrame sheet, it is used to reset the values to default
+    //Note: if there were any files loaded, it resets the values to the state after loading
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
         this.dispose();
         feluletJFrame f= new feluletJFrame();
         f.setVisible(true);
     }//GEN-LAST:event_newButtonActionPerformed
-
+    //method for constructiong and opening the termekekJFrame sheet, also closes the current sheet after running getdata() method
     private void componentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_componentButtonActionPerformed
         
         getdata();
@@ -356,16 +359,17 @@ public class feluletJFrame extends javax.swing.JFrame {
         termek.setVisible(true);
         
     }//GEN-LAST:event_componentButtonActionPerformed
-
+    //sets the icon of the sheet
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         ImageIcon icon = new ImageIcon("material/icon.png");
         setIconImage(icon.getImage());
     }//GEN-LAST:event_formWindowActivated
-
+    //generates both the conf and pcb files
     private void generalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generalButtonActionPerformed
         final ImageIcon icon = new ImageIcon("icon_small.png");
         try {
             getdata();
+            //opens a filechooser window where the user can name and save the txt files where they want to
             JFileChooser fcconf=new JFileChooser();
             fcconf.setDialogTitle("Save setup configuration");
             int retconf=fcconf.showSaveDialog(this);
@@ -391,12 +395,13 @@ public class feluletJFrame extends javax.swing.JFrame {
             Logger.getLogger(feluletJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_generalButtonActionPerformed
-
+    //the following methods run once the user clicked outside of a textfield
+    //they check if there are values in the textfields and resets the values of the other sheets to avoid future conflicts
     private void mTextfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mTextfieldFocusLost
        check();
        changed();
     }//GEN-LAST:event_mTextfieldFocusLost
-
+    
     private void hTextfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_hTextfieldFocusLost
         check();
         changed();
@@ -416,7 +421,7 @@ public class feluletJFrame extends javax.swing.JFrame {
         check();
         changed();
     }//GEN-LAST:event_fTextfieldFocusLost
-
+    //method for loading values from the text files and placing them into the sheets
     private void loadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadButtonActionPerformed
         final ImageIcon icon = new ImageIcon("icon_small.png");
         JFileChooser fcconf=new JFileChooser();

@@ -9,12 +9,20 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+//class for termekekJFrame sheet
+//Note: this class contains some unused methods. They cannot be removed due to the integrated development environment. 
+
+//Set of component types (A):
+//Number of PCB (B):
+//Components (R)
+//Batch size of each PCB type (P)
 public class termekekJFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form termekekJFrame
      */
-   
+    //runs once the sheet is opened
+    //disables the aTextfield, sets its value to the given value in feluletJFrame (its the same A)
     public termekekJFrame(){
         initComponents();
         aTextfield.setEnabled(false);
@@ -25,24 +33,24 @@ public class termekekJFrame extends javax.swing.JFrame {
         }
         loadButton.setEnabled(false);
     }
-    
+    //creates the the tables if there were any text files loaded
     private void createtable(){
         int b = SplashScreen.pcb.getB();
         DefaultTableModel modelr = (DefaultTableModel)rTable.getModel(); 
         
         
         
-        //R táblázat
+        //sets the size of the R table
         modelr.setColumnCount(1);
         modelr.setRowCount(1);
         int temp = 0;
         for(int i = 0; i < SplashScreen.conf.getA(); i++){
-                 modelr.addColumn(i+1,new Object[]{"", "", ""});
+                modelr.addColumn(i+1,new Object[]{"", "", ""});
         }
         
         for(int i = 0; i < b-1; i++){
-                 modelr.addRow(new Object[]{"", "", ""});
-                 temp++;
+                modelr.addRow(new Object[]{"", "", ""});
+                temp++;
         }
         for(int i = 0; i < b; i++){
             rTable.setValueAt((Object)(i+1), i, 0);
@@ -51,34 +59,30 @@ public class termekekJFrame extends javax.swing.JFrame {
                 
                 String s = "0";
             rTable.setValueAt((Object)s, i, j);
-
             }
         }
         modelr.setRowCount(temp+1);
         
-        
-        
-        
-        //P table
+        //sets the size of the P table
         DefaultTableModel modelp = (DefaultTableModel)pTable.getModel();
         modelp.setRowCount(1);
         for(int i = 0; i < b-1; i++){
-                 modelp.addRow(new Object[]{"", "", ""});
+                modelp.addRow(new Object[]{"", "", ""});
         }
         for(int i = 0; i < b; i++){
                 pTable.setValueAt((Object)(i+1), i, 0);
                 for(int j = 1 ;j < 2; j++){
                     String s = "0";
-                     pTable.setValueAt((Object)s, i, j);
+                    pTable.setValueAt((Object)s, i, j);
                 } 
         }
     }
-    
+    //sets the size of the tables if there were not any loads from files
     private void adjusttables(){
         int b = Integer.parseInt(bTextfield.getText());
         DefaultTableModel modelr = (DefaultTableModel)rTable.getModel(); 
         
-        //R táblázat
+        //sets the size of the R table
         modelr.setColumnCount(1);
         modelr.setRowCount(1);
         int temp = 0;
@@ -102,10 +106,7 @@ public class termekekJFrame extends javax.swing.JFrame {
         }
         modelr.setRowCount(temp+1);
         
-        
-        
-        
-        //P table
+        //sets the size of the P table
         DefaultTableModel modelp = (DefaultTableModel)pTable.getModel();
         modelp.setRowCount(1);
         for(int i = 0; i < b-1; i++){
@@ -119,7 +120,7 @@ public class termekekJFrame extends javax.swing.JFrame {
                 } 
         }
     }
-    
+    //method for reading values from each cell of the tables and placing these values into the pcb instance
     private void getproducts(){
                 
         SplashScreen.pcb.setB(Integer.parseInt(bTextfield.getText()));
@@ -141,7 +142,7 @@ public class termekekJFrame extends javax.swing.JFrame {
         SplashScreen.pcb.setP(p);
         SplashScreen.pcb.setR(r);
     }
-    
+    //reading values from the pcb instance and placing these values into the tables
     private void setproducts(){
         aTextfield.setText(Integer.toString(SplashScreen.conf.getA()));
         bTextfield.setText(Integer.toString(SplashScreen.pcb.getB()));
@@ -425,24 +426,25 @@ public class termekekJFrame extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    //method for opening the feluletJFrame sheet, it is used to reset the values to default
+    //Note: if there were any files loaded, it resets the values to the state after loading
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
-        
         this.dispose();
         termekekJFrame termek= new termekekJFrame();
         termek.setVisible(true);
-        
     }//GEN-LAST:event_newButtonActionPerformed
-
+    
+    //method for returning to the feluletJFrame() sheet, it is used to remove every progress and restart the whole process of giving values
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
         getproducts();
         SplashScreen.pcbsaved = true;
         this.dispose();
         feluletJFrame f= new feluletJFrame();
         f.setVisible(true);
-        
     }//GEN-LAST:event_homeButtonActionPerformed
-
+    
+    //method for constructing and opening the tablazatJFrame sheet, also closes the current sheet after running the getdata() method
     private void headnozzlesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_headnozzlesButtonActionPerformed
         getproducts();
         SplashScreen.pcbsaved = true;
@@ -450,30 +452,37 @@ public class termekekJFrame extends javax.swing.JFrame {
         tablazatJFrame t= new tablazatJFrame();
         t.setVisible(true);
     }//GEN-LAST:event_headnozzlesButtonActionPerformed
-
+    
+    //closes the program
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         this.dispose();
     }//GEN-LAST:event_exitButtonActionPerformed
-
+    
+    //sets the icon of the sheet
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         ImageIcon icon = new ImageIcon("material/icon.png");
         setIconImage(icon.getImage());
     }//GEN-LAST:event_formWindowActivated
-
+    
+    //unused empty method, cannot be removed due to the IDE
     private void bTextfieldMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bTextfieldMouseExited
         
     }//GEN-LAST:event_bTextfieldMouseExited
-
+    
+    //unused empty method, cannot be removed due to the IDE
     private void bTextfieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bTextfieldMouseClicked
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_bTextfieldMouseClicked
-
+    
+    //method for setting up the size of tables in case of clicking out of the bTextfield
     private void bTextfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bTextfieldFocusLost
         
         adjusttables();
         
     }//GEN-LAST:event_bTextfieldFocusLost
-
+    
+    //method for the R table. Once clicked in any cells, it sets the cell value to 1 or 0
+    //Note: set to 0 if it was 1 before and vice versa
     private void rTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rTableMouseClicked
        
         int row = rTable.rowAtPoint(evt.getPoint());
@@ -487,11 +496,13 @@ public class termekekJFrame extends javax.swing.JFrame {
         
     
     }//GEN-LAST:event_rTableMouseClicked
-
+    
+    //unused empty method, cannot be removed due to the IDE
     private void pTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pTableMouseClicked
         
     }//GEN-LAST:event_pTableMouseClicked
-
+    
+    //generates both the conf and pcb files just like in feluletJFrame
     private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
         final ImageIcon icon = new ImageIcon("icon_small.png");
       
@@ -527,7 +538,8 @@ public class termekekJFrame extends javax.swing.JFrame {
             Logger.getLogger(feluletJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_generateButtonActionPerformed
-
+    
+    //method for loading values from the text files and placing them into the sheets
     private void loadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadButtonActionPerformed
         final ImageIcon icon = new ImageIcon("icon_small.png");
         JFileChooser fcconf=new JFileChooser();

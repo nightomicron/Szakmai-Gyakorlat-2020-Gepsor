@@ -1,19 +1,29 @@
 
 import Tube.Product;
 import Tube.SetUp;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-
+//main class where the objects get instantiated
+//this class runs first of all
 public class SplashScreen extends javax.swing.JFrame {
-    
+    //static variables and instances that the program can reach any time
+    //confloaded is a static boolean that can change depending on the user loaded a configuration txt file or not
     public static boolean confloaded = false;
+    //pcbloaded is a boolean that can change depending on the user loaded a pcb txt file or not
     public static boolean pcbloaded = false;
+    //confsaved is a boolean that can change depending on the configuration tables got saved or not (tablazatJFrame)
     public static boolean confsaved = false;
+    //pcbsaved is a boolean that can change depending on the pcb tables got saved or not (termekekJFrame)
     public static boolean pcbsaved = false;
+    //SetUp conf is an instance of the SetUp class. This is the connection between the configuration sheets and the saving / loading methods
     public static SetUp conf = new SetUp(0,0,0,0,0,null,null,null,null,null,null);
+    //Product pcb is an instance of the Product class. This is the connection between the pcb sheet and the saving / loading methods
     public static Product pcb = new Product (0,null,null);
     /**
      * Creates new form SplashScreen
      */
+    //constructor of the splashscreen
     public SplashScreen() {
         initComponents();
     }
@@ -138,23 +148,26 @@ public class SplashScreen extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    //main method, creates an instance of the splashscreen, controls the progressbar, and also constructs then opens the first sheet (feluletJFrame)
     public static void main(String args[]) {
-        
+        //creates an instance of the splashscreen
         SplashScreen sc = new SplashScreen();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 sc.setVisible(true);
             }
         });
-        
+        //progressbar controls
         try{
             for(int i=0;i<=100;i++){
                 Thread.sleep(20);
                 sc.bar.setValue(i);
                         sc.progress.setText(i+"%");          
             } 
-        }catch(Exception e){
+        }catch(Exception ex){
+            Logger.getLogger(SplashScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //closes the splashscreen and constructs the first sheet(feluletJFrame), then opens it
         sc.dispose();
         new feluletJFrame().setVisible(true);
         

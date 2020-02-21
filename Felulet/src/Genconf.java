@@ -7,8 +7,10 @@ import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-
+//class for saving and loading the configurations into / from txt file(s)
 public class Genconf {
+    //Method for saving the configuration values into a txt file
+    //Parameters: a SetUp instance, String file name
     public static void saveconf(SetUp tube, String fname) throws FileNotFoundException{
         
         Object[] c = tube.getC();
@@ -18,6 +20,7 @@ public class Genconf {
         Object[][] an = tube.getAn();
         Object[][] nh = tube.getNh();
         
+        //sets the console to write its content into the text file through a printstream        
         PrintStream out = new PrintStream(new FileOutputStream(fname));
         System.setOut(out);
         System.out.println("#### parameters for machine configuration ####");
@@ -105,10 +108,13 @@ public class Genconf {
                 }
             }
         }
+        //closes the file and also the printstream, gives the console back to the program (it will not write its contents into files anymore)
         out.close();
         System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
     }
     
+    //Method for loading configuration files and placing its values into a SetUp instance
+    //parameters: String filename
     public static SetUp loadconf(String fname) throws FileNotFoundException{
         SetUp conf = new SetUp(0,0,0,0,0,null,null,null,null,null,null);
         
@@ -119,47 +125,49 @@ public class Genconf {
         int a = 0;
         int f = 0;
         
+        //opens the file and creates a scanner than can search for character chains inside the lines of the file
+        //once found the desired character chains, it will grab the content of the line and will place them into the instance
         File file = new File(fname);
         final Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
             final String lineFromFile = scanner.nextLine();
-           
-            //M
+            
+            //M number of the machines
             if(lineFromFile.contains("numM=")) { 
                 temp = lineFromFile.charAt(lineFromFile.length()-1);
                 m = temp-'0';
                 conf.setM(m);
             }
             
-            //H
+            //H number of the heads
             if(lineFromFile.contains("numH=")) { 
                 temp = lineFromFile.charAt(lineFromFile.length()-1);
                 h = temp-'0';
                 conf.setH(h);
             }
             
-            //N
+            //N number of the nozzles
             if(lineFromFile.contains("numN=")) { 
                 temp = lineFromFile.charAt(lineFromFile.length()-1);
                 n = temp-'0';
                 conf.setN(n);
             }
             
-            //A
+            //A number of the components
             if(lineFromFile.contains("numA=")) { 
                 temp = lineFromFile.charAt(lineFromFile.length()-1);
                 a = temp-'0';
                 conf.setA(a);
             }
             
-            //F
+            //F number of the feeders
             if(lineFromFile.contains("capF=")) { 
                 temp = lineFromFile.charAt(lineFromFile.length()-1);
                 f = temp-'0';
                 conf.setF(f);
             }
             
-            //C
+            //C number of the capacity of the heads
             Object[] c = new Object[h];
             if(lineFromFile.contains("capH=")) {
                 int counter=0;
@@ -173,7 +181,7 @@ public class Genconf {
                 conf.setC(c);
             }
             
-            //W
+            //W number of the width of the components
             Object[] w = new Object[a];
             if(lineFromFile.contains("widthA=")) {
                 int counter=0;
@@ -187,7 +195,7 @@ public class Genconf {
                 conf.setW(w);
             }
             
-            //TTR
+            //TTR travel time of the heads
             Object[] ttr = new Object[h];
             if(lineFromFile.contains("travTimeH=")) {
                 int counter=0;
@@ -201,7 +209,7 @@ public class Genconf {
                 conf.setTtr(ttr);
             }
             
-            //TPP
+            //TPP pick and place time of the heads
             Object[] tpp = new Object[h];
             if(lineFromFile.contains("ppTimeH=")) {
                 int counter=0;
@@ -215,7 +223,7 @@ public class Genconf {
                 conf.setTpp(tpp);
             }
             
-            //AN
+            //AN compatibility between the nozzles and components
             Object[][] an = new Object[a][n];
             if(lineFromFile.contains("compatAN=")) {
                 int counterA=0;
@@ -233,7 +241,7 @@ public class Genconf {
                 conf.setAn(an);
             }
             
-            //NH
+            //NH compatibility of the nozzles and the heads
             Object[][] nh = new Object[n][h];
             if(lineFromFile.contains("compatNH=")) {
                 int counterN=0;

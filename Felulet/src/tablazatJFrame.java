@@ -10,23 +10,23 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+//class for the tablazatJFrame sheet
 public class tablazatJFrame extends javax.swing.JFrame {
     
     /**
      * Creates new form tablazatJFrame
      */
     
-    
-   public tablazatJFrame(){
+    //runs once the sheet is opened
+    public tablazatJFrame(){
         initComponents();
-        //C table
+        //sets the size of the C table
         DefaultTableModel modelc = (DefaultTableModel)cTable.getModel();  
         for(int i = 0; i < SplashScreen.conf.getH(); i++){
         modelc.addRow(new Object[]{"", "", ""});
         }
         
-        
-        
+        //fills each cell with number 0        
         for(int i = 0; i < SplashScreen.conf.getH(); i++){
                 cTable.setValueAt((Object)(i+1), i, 0);
                 for(int j = 0 ;j < SplashScreen.conf.getH(); j++){
@@ -34,11 +34,13 @@ public class tablazatJFrame extends javax.swing.JFrame {
                      cTable.setValueAt((Object)s, j, 1);
                 } 
         }
-        //TPP table
+        //sets the size of the TPP table
         DefaultTableModel modeltpp = (DefaultTableModel)tppTable.getModel();  
         for(int i = 0; i < SplashScreen.conf.getH(); i++){
         modeltpp.addRow (new Object[]{"", "", ""});
         }
+        
+        //fills each cell with number 0
         for(int i = 0; i < SplashScreen.conf.getH(); i++){
                 tppTable.setValueAt((Object)(i+1), i, 0);
                 for(int j = 0 ;j < SplashScreen.conf.getH(); j++){
@@ -46,7 +48,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
                      tppTable.setValueAt((Object)s, j, 1);
                 } 
         }
-        //HN table
+        //sets the size of the HN table
         DefaultTableModel modelhn = (DefaultTableModel)hnTable.getModel();
         modelhn.setColumnCount(1);
         modelhn.setRowCount(1);
@@ -55,11 +57,10 @@ public class tablazatJFrame extends javax.swing.JFrame {
             modelhn.addRow(new Object[]{"", "", ""});
             temp++;
         }
+        //fills each cell with number 0
         for(int i = 0; i<SplashScreen.conf.getH(); i++){
             modelhn.addColumn(i+1,new Object[]{"","",""});
         } 
-        
-        
         for(int i = 0; i < SplashScreen.conf.getN(); i++){
                 hnTable.setValueAt((Object)(i+1), i, 0);
                 for(int j = 1 ;j < SplashScreen.conf.getH()+1; j++){
@@ -69,16 +70,14 @@ public class tablazatJFrame extends javax.swing.JFrame {
         }
         modelhn.setRowCount(temp+1);
         
-        
-        
-        
-        
-        //W table
+        //sets the size of the W table
         DefaultTableModel modela = (DefaultTableModel)wTable.getModel();
         
         for(int i = 0; i < SplashScreen.conf.getA(); i++){
         modela.addRow(new Object[]{"", "", ""});
         }
+        
+        //fills each cell with number 0
         for(int i = 0; i < SplashScreen.conf.getA(); i++){
                 wTable.setValueAt((Object)(i+1), i, 0);
                 for(int j = 1 ;j < 2; j++){
@@ -86,7 +85,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
                      wTable.setValueAt((Object)s, i, j);
                 } 
         }
-        //AN table
+        //sets the size of the AN table
         DefaultTableModel modelan = (DefaultTableModel)anTable.getModel();
         modelan.setColumnCount(1);
         modelan.setRowCount(1);
@@ -97,7 +96,9 @@ public class tablazatJFrame extends javax.swing.JFrame {
         }
         for(int i = 0; i<SplashScreen.conf.getN(); i++){
             modelan.addColumn(i+1,new Object[]{"","",""});
-        } 
+        }
+        
+        //fills each cell with number 0
         for(int i = 0; i < SplashScreen.conf.getA(); i++){
             anTable.setValueAt((Object)(i+1), i, 0);
             for(int j = 1 ;j < SplashScreen.conf.getN()+1; j++){
@@ -106,11 +107,13 @@ public class tablazatJFrame extends javax.swing.JFrame {
             } 
         }
         modelan.setRowCount(temp+1);
-        //TTR table
+        //sets the size of the TTR table
         DefaultTableModel modelttr = (DefaultTableModel)ttrTable.getModel();  
         for(int i = 0; i < SplashScreen.conf.getH(); i++){
         modelttr.addRow(new Object[]{"", "", ""});
         }
+        
+        //fills each cell with number 0
         for(int i = 0; i < SplashScreen.conf.getH(); i++){
                 ttrTable.setValueAt((Object)(i+1), i, 0);
                 for(int j = 1 ;j < 2; j++){
@@ -125,7 +128,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
         loadButton.setEnabled(false);
     }
     
-    
+    //method for reading values from each cell of the tables and placing these values into the conf instance
     private void gettables(){
         
         //grabs the h n a variables from the conf object
@@ -166,7 +169,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
                 an[i][j]=anTable.getValueAt(i, j+1);
             }
         }
-        
+        //setting the values of the conf instance
         SplashScreen.conf.setC(c);
         SplashScreen.conf.setTpp(tpp);
         SplashScreen.conf.setW(w);
@@ -175,6 +178,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
         SplashScreen.conf.setAn(an);
     }
     
+    //reading values from the conf instance and placing these values into the tables
     private void settables(){
         
         int h = SplashScreen.conf.getH();
@@ -480,17 +484,20 @@ public class tablazatJFrame extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    //closing the program
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         this.dispose();
     }//GEN-LAST:event_exitButtonActionPerformed
-
+    
+    //method for opening the feluletJFrame sheet, it is used to reset the values to default
+    //Note: if there were any files loaded, it resets the values to the state after loading
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
         this.dispose();
         tablazatJFrame t= new tablazatJFrame();
         t.setVisible(true);
     }//GEN-LAST:event_newButtonActionPerformed
-
+    //method for returning to the feluletJFrame() sheet, it is used to remove every progress and restart the whole process of giving values
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
         gettables();
         SplashScreen.confsaved = true;
@@ -498,7 +505,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
         feluletJFrame f= new feluletJFrame();
         f.setVisible(true);
     }//GEN-LAST:event_homeButtonActionPerformed
-
+    //method for constructiong and opening the termekekJFrame sheet, also closes the current sheet after running getdata() method
     private void componentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_componentButtonActionPerformed
         gettables();
         SplashScreen.confsaved = true;
@@ -506,12 +513,13 @@ public class tablazatJFrame extends javax.swing.JFrame {
         termekekJFrame termek= new termekekJFrame();
         termek.setVisible(true);
     }//GEN-LAST:event_componentButtonActionPerformed
-
+    //sets the icon of the sheet
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         ImageIcon icon = new ImageIcon("material/icon.png");
         setIconImage(icon.getImage());
     }//GEN-LAST:event_formWindowActivated
-
+    //method for the NH table. Once clicked in any cells, it sets the cell value to 1 or 0
+    //Note: set to 0 if it was 1 before and vice versa
     private void hnTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hnTableMouseClicked
        int row = hnTable.rowAtPoint(evt.getPoint());
         int col = hnTable.columnAtPoint(evt.getPoint());
@@ -523,7 +531,8 @@ public class tablazatJFrame extends javax.swing.JFrame {
 
         
     }//GEN-LAST:event_hnTableMouseClicked
-
+    //method for the AN table. Once clicked in any cells, it sets the cell value to 1 or 0
+    //Note: set to 0 if it was 1 before and vice versa
     private void anTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_anTableMouseClicked
         int row = anTable.rowAtPoint(evt.getPoint());
         int col = anTable.columnAtPoint(evt.getPoint());
@@ -535,7 +544,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
 
         
     }//GEN-LAST:event_anTableMouseClicked
-
+    //generates both the conf and pcb files just like in feluletJFrame
     private void generalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generalButtonActionPerformed
         final ImageIcon icon = new ImageIcon("icon_small.png");
         try {
@@ -569,7 +578,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_generalButtonActionPerformed
-
+    //method for loading values from the text files and placing them into the sheets
     private void loadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadButtonActionPerformed
         final ImageIcon icon = new ImageIcon("icon_small.png");
         JFileChooser fcconf=new JFileChooser();
@@ -608,6 +617,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
