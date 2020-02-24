@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JTextField;
 
 //Class for the first sheet
 public class feluletJFrame extends javax.swing.JFrame {
@@ -22,7 +23,9 @@ public class feluletJFrame extends javax.swing.JFrame {
     public feluletJFrame() {
         initComponents();
         setdata();
-        check();
+        headnozzlesButton.setEnabled(false);
+        generalButton.setEnabled(false);
+        componentButton.setEnabled(false);
     }
     //method for setting the conf, pcb instances and the booleans to default
     private void changed(){
@@ -84,11 +87,11 @@ public class feluletJFrame extends javax.swing.JFrame {
     }
     //method for checking the textfields if they contain any values
     //if they are empty then it colors them to red and also disables the headnozzles, generate and component buttons
-    private void check(){
+    private void check(JTextField txt){
         //check every textfield. If the textfield is empty it will change its color to red
         
         //mTextField
-        if(mTextfield.getText().isEmpty()){
+        /*if(mTextfield.getText().isEmpty()){
             mTextfield.setBackground(Color.RED);
         }else{
             mTextfield.setBackground(Color.WHITE);
@@ -116,6 +119,23 @@ public class feluletJFrame extends javax.swing.JFrame {
             fTextfield.setBackground(Color.RED);
         }else{
             fTextfield.setBackground(Color.WHITE);
+        }*/
+        try{
+            if(txt.getText().isEmpty()){
+                txt.setBackground(Color.RED);
+            }else if(Integer.parseInt(txt.getText()) < 1){
+                txt.setBackground(Color.RED);
+                txt.setText("");
+                JOptionPane.showMessageDialog(null,"Only positive integers are valid");
+            }else{
+                txt.setBackground(Color.WHITE);
+            }
+        }
+        catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null,"Only positive integers are valid");
+            txt.setText("");
+            txt.requestFocus();
+            txt.setBackground(Color.RED);
         }
         //enabling disabling buttons
         if(mTextfield.getText().isEmpty() || hTextfield.getText().isEmpty() || nTextfield.getText().isEmpty() || aTextfield.getText().isEmpty() || fTextfield.getText().isEmpty()){
@@ -227,42 +247,42 @@ public class feluletJFrame extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jLabel2.setText("Set of head types (H):");
 
-        hTextfield.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                hTextfieldFocusLost(evt);
+        hTextfield.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                hTextfieldKeyReleased(evt);
             }
         });
 
         jLabel3.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jLabel3.setText("Set of nozzles (N):");
 
-        aTextfield.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                aTextfieldFocusLost(evt);
+        aTextfield.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                aTextfieldKeyReleased(evt);
             }
         });
 
         jLabel4.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jLabel4.setText("Set of component types (A):");
 
-        mTextfield.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                mTextfieldFocusLost(evt);
+        mTextfield.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                mTextfieldKeyReleased(evt);
             }
         });
 
-        fTextfield.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                fTextfieldFocusLost(evt);
+        fTextfield.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                fTextfieldKeyReleased(evt);
             }
         });
 
         jLabel5.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jLabel5.setText("Feederek capacity (F):");
 
-        nTextfield.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                nTextfieldFocusLost(evt);
+        nTextfield.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                nTextfieldKeyReleased(evt);
             }
         });
 
@@ -402,38 +422,8 @@ public class feluletJFrame extends javax.swing.JFrame {
             Logger.getLogger(feluletJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_generalButtonActionPerformed
-    //the following methods run once the user clicked outside of a textfield
-    //they check if there are values in the textfields and resets the values of the other sheets to avoid future conflicts
-    private void mTextfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mTextfieldFocusLost
-       //check
-        check();
-       changed();
-    }//GEN-LAST:event_mTextfieldFocusLost
-    
-    private void hTextfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_hTextfieldFocusLost
-        //check
-        check();
-        changed();
-    }//GEN-LAST:event_hTextfieldFocusLost
 
-    private void nTextfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nTextfieldFocusLost
-        //check
-        check();
-        changed();
-    }//GEN-LAST:event_nTextfieldFocusLost
-
-    private void aTextfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_aTextfieldFocusLost
-        //check
-        check();
-        changed();
-    }//GEN-LAST:event_aTextfieldFocusLost
-
-    private void fTextfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fTextfieldFocusLost
-        //check
-        check();
-        changed();
-    }//GEN-LAST:event_fTextfieldFocusLost
-    //method for loading values from the text files and placing them into the sheets
+       //method for loading values from the text files and placing them into the sheets
     private void loadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadButtonActionPerformed
         //set up the load button
         final ImageIcon icon = new ImageIcon("icon_small.png");
@@ -468,8 +458,37 @@ public class feluletJFrame extends javax.swing.JFrame {
             }
         }
         setdata();
-        check();
     }//GEN-LAST:event_loadButtonActionPerformed
+
+    private void mTextfieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mTextfieldKeyReleased
+        //check
+        check(mTextfield);
+        changed();
+    }//GEN-LAST:event_mTextfieldKeyReleased
+
+    private void hTextfieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hTextfieldKeyReleased
+        //check
+        check(hTextfield);
+        changed();
+    }//GEN-LAST:event_hTextfieldKeyReleased
+
+    private void nTextfieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nTextfieldKeyReleased
+        //check
+        check(nTextfield);
+        changed();
+    }//GEN-LAST:event_nTextfieldKeyReleased
+
+    private void aTextfieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aTextfieldKeyReleased
+        //check
+        check(aTextfield);
+        changed();
+    }//GEN-LAST:event_aTextfieldKeyReleased
+
+    private void fTextfieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fTextfieldKeyReleased
+        //check
+        check(fTextfield);
+        changed();
+    }//GEN-LAST:event_fTextfieldKeyReleased
 
     /**
      * @param args the command line arguments
