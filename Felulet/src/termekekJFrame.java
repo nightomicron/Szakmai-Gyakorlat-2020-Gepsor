@@ -212,7 +212,7 @@ public class termekekJFrame extends javax.swing.JFrame {
                 newButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(newButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 100, -1));
+        jPanel1.add(newButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 100, -1));
 
         loadButton.setText("Load");
         loadButton.addActionListener(new java.awt.event.ActionListener() {
@@ -252,7 +252,7 @@ public class termekekJFrame extends javax.swing.JFrame {
                 headnozzlesButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(headnozzlesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 100, -1));
+        jPanel1.add(headnozzlesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 100, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/left menu bar karfej.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));

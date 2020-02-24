@@ -1,6 +1,7 @@
 
 import Tube.Product;
 import Tube.SetUp;
+import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -25,6 +26,8 @@ public class tablazatJFrame extends javax.swing.JFrame {
         for(int i = 0; i < SplashScreen.conf.getH(); i++){
         modelc.addRow(new Object[]{"", "", ""});
         }
+        int row = 1;
+        int col = 2;
         
         //fills each cell with number 0        
         for(int i = 0; i < SplashScreen.conf.getH(); i++){
@@ -127,6 +130,8 @@ public class tablazatJFrame extends javax.swing.JFrame {
         }
         loadButton.setEnabled(false);
     }
+    
+    
     
     //method for reading values from each cell of the tables and placing these values into the conf instance
     private void gettables(){
@@ -266,7 +271,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
                 newButtonActionPerformed(evt);
             }
         });
-        jPanel3.add(newButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 100, -1));
+        jPanel3.add(newButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 100, -1));
 
         homeButton.setText("Restart");
         homeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -291,7 +296,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
                 componentButtonActionPerformed(evt);
             }
         });
-        jPanel3.add(componentButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 100, -1));
+        jPanel3.add(componentButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 100, -1));
 
         exitButton.setText("Exit");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -334,6 +339,11 @@ public class tablazatJFrame extends javax.swing.JFrame {
                 "ID", "Head capacity (C)"
             }
         ));
+        cTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cTableMouseExited(evt);
+            }
+        });
         jScrollPane2.setViewportView(cTable);
         if (cTable.getColumnModel().getColumnCount() > 0) {
             cTable.getColumnModel().getColumn(0).setPreferredWidth(50);
@@ -613,6 +623,10 @@ public class tablazatJFrame extends javax.swing.JFrame {
         }
         settables();
     }//GEN-LAST:event_loadButtonActionPerformed
+
+    private void cTableMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cTableMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cTableMouseExited
 
     /**
      * @param args the command line arguments
