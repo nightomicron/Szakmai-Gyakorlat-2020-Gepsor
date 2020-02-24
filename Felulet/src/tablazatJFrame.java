@@ -129,6 +129,9 @@ public class tablazatJFrame extends javax.swing.JFrame {
             settables();
         }
         loadButton.setEnabled(false);
+        
+        anTable.setEnabled(false);
+        hnTable.setEnabled(false);
     }
     
     

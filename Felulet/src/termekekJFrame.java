@@ -10,7 +10,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 //class for termekekJFrame sheet
-//Note: this class contains some unused methods. They cannot be removed due to the integrated development environment. 
 
 //Set of component types (A):
 //Number of PCB (B):
@@ -32,13 +31,12 @@ public class termekekJFrame extends javax.swing.JFrame {
             setproducts();
         }
         loadButton.setEnabled(false);
+        rTable.setEnabled(false);
     }
     //creates the the tables if there were any text files loaded
     private void createtable(){
         int b = SplashScreen.pcb.getB();
         DefaultTableModel modelr = (DefaultTableModel)rTable.getModel(); 
-        
-        
         
         //sets the size of the R table
         modelr.setColumnCount(1);
@@ -79,45 +77,53 @@ public class termekekJFrame extends javax.swing.JFrame {
     }
     //sets the size of the tables if there were not any loads from files
     private void adjusttables(){
-        int b = Integer.parseInt(bTextfield.getText());
-        DefaultTableModel modelr = (DefaultTableModel)rTable.getModel(); 
-        
-        //sets the size of the R table
-        modelr.setColumnCount(1);
-        modelr.setRowCount(1);
-        int temp = 0;
-        for(int i = 0; i < SplashScreen.conf.getA(); i++){
-                 modelr.addColumn(i+1,new Object[]{"", "", ""});
-        }
-        
-        for(int i = 0; i < b-1; i++){
-                 modelr.addRow(new Object[]{"", "", ""});
-                 temp++;
-        }
-        for(int i = 0; i < b; i++){
-            rTable.setValueAt((Object)(i+1), i, 0);
-            for(int j = 1 ; j < SplashScreen.conf.getA()+1; j++){
-                
-                
-                String s = "0";
-            rTable.setValueAt((Object)s, i, j);
+        try{
+            int b = Integer.parseInt(bTextfield.getText());
+            DefaultTableModel modelr = (DefaultTableModel)rTable.getModel();
 
+            //sets the size of the R table
+            modelr.setColumnCount(1);
+            modelr.setRowCount(1);
+            int temp = 0;
+            for(int i = 0; i < SplashScreen.conf.getA(); i++){
+                     modelr.addColumn(i+1,new Object[]{"", "", ""});
             }
-        }
-        modelr.setRowCount(temp+1);
-        
-        //sets the size of the P table
-        DefaultTableModel modelp = (DefaultTableModel)pTable.getModel();
-        modelp.setRowCount(1);
-        for(int i = 0; i < b-1; i++){
-                 modelp.addRow(new Object[]{"", "", ""});
-        }
-        for(int i = 0; i < b; i++){
-                pTable.setValueAt((Object)(i+1), i, 0);
-                for(int j = 1 ;j < 2; j++){
+
+            for(int i = 0; i < b-1; i++){
+                     modelr.addRow(new Object[]{"", "", ""});
+                     temp++;
+            }
+            for(int i = 0; i < b; i++){
+                rTable.setValueAt((Object)(i+1), i, 0);
+                for(int j = 1 ; j < SplashScreen.conf.getA()+1; j++){
+
+
                     String s = "0";
-                     pTable.setValueAt((Object)s, i, j);
-                } 
+                rTable.setValueAt((Object)s, i, j);
+
+                }
+            }
+            modelr.setRowCount(temp+1);
+
+            //sets the size of the P table
+            DefaultTableModel modelp = (DefaultTableModel)pTable.getModel();
+            modelp.setRowCount(1);
+            for(int i = 0; i < b-1; i++){
+                     modelp.addRow(new Object[]{"", "", ""});
+            }
+            for(int i = 0; i < b; i++){
+                    pTable.setValueAt((Object)(i+1), i, 0);
+                    for(int j = 1 ;j < 2; j++){
+                        String s = "0";
+                         pTable.setValueAt((Object)s, i, j);
+                    } 
+            }
+        }catch(NumberFormatException ex){
+            DefaultTableModel modelr = (DefaultTableModel)rTable.getModel();
+            modelr.setColumnCount(0);
+            modelr.setRowCount(0);
+            DefaultTableModel modelp = (DefaultTableModel)pTable.getModel();
+            modelp.setRowCount(0);
         }
     }
     //method for reading values from each cell of the tables and placing these values into the pcb instance
@@ -257,17 +263,9 @@ public class termekekJFrame extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/left menu bar karfej.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        bTextfield.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                bTextfieldFocusLost(evt);
-            }
-        });
-        bTextfield.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bTextfieldMouseClicked(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                bTextfieldMouseExited(evt);
+        bTextfield.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                bTextfieldKeyReleased(evt);
             }
         });
 
@@ -286,11 +284,6 @@ public class termekekJFrame extends javax.swing.JFrame {
             }
         ));
         pTable.setFocusTraversalPolicyProvider(true);
-        pTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pTableMouseClicked(evt);
-            }
-        });
         jScrollPane2.setViewportView(pTable);
         if (pTable.getColumnModel().getColumnCount() > 0) {
             pTable.getColumnModel().getColumn(0).setPreferredWidth(50);
@@ -464,23 +457,9 @@ public class termekekJFrame extends javax.swing.JFrame {
         setIconImage(icon.getImage());
     }//GEN-LAST:event_formWindowActivated
     
-    //unused empty method, cannot be removed due to the IDE
-    private void bTextfieldMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bTextfieldMouseExited
-        
-    }//GEN-LAST:event_bTextfieldMouseExited
-    
-    //unused empty method, cannot be removed due to the IDE
-    private void bTextfieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bTextfieldMouseClicked
-        
-    }//GEN-LAST:event_bTextfieldMouseClicked
-    
-    //method for setting up the size of tables in case of clicking out of the bTextfield
-    private void bTextfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bTextfieldFocusLost
-        
-        adjusttables();
-        
-    }//GEN-LAST:event_bTextfieldFocusLost
-    
+   
+   
+   
     //method for the R table. Once clicked in any cells, it sets the cell value to 1 or 0
     //Note: set to 0 if it was 1 before and vice versa
     private void rTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rTableMouseClicked
@@ -488,20 +467,13 @@ public class termekekJFrame extends javax.swing.JFrame {
         int row = rTable.rowAtPoint(evt.getPoint());
         int col = rTable.columnAtPoint(evt.getPoint());
         if (rTable.getModel().getValueAt(row, col) == "1" && col != 0) {
-           rTable.setValueAt("0", row, col);
+            rTable.setValueAt("0", row, col);
         }else if ( col != 0){
             rTable.setValueAt("1", row, col);
         }
-
-        
-    
     }//GEN-LAST:event_rTableMouseClicked
     
-    //unused empty method, cannot be removed due to the IDE
-    private void pTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pTableMouseClicked
-        
-    }//GEN-LAST:event_pTableMouseClicked
-    
+   
     //generates both the conf and pcb files just like in feluletJFrame
     private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
         final ImageIcon icon = new ImageIcon("icon_small.png");
@@ -574,6 +546,11 @@ public class termekekJFrame extends javax.swing.JFrame {
         }
         setproducts();
     }//GEN-LAST:event_loadButtonActionPerformed
+    
+    //after pressing a key inside the bTextfield it resizes the tables
+    private void bTextfieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bTextfieldKeyReleased
+        adjusttables();
+    }//GEN-LAST:event_bTextfieldKeyReleased
 
     /**
      * @param args the command line arguments
