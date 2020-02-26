@@ -169,7 +169,7 @@ public class SplashScreen extends javax.swing.JFrame {
         }
         //closes the splashscreen and constructs the first sheet(feluletJFrame), then opens it
         sc.dispose();
-        new feluletJFrame().setVisible(true);
+        new MainMenu().setVisible(true);
         
     }
 

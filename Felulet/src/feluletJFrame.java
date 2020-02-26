@@ -43,7 +43,7 @@ public class feluletJFrame extends javax.swing.JFrame {
     }
     
     //method for setting the conf, pcb instances and the booleans to default
-    private void changed(){
+    public static void changed(){
         SplashScreen.conf.setM(0);
         SplashScreen.conf.setH(0);
         SplashScreen.conf.setN(0);
@@ -147,6 +147,7 @@ public class feluletJFrame extends javax.swing.JFrame {
         loadButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
         componentButton = new javax.swing.JButton();
+        homeButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -185,7 +186,7 @@ public class feluletJFrame extends javax.swing.JFrame {
                 headnozzlesButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(headnozzlesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 110, -1));
+        jPanel2.add(headnozzlesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 110, -1));
 
         generalButton.setText("Generate");
         generalButton.addActionListener(new java.awt.event.ActionListener() {
@@ -193,7 +194,7 @@ public class feluletJFrame extends javax.swing.JFrame {
                 generalButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(generalButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 110, -1));
+        jPanel2.add(generalButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 110, -1));
 
         loadButton.setText("Load");
         loadButton.addActionListener(new java.awt.event.ActionListener() {
@@ -201,7 +202,7 @@ public class feluletJFrame extends javax.swing.JFrame {
                 loadButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(loadButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 110, -1));
+        jPanel2.add(loadButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 110, -1));
 
         exitButton.setText("Exit");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -217,7 +218,15 @@ public class feluletJFrame extends javax.swing.JFrame {
                 componentButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(componentButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 110, -1));
+        jPanel2.add(componentButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 110, -1));
+
+        homeButton.setText("Home");
+        homeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeButtonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(homeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 110, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/left menu bar2.png"))); // NOI18N
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 290));
@@ -472,6 +481,12 @@ public class feluletJFrame extends javax.swing.JFrame {
         changed();
     }//GEN-LAST:event_fTextfieldKeyReleased
 
+    private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
+        changed();
+        this.dispose();
+        new MainMenu().setVisible(true);
+    }//GEN-LAST:event_homeButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -515,6 +530,7 @@ public class feluletJFrame extends javax.swing.JFrame {
     private javax.swing.JButton generalButton;
     private javax.swing.JTextField hTextfield;
     private javax.swing.JButton headnozzlesButton;
+    private javax.swing.JButton homeButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
