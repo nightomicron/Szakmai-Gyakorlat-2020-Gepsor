@@ -23,10 +23,25 @@ public class feluletJFrame extends javax.swing.JFrame {
     public feluletJFrame() {
         initComponents();
         setdata();
+        if(SplashScreen.pcbsaved == true || SplashScreen.confsaved == true){
+            turnOn();
+        }else{
+            turnOff();
+        }
+    }
+    //turns on the headnozzles, generate and component buttons
+    private void turnOn(){
+        headnozzlesButton.setEnabled(true);
+        generalButton.setEnabled(true);
+        componentButton.setEnabled(true);
+    }
+    //turns off the headnozzles, generate and component buttons
+    private void turnOff(){
         headnozzlesButton.setEnabled(false);
         generalButton.setEnabled(false);
         componentButton.setEnabled(false);
     }
+    
     //method for setting the conf, pcb instances and the booleans to default
     private void changed(){
         SplashScreen.conf.setM(0);
@@ -88,38 +103,8 @@ public class feluletJFrame extends javax.swing.JFrame {
     //method for checking the textfields if they contain any values
     //if they are empty then it colors them to red and also disables the headnozzles, generate and component buttons
     private void check(JTextField txt){
-        //check every textfield. If the textfield is empty it will change its color to red
+        //checks the currently used textfield. If the textfield is empty it will change its color to red, if it has an invalid value then it will remove the value and inform the user about the mistake
         
-        //mTextField
-        /*if(mTextfield.getText().isEmpty()){
-            mTextfield.setBackground(Color.RED);
-        }else{
-            mTextfield.setBackground(Color.WHITE);
-        }
-        //hTextfield
-        if(hTextfield.getText().isEmpty()){
-            hTextfield.setBackground(Color.RED);
-        }else{
-            hTextfield.setBackground(Color.WHITE);
-        }
-        //nTextfield
-        if(nTextfield.getText().isEmpty()){
-            nTextfield.setBackground(Color.RED);
-        }else{
-            nTextfield.setBackground(Color.WHITE);
-        }
-        //aTextfield
-        if(aTextfield.getText().isEmpty()){
-            aTextfield.setBackground(Color.RED);
-        }else{
-            aTextfield.setBackground(Color.WHITE);
-        }
-        //fTextfield
-        if(fTextfield.getText().isEmpty()){
-            fTextfield.setBackground(Color.RED);
-        }else{
-            fTextfield.setBackground(Color.WHITE);
-        }*/
         try{
             if(txt.getText().isEmpty()){
                 txt.setBackground(Color.RED);
@@ -139,13 +124,9 @@ public class feluletJFrame extends javax.swing.JFrame {
         }
         //enabling disabling buttons
         if(mTextfield.getText().isEmpty() || hTextfield.getText().isEmpty() || nTextfield.getText().isEmpty() || aTextfield.getText().isEmpty() || fTextfield.getText().isEmpty()){
-            headnozzlesButton.setEnabled(false);
-            generalButton.setEnabled(false);
-            componentButton.setEnabled(false);
+            turnOff();
         }else{
-            headnozzlesButton.setEnabled(true);
-            generalButton.setEnabled(true);
-            componentButton.setEnabled(true);
+            turnOn();
         }
     }
     
@@ -458,6 +439,7 @@ public class feluletJFrame extends javax.swing.JFrame {
             }
         }
         setdata();
+        turnOn();
     }//GEN-LAST:event_loadButtonActionPerformed
 
     private void mTextfieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mTextfieldKeyReleased

@@ -29,6 +29,10 @@ public class termekekJFrame extends javax.swing.JFrame {
         if(SplashScreen.pcbloaded == true || SplashScreen.pcbsaved == true){
             createtable();
             setproducts();
+        }else{
+            homeButton.setEnabled(false);
+            headnozzlesButton.setEnabled(false);
+            generateButton.setEnabled(false);
         }
         loadButton.setEnabled(false);
         rTable.setEnabled(false);
@@ -70,7 +74,7 @@ public class termekekJFrame extends javax.swing.JFrame {
         for(int i = 0; i < b; i++){
                 pTable.setValueAt((Object)(i+1), i, 0);
                 for(int j = 1 ;j < 2; j++){
-                    String s = "0";
+                    String s = "1";
                     pTable.setValueAt((Object)s, i, j);
                 } 
         }
@@ -114,7 +118,7 @@ public class termekekJFrame extends javax.swing.JFrame {
             for(int i = 0; i < b; i++){
                     pTable.setValueAt((Object)(i+1), i, 0);
                     for(int j = 1 ;j < 2; j++){
-                        String s = "0";
+                        String s = "1";
                          pTable.setValueAt((Object)s, i, j);
                     } 
             }
@@ -128,7 +132,6 @@ public class termekekJFrame extends javax.swing.JFrame {
     }
     //method for reading values from each cell of the tables and placing these values into the pcb instance
     private void getproducts(){
-                
         SplashScreen.pcb.setB(Integer.parseInt(bTextfield.getText()));
         Object[] p = new Object[SplashScreen.pcb.getB()];
         Object[][] r = new Object[SplashScreen.pcb.getB()][SplashScreen.conf.getA()];
@@ -277,13 +280,18 @@ public class termekekJFrame extends javax.swing.JFrame {
 
         pTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", null}
+
             },
             new String [] {
                 "ID", "1"
             }
         ));
         pTable.setFocusTraversalPolicyProvider(true);
+        pTable.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                pTablePropertyChange(evt);
+            }
+        });
         jScrollPane2.setViewportView(pTable);
         if (pTable.getColumnModel().getColumnCount() > 0) {
             pTable.getColumnModel().getColumn(0).setPreferredWidth(50);
@@ -292,10 +300,10 @@ public class termekekJFrame extends javax.swing.JFrame {
 
         rTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null}
+
             },
             new String [] {
-                "ID", "1"
+                "ID"
             }
         ));
         rTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
@@ -550,7 +558,26 @@ public class termekekJFrame extends javax.swing.JFrame {
     //after pressing a key inside the bTextfield it resizes the tables
     private void bTextfieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bTextfieldKeyReleased
         adjusttables();
+        homeButton.setEnabled(true);
+        headnozzlesButton.setEnabled(true);
+        generateButton.setEnabled(true);
     }//GEN-LAST:event_bTextfieldKeyReleased
+
+    private void pTablePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_pTablePropertyChange
+        for(int i = 0; i<pTable.getRowCount(); i++){
+            String convertstring = pTable.getValueAt(i, 1).toString();
+            try{
+                int convertint = Integer.parseInt(convertstring);
+                if(convertint < 1){
+                    JOptionPane.showMessageDialog(null,"Only positive integers are valid");
+                    pTable.setValueAt(1, i, 1);
+                }
+            }catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(null,"Only positive integers are valid");
+                pTable.setValueAt(1, i, 1);
+            }
+        }
+    }//GEN-LAST:event_pTablePropertyChange
 
     /**
      * @param args the command line arguments

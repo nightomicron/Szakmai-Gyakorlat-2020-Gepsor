@@ -160,7 +160,7 @@ public class SplashScreen extends javax.swing.JFrame {
         //progressbar controls
         try{
             for(int i=0;i<=100;i++){
-                Thread.sleep(20);
+                Thread.sleep(10);
                 sc.bar.setValue(i);
                         sc.progress.setText(i+"%");          
             } 

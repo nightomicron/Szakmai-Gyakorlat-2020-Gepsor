@@ -2,6 +2,7 @@
 import Tube.Product;
 import Tube.SetUp;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -33,8 +34,8 @@ public class tablazatJFrame extends javax.swing.JFrame {
         for(int i = 0; i < SplashScreen.conf.getH(); i++){
                 cTable.setValueAt((Object)(i+1), i, 0);
                 for(int j = 0 ;j < SplashScreen.conf.getH(); j++){
-                    String s = "0";
-                     cTable.setValueAt((Object)s, j, 1);
+                    String s = "1";
+                    cTable.setValueAt((Object)s, j, 1);
                 } 
         }
         //sets the size of the TPP table
@@ -47,8 +48,8 @@ public class tablazatJFrame extends javax.swing.JFrame {
         for(int i = 0; i < SplashScreen.conf.getH(); i++){
                 tppTable.setValueAt((Object)(i+1), i, 0);
                 for(int j = 0 ;j < SplashScreen.conf.getH(); j++){
-                    String s = "0";
-                     tppTable.setValueAt((Object)s, j, 1);
+                    String s = "1";
+                    tppTable.setValueAt((Object)s, j, 1);
                 } 
         }
         //sets the size of the HN table
@@ -68,7 +69,7 @@ public class tablazatJFrame extends javax.swing.JFrame {
                 hnTable.setValueAt((Object)(i+1), i, 0);
                 for(int j = 1 ;j < SplashScreen.conf.getH()+1; j++){
                     String s = "0";
-                     hnTable.setValueAt((Object)s, i, j);
+                    hnTable.setValueAt((Object)s, i, j);
                 } 
         }
         modelhn.setRowCount(temp+1);
@@ -84,8 +85,8 @@ public class tablazatJFrame extends javax.swing.JFrame {
         for(int i = 0; i < SplashScreen.conf.getA(); i++){
                 wTable.setValueAt((Object)(i+1), i, 0);
                 for(int j = 1 ;j < 2; j++){
-                    String s = "0";
-                     wTable.setValueAt((Object)s, i, j);
+                    String s = "1";
+                    wTable.setValueAt((Object)s, i, j);
                 } 
         }
         //sets the size of the AN table
@@ -120,8 +121,8 @@ public class tablazatJFrame extends javax.swing.JFrame {
         for(int i = 0; i < SplashScreen.conf.getH(); i++){
                 ttrTable.setValueAt((Object)(i+1), i, 0);
                 for(int j = 1 ;j < 2; j++){
-                    String s = "0";
-                     ttrTable.setValueAt((Object)s, i, j);
+                    String s = "1";
+                    ttrTable.setValueAt((Object)s, i, j);
                 } 
         }
         
@@ -129,9 +130,9 @@ public class tablazatJFrame extends javax.swing.JFrame {
             settables();
         }
         loadButton.setEnabled(false);
-        
         anTable.setEnabled(false);
         hnTable.setEnabled(false);
+        
     }
     
     
@@ -328,6 +329,11 @@ public class tablazatJFrame extends javax.swing.JFrame {
                 "ID", "Component Width (W)"
             }
         ));
+        wTable.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                wTablePropertyChange(evt);
+            }
+        });
         jScrollPane1.setViewportView(wTable);
         if (wTable.getColumnModel().getColumnCount() > 0) {
             wTable.getColumnModel().getColumn(0).setPreferredWidth(50);
@@ -342,9 +348,9 @@ public class tablazatJFrame extends javax.swing.JFrame {
                 "ID", "Head capacity (C)"
             }
         ));
-        cTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                cTableMouseExited(evt);
+        cTable.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                cTablePropertyChange(evt);
             }
         });
         jScrollPane2.setViewportView(cTable);
@@ -367,6 +373,11 @@ public class tablazatJFrame extends javax.swing.JFrame {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        tppTable.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                tppTablePropertyChange(evt);
             }
         });
         jScrollPane3.setViewportView(tppTable);
@@ -428,6 +439,11 @@ public class tablazatJFrame extends javax.swing.JFrame {
                 "ID", "Time to travel (Ttr)"
             }
         ));
+        ttrTable.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                ttrTablePropertyChange(evt);
+            }
+        });
         jScrollPane6.setViewportView(ttrTable);
         if (ttrTable.getColumnModel().getColumnCount() > 0) {
             ttrTable.getColumnModel().getColumn(0).setMinWidth(50);
@@ -627,9 +643,69 @@ public class tablazatJFrame extends javax.swing.JFrame {
         settables();
     }//GEN-LAST:event_loadButtonActionPerformed
 
-    private void cTableMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cTableMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cTableMouseExited
+    private void cTablePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cTablePropertyChange
+        for(int i = 0; i<cTable.getRowCount(); i++){
+            String convertstring = cTable.getValueAt(i, 1).toString();
+            try{
+                int convertint = Integer.parseInt(convertstring);
+                if(convertint < 1){
+                    JOptionPane.showMessageDialog(null,"Only positive integers are valid");
+                    cTable.setValueAt(1, i, 1);
+                }
+            }catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(null,"Only positive integers are valid");
+                cTable.setValueAt(1, i, 1);
+            }
+        }
+    }//GEN-LAST:event_cTablePropertyChange
+
+    private void tppTablePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tppTablePropertyChange
+        for(int i = 0; i<tppTable.getRowCount(); i++){
+            String convertstring = tppTable.getValueAt(i, 1).toString();
+            try{
+                int convertint = Integer.parseInt(convertstring);
+                if(convertint < 1){
+                    JOptionPane.showMessageDialog(null,"Only positive integers are valid");
+                    tppTable.setValueAt(1, i, 1);
+                }
+            }catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(null,"Only positive integers are valid");
+                tppTable.setValueAt(1, i, 1);
+            }
+        }
+    }//GEN-LAST:event_tppTablePropertyChange
+
+    private void wTablePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_wTablePropertyChange
+        for(int i = 0; i<wTable.getRowCount(); i++){
+            String convertstring = wTable.getValueAt(i, 1).toString();
+            try{
+                int convertint = Integer.parseInt(convertstring);
+                if(convertint < 1){
+                    JOptionPane.showMessageDialog(null,"Only positive integers are valid");
+                    wTable.setValueAt(1, i, 1);
+                }
+            }catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(null,"Only positive integers are valid");
+                wTable.setValueAt(1, i, 1);
+            }
+        }
+    }//GEN-LAST:event_wTablePropertyChange
+
+    private void ttrTablePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_ttrTablePropertyChange
+        for(int i = 0; i<ttrTable.getRowCount(); i++){
+            String convertstring = ttrTable.getValueAt(i, 1).toString();
+            try{
+                int convertint = Integer.parseInt(convertstring);
+                if(convertint < 1){
+                    JOptionPane.showMessageDialog(null,"Only positive integers are valid");
+                    ttrTable.setValueAt(1, i, 1);
+                }
+            }catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(null,"Only positive integers are valid");
+                ttrTable.setValueAt(1, i, 1);
+            }
+        }
+    }//GEN-LAST:event_ttrTablePropertyChange
 
     /**
      * @param args the command line arguments
