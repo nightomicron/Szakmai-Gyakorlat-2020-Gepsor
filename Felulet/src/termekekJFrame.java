@@ -206,6 +206,7 @@ public class termekekJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Komponensek beállítása");
+        setUndecorated(true);
         setSize(new java.awt.Dimension(0, 0));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
@@ -239,7 +240,7 @@ public class termekekJFrame extends javax.swing.JFrame {
         });
         jPanel1.add(generateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 100, -1));
 
-        homeButton.setText("Restart");
+        homeButton.setText("Home");
         homeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 homeButtonActionPerformed(evt);
@@ -438,11 +439,9 @@ public class termekekJFrame extends javax.swing.JFrame {
     
     //method for returning to the feluletJFrame() sheet, it is used to remove every progress and restart the whole process of giving values
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
-        getproducts();
-        SplashScreen.pcbsaved = true;
-        this.dispose();
-        feluletJFrame f= new feluletJFrame();
-        f.setVisible(true);
+        feluletJFrame.changed();
+        this.dispose(); 
+        new MainMenu().setVisible(true);
     }//GEN-LAST:event_homeButtonActionPerformed
     
     //method for constructing and opening the tablazatJFrame sheet, also closes the current sheet after running the getdata() method

@@ -64,7 +64,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="homeButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Restart"/>
+            <Property name="text" type="java.lang.String" value="Home"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="homeButtonActionPerformed"/>
