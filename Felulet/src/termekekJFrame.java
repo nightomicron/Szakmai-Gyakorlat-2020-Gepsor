@@ -35,7 +35,7 @@ public class termekekJFrame extends javax.swing.JFrame {
             generateButton.setEnabled(false);
         }
         loadButton.setEnabled(false);
-        rTable.setEnabled(false);
+        
     }
     //creates the the tables if there were any text files loaded
     private void createtable(){
@@ -102,7 +102,7 @@ public class termekekJFrame extends javax.swing.JFrame {
                 for(int j = 1 ; j < SplashScreen.conf.getA()+1; j++){
 
 
-                    String s = "0";
+                    String s = "1";
                 rTable.setValueAt((Object)s, i, j);
 
                 }
@@ -309,9 +309,9 @@ public class termekekJFrame extends javax.swing.JFrame {
         ));
         rTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         rTable.setRowSelectionAllowed(false);
-        rTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rTableMouseClicked(evt);
+        rTable.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                rTablePropertyChange(evt);
             }
         });
         jScrollPane3.setViewportView(rTable);
@@ -467,19 +467,7 @@ public class termekekJFrame extends javax.swing.JFrame {
    
    
    
-    //method for the R table. Once clicked in any cells, it sets the cell value to 1 or 0
-    //Note: set to 0 if it was 1 before and vice versa
-    private void rTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rTableMouseClicked
-       
-        int row = rTable.rowAtPoint(evt.getPoint());
-        int col = rTable.columnAtPoint(evt.getPoint());
-        if (rTable.getModel().getValueAt(row, col) == "1" && col != 0) {
-            rTable.setValueAt("0", row, col);
-        }else if ( col != 0){
-            rTable.setValueAt("1", row, col);
-        }
-    }//GEN-LAST:event_rTableMouseClicked
-    
+   
    
     //generates both the conf and pcb files just like in feluletJFrame
     private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
@@ -562,6 +550,7 @@ public class termekekJFrame extends javax.swing.JFrame {
         generateButton.setEnabled(true);
     }//GEN-LAST:event_bTextfieldKeyReleased
 
+    
     private void pTablePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_pTablePropertyChange
         for(int i = 0; i<pTable.getRowCount(); i++){
             String convertstring = pTable.getValueAt(i, 1).toString();
@@ -577,6 +566,24 @@ public class termekekJFrame extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_pTablePropertyChange
+
+    private void rTablePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_rTablePropertyChange
+        for(int i = 0; i<rTable.getRowCount(); i++){
+            for(int j = 1; j <rTable.getColumnCount();j++){
+                String convertstring = rTable.getValueAt(i, j).toString();
+                try{
+                    int convertint = Integer.parseInt(convertstring);
+                    if(convertint < 1){
+                        JOptionPane.showMessageDialog(null,"Only positive integers are valid");
+                        rTable.setValueAt(1, i, j);
+                    }
+                }catch(NumberFormatException ex){
+                    JOptionPane.showMessageDialog(null,"Only positive integers are valid");
+                    rTable.setValueAt(1, i, j);
+                }
+            }
+        }
+    }//GEN-LAST:event_rTablePropertyChange
 
     /**
      * @param args the command line arguments

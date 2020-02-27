@@ -548,7 +548,8 @@ public class tablazatJFrame extends javax.swing.JFrame {
     //method for the NH table. Once clicked in any cells, it sets the cell value to 1 or 0
     //Note: set to 0 if it was 1 before and vice versa
     private void hnTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hnTableMouseClicked
-       int row = hnTable.rowAtPoint(evt.getPoint());
+      /////////1-0 váltó
+        int row = hnTable.rowAtPoint(evt.getPoint());
         int col = hnTable.columnAtPoint(evt.getPoint());
         if (hnTable.getModel().getValueAt(row, col) == "1" && col !=0 ) {
            hnTable.setValueAt("0", row, col);
