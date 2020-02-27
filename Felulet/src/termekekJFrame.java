@@ -439,7 +439,7 @@ public class termekekJFrame extends javax.swing.JFrame {
     
     //method for returning to the feluletJFrame() sheet, it is used to remove every progress and restart the whole process of giving values
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
-        feluletJFrame.changed();
+        CommonMethods.changed();
         this.dispose(); 
         new MainMenu().setVisible(true);
     }//GEN-LAST:event_homeButtonActionPerformed

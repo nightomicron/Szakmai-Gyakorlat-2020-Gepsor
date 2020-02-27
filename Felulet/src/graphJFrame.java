@@ -1,5 +1,10 @@
 
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 
 
@@ -57,6 +62,11 @@ public class graphJFrame extends javax.swing.JFrame {
         jPanel1.add(homeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, -1));
 
         loadButton.setText("Load");
+        loadButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(loadButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 100, -1));
 
         exitButton.setText("Exit");
@@ -66,8 +76,6 @@ public class graphJFrame extends javax.swing.JFrame {
             }
         });
         jPanel1.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 100, -1));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("D:\\2020 Szakmai Gyak\\Github Clone\\Szakmai Gyakorlat Github\\Szakmai-Gyakorlat-2020-Gepsor\\Felulet\\src\\left menu bar karfej.png")); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -101,7 +109,6 @@ public class graphJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
-        
         this.dispose();
         new MainMenu().setVisible(true);
     }//GEN-LAST:event_homeButtonActionPerformed
@@ -114,6 +121,40 @@ public class graphJFrame extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon("material/icon.png");
         setIconImage(icon.getImage());
     }//GEN-LAST:event_formWindowActivated
+
+    private void loadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadButtonActionPerformed
+        final ImageIcon icon = new ImageIcon("icon_small.png");
+        JFileChooser fcconf=new JFileChooser();
+        fcconf.setDialogTitle("Load setup configuration");
+        int retconf=fcconf.showOpenDialog(this);
+        if(retconf==JFileChooser.APPROVE_OPTION)
+        {
+            try {
+                String fnameconf=fcconf.getSelectedFile().getPath();
+                SplashScreen.conf = Genconf.loadconf(fnameconf);
+                JOptionPane.showMessageDialog(null,"Succesfull Load! \n "
+                                                   + "Load path: "+fnameconf, "---Load---",JOptionPane.INFORMATION_MESSAGE, icon);
+                SplashScreen.confloaded = true;
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(feluletJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        JFileChooser fcpcb=new JFileChooser();
+        fcpcb.setDialogTitle("Load pcb configuration");
+        int retpcb=fcpcb.showOpenDialog(this);
+        if(retpcb==JFileChooser.APPROVE_OPTION)
+        {
+            try {
+                String fnamepcb=fcpcb.getSelectedFile().getPath();
+                SplashScreen.pcb = Genpcb.loadpcb(fnamepcb, SplashScreen.conf);
+                JOptionPane.showMessageDialog(null,"Succesfull Load! \n "
+                                                   + "Load path: "+fnamepcb, "---Load---",JOptionPane.INFORMATION_MESSAGE, icon);
+                SplashScreen.pcbloaded = true;
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(feluletJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_loadButtonActionPerformed
 
     /**asdasdsadasd
      * @param args the command line arguments

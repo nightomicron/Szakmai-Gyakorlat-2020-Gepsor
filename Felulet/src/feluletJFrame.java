@@ -42,27 +42,7 @@ public class feluletJFrame extends javax.swing.JFrame {
         componentButton.setEnabled(false);
     }
     
-    //method for setting the conf, pcb instances and the booleans to default
-    public static void changed(){
-        SplashScreen.conf.setM(0);
-        SplashScreen.conf.setH(0);
-        SplashScreen.conf.setN(0);
-        SplashScreen.conf.setA(0);
-        SplashScreen.conf.setF(0);
-        SplashScreen.conf.setC(null);
-        SplashScreen.conf.setAn(null);
-        SplashScreen.conf.setNh(null);
-        SplashScreen.conf.setTpp(null);
-        SplashScreen.conf.setTtr(null);
-        SplashScreen.conf.setW(null);
-        SplashScreen.pcb.setB(0);
-        SplashScreen.pcb.setP(null);
-        SplashScreen.pcb.setR(null);
-        SplashScreen.pcbloaded = false;
-        SplashScreen.confloaded = false;
-        SplashScreen.pcbsaved = false;
-        SplashScreen.confsaved = false;
-    }
+    
     
     //method for setting up the values of the conf instance
     private void getdata(){
@@ -454,35 +434,35 @@ public class feluletJFrame extends javax.swing.JFrame {
     private void mTextfieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mTextfieldKeyReleased
         //check
         check(mTextfield);
-        changed();
+        CommonMethods.changed();
     }//GEN-LAST:event_mTextfieldKeyReleased
 
     private void hTextfieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hTextfieldKeyReleased
         //check
         check(hTextfield);
-        changed();
+        CommonMethods.changed();
     }//GEN-LAST:event_hTextfieldKeyReleased
 
     private void nTextfieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nTextfieldKeyReleased
         //check
         check(nTextfield);
-        changed();
+        CommonMethods.changed();
     }//GEN-LAST:event_nTextfieldKeyReleased
 
     private void aTextfieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aTextfieldKeyReleased
         //check
         check(aTextfield);
-        changed();
+        CommonMethods.changed();
     }//GEN-LAST:event_aTextfieldKeyReleased
 
     private void fTextfieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fTextfieldKeyReleased
         //check
         check(fTextfield);
-        changed();
+        CommonMethods.changed();
     }//GEN-LAST:event_fTextfieldKeyReleased
 
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
-        changed();
+        CommonMethods.changed();
         this.dispose();
         new MainMenu().setVisible(true);
     }//GEN-LAST:event_homeButtonActionPerformed
