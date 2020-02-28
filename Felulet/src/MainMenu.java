@@ -36,12 +36,13 @@ public class MainMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        generatorButton = new javax.swing.JButton();
-        exitButton = new javax.swing.JButton();
-        graphButton = new javax.swing.JButton();
+        exitButton = new javax.swing.JLabel();
+        graphButton = new javax.swing.JLabel();
+        genButton = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Main Menu");
@@ -55,29 +56,49 @@ public class MainMenu extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        generatorButton.setText("Generator");
-        generatorButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                generatorButtonActionPerformed(evt);
+        exitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exit button.png"))); // NOI18N
+        exitButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                exitButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                exitButtonMouseExited(evt);
             }
         });
-        jPanel1.add(generatorButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 270, 90, 80));
+        jPanel1.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 390, 280, 60));
 
-        exitButton.setText("Exit");
-        exitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitButtonActionPerformed(evt);
+        graphButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graph button.png"))); // NOI18N
+        graphButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                graphButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                graphButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                graphButtonMouseExited(evt);
             }
         });
-        jPanel1.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 420, 190, -1));
+        jPanel1.add(graphButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 320, -1, -1));
 
-        graphButton.setText("Graph");
-        graphButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                graphButtonActionPerformed(evt);
+        genButton.setBackground(new java.awt.Color(255, 51, 51));
+        genButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/generator button.png"))); // NOI18N
+        genButton.setText("jLabel4");
+        genButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                genButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                genButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                genButtonMouseExited(evt);
             }
         });
-        jPanel1.add(graphButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 270, 90, 80));
+        jPanel1.add(genButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 250, 190, 50));
 
         jLabel2.setFont(new java.awt.Font("Consolas", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -91,6 +112,9 @@ public class MainMenu extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
+
+        jLabel4.setText("jLabel4");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 280, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,24 +136,57 @@ public class MainMenu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_exitButtonActionPerformed
-
-    private void generatorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generatorButtonActionPerformed
-        new feluletJFrame().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_generatorButtonActionPerformed
-
-    private void graphButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphButtonActionPerformed
-        new graphJFrame().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_graphButtonActionPerformed
-
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         ImageIcon icon = new ImageIcon("material/icon.png");
         setIconImage(icon.getImage());
     }//GEN-LAST:event_formWindowActivated
+
+    private void genButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_genButtonMouseClicked
+        
+        genButton.setOpaque(true);
+        
+        new feluletJFrame().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_genButtonMouseClicked
+
+    private void genButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_genButtonMouseEntered
+        ImageIcon icon = new ImageIcon("material/generator click.png");
+        genButton.setIcon(icon);
+    }//GEN-LAST:event_genButtonMouseEntered
+
+    private void genButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_genButtonMouseExited
+        ImageIcon icon = new ImageIcon("material/generator button.png");
+        genButton.setIcon(icon);
+    }//GEN-LAST:event_genButtonMouseExited
+
+    private void graphButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_graphButtonMouseClicked
+       new graphJFrame().setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_graphButtonMouseClicked
+
+    private void graphButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_graphButtonMouseEntered
+        ImageIcon icon = new ImageIcon("material/graph click.png");
+        graphButton.setIcon(icon);
+    }//GEN-LAST:event_graphButtonMouseEntered
+
+    private void graphButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_graphButtonMouseExited
+        ImageIcon icon = new ImageIcon("material/graph button.png");
+        graphButton.setIcon(icon);
+    }//GEN-LAST:event_graphButtonMouseExited
+
+    private void exitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_exitButtonMouseClicked
+
+    private void exitButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseEntered
+       ImageIcon icon = new ImageIcon("material/exit click.png");
+        exitButton.setIcon(icon);
+    }//GEN-LAST:event_exitButtonMouseEntered
+
+    private void exitButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseExited
+        ImageIcon icon = new ImageIcon("material/exit button.png");
+        exitButton.setIcon(icon);
+    }//GEN-LAST:event_exitButtonMouseExited
 
     /**
      * @param args the command line arguments
@@ -169,12 +226,13 @@ public class MainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton exitButton;
-    private javax.swing.JButton generatorButton;
-    private javax.swing.JButton graphButton;
+    private javax.swing.JLabel exitButton;
+    private javax.swing.JLabel genButton;
+    private javax.swing.JLabel graphButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -75,8 +75,10 @@ public class graphJFrame extends javax.swing.JFrame {
                 exitButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 100, -1));
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jPanel1.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 100, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/left menu bar karfej.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 690));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
