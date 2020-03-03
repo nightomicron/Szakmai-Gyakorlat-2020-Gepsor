@@ -4,65 +4,142 @@ package Tube;
 import java.util.ArrayList;
 
 public class Graph {
-    private ArrayList<String> modules = new ArrayList<String>();
-    private ArrayList<String> heads = new ArrayList<String>();
-    private ArrayList<String> slots = new ArrayList<String>();
-    private ArrayList<String> nozzles = new ArrayList<String>();
-    private ArrayList<String> componenttypes = new ArrayList<String>();
-    private ArrayList<String> components = new ArrayList<String>();
-
+    private ArrayList<ArrayList> modules = new ArrayList<ArrayList>();
+    private ArrayList<ArrayList> heads = new ArrayList<ArrayList>();
+    private ArrayList<ArrayList> slots = new ArrayList<ArrayList>();
+    private ArrayList<ArrayList> nozzles = new ArrayList<ArrayList>();
+    private ArrayList<ArrayList> componenttypes = new ArrayList<ArrayList>();
+    private ArrayList<ArrayList> components = new ArrayList<ArrayList>();
+    
+    private int numA;
+    private int conA;
+    private int numM;
+    private int conM;
+    private int numH;
+    private int conH;
+    private int numS;
+    private int conS;
+    
     public Graph() {
-        
+        numA = 0;
+        conA = 0;
+        numM = 0;
+        conM = 0;
+        numH = 0;
+        conH = 0;
+        numS = 0;
+        conS = 0;
     }
     
-    public void setModules(ArrayList<String> modules) {
+    public void setModules(ArrayList<ArrayList> modules) {
         this.modules = modules;
     }
 
-    public void setHeads(ArrayList<String> heads) {
+    public void setHeads(ArrayList<ArrayList> heads) {
         this.heads = heads;
     }
 
-    public void setSlots(ArrayList<String> slots) {
+    public void setSlots(ArrayList<ArrayList> slots) {
         this.slots = slots;
     }
 
-    public void setNozzles(ArrayList<String> nozzles) {
+    public void setNozzles(ArrayList<ArrayList> nozzles) {
         this.nozzles = nozzles;
     }
 
-    public void setComponenttypes(ArrayList<String> componenttypes) {
+    public void setComponenttypes(ArrayList<ArrayList> componenttypes) {
         this.componenttypes = componenttypes;
     }
 
-    public void setComponents(ArrayList<String> components) {
+    public void setComponents(ArrayList<ArrayList> components) {
         this.components = components;
     }
 
-    public ArrayList<String> getModules() {
+    public ArrayList<ArrayList> getModules() {
         return modules;
     }
 
-    public ArrayList<String> getHeads() {
+    public ArrayList<ArrayList> getHeads() {
         return heads;
     }
 
-    public ArrayList<String> getSlots() {
+    public ArrayList<ArrayList> getSlots() {
         return slots;
     }
 
-    public ArrayList<String> getNozzles() {
+    public ArrayList<ArrayList> getNozzles() {
         return nozzles;
     }
 
-    public ArrayList<String> getComponenttypes() {
+    public ArrayList<ArrayList> getComponenttypes() {
         return componenttypes;
     }
 
-    public ArrayList<String> getComponents() {
+    public ArrayList<ArrayList> getComponents() {
         return components;
     }
-    
-    
-    
+
+    public int getNumA() {
+        return numA;
+    }
+
+    public int getConA() {
+        return conA;
+    }
+
+    public int getNumM() {
+        return numM;
+    }
+
+    public int getConM() {
+        return conM;
+    }
+
+    public int getNumH() {
+        return numH;
+    }
+
+    public int getConH() {
+        return conH;
+    }
+
+    public int getNumS() {
+        return numS;
+    }
+
+    public int getConS() {
+        return conS;
+    }
+
+    public void setNumA() {
+        numA++;
+    }
+
+    public void setConA() {
+        conA++;
+    }
+
+    public void setNumM() {
+        numM++;
+    }
+
+    public void setConM() {
+        conM++;
+    }
+
+    public void setNumH() {
+        numH++;
+    }
+
+    public void setConH() {
+        conH++;
+    }
+
+    public void setNumS() {
+        numS++;
+    }
+
+    public void setConS() {
+        conS++;
+    }
 }

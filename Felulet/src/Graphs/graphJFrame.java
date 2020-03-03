@@ -245,7 +245,7 @@ public class graphJFrame extends javax.swing.JFrame {
                 Logger.getLogger(feluletJFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        graphCreation.create(SplashScreen.conf, SplashScreen.pcb);
+        graphCreation.createLeft(SplashScreen.conf, SplashScreen.pcb);
     }//GEN-LAST:event_loadButtonActionPerformed
 
     /**asdasdsadasd
