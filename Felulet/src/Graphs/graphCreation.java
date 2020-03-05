@@ -21,6 +21,15 @@ public class graphCreation {
         ArrayList<ArrayList> components = new ArrayList<ArrayList>();
         
         Object[] c = conf.getC();
+        Object[][] nh = conf.getNh();
+        Object[][] hn = new Object[nh[0].length][nh.length]; //creating a second array for conversion
+        
+        //converting arrays
+        for(int row = 0; row<nh.length; row++){
+            for(int column = 0; column<nh[row].length; column++){
+                hn[column][row] = nh[row][column];
+            }
+        }
         
         //componenttypes and its connections into arraylist
         for(int i = 1; i<conf.getA()+1; i++){
@@ -60,7 +69,17 @@ public class graphCreation {
                     slot.add(s); //naming the current slot node (as the currently created connection)
                     
                     //level of nozzles
-                    //insert next for cycle here
+                    for(int row = 0; row<conf.getN(); row++){
+                        if(Integer.parseInt(nh[row][j].toString()) == 1){
+                            Node n = new Node("n" + (i+1) + "_" + (j+1) + "_" + (k+1) + "_" + (row+1), 4);
+                            slot.add(n);
+                                
+                            ArrayList<Node> nozzle = new ArrayList<Node>();
+                            nozzle.add(n);
+                        }
+                    }
+                        
+                    slots.add(slot);
                 }
                 
                 heads.add(head);
@@ -70,6 +89,7 @@ public class graphCreation {
         }
         graph.add(modules);
         graph.add(heads);
+        graph.add(slots);
         
         return graph;
         
