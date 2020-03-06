@@ -22,14 +22,8 @@ public class graphCreation {
         
         Object[] c = conf.getC();
         Object[][] nh = conf.getNh();
-        Object[][] hn = new Object[nh[0].length][nh.length]; //creating a second array for conversion
-        
-        //converting arrays
-        for(int row = 0; row<nh.length; row++){
-            for(int column = 0; column<nh[row].length; column++){
-                hn[column][row] = nh[row][column];
-            }
-        }
+        Object[][] an = conf.getAn();
+        Object[][] rtable = pcb.getR();
         
         //componenttypes and its connections into arraylist
         for(int i = 1; i<conf.getA()+1; i++){
@@ -45,13 +39,13 @@ public class graphCreation {
         graph.add(comptypes);
         
         //modules and their connections into arraylist
-        //level of modules
+        //level of initialization
         for(int i = 0; i<conf.getM(); i++){
             ArrayList<Node> mod = new ArrayList<Node>();
             Node namem = new Node("m" + (i+1), 1);
             mod.add(namem); //adding name for the module node
             
-            //level of heads
+            //level of modules
             for(int j = 0; j<conf.getH(); j++){
                 ArrayList<Node> head = new ArrayList<Node>();
                 Node h = new Node("h" + (i+1) + "_" + (j+1), 2); //creating the connecting nodes of the current module
@@ -60,7 +54,7 @@ public class graphCreation {
                 head.add(h); //naming the current head node
                 int currentc = Integer.parseInt(c[j].toString()); //slots of the currently checked head
                 
-                //level of slots
+                //level of heads
                 for(int k = 0; k<currentc; k++){
                     ArrayList<Node> slot = new ArrayList<Node>();
                     Node s = new Node("s" + (i+1) + "_" + (j+1) + "_" + (k+1), 3); //creating connecting nodes of the current head
@@ -68,14 +62,50 @@ public class graphCreation {
                     
                     slot.add(s); //naming the current slot node (as the currently created connection)
                     
-                    //level of nozzles
+                    //level of slots
                     for(int row = 0; row<conf.getN(); row++){
                         if(Integer.parseInt(nh[row][j].toString()) == 1){
                             Node n = new Node("n" + (i+1) + "_" + (j+1) + "_" + (k+1) + "_" + (row+1), 4);
-                            slot.add(n);
+                            slot.add(n); //adding connections to the current slot node
                                 
                             ArrayList<Node> nozzle = new ArrayList<Node>();
-                            nozzle.add(n);
+                            nozzle.add(n); //naming the current nozzle node
+                            
+                            //level of nozzles
+                            for(int v=0; v<pcb.getB(); v++){
+                                for(int t=0; t<conf.getA(); t++){
+                                    if(Integer.parseInt(an[t][row].toString()) == 1){
+                                        int counterd = Integer.parseInt(rtable[v][t].toString()); //rTable variable at the right cell
+                                        for(int counter=0; counter<counterd; counter++){
+                                            Node r = new Node("r" + (t+1) + "_" + (v+1) + "_" + (counter+1), 5);
+                                            nozzle.add(r); //adding connections to the current nozzle node
+                                            
+                                            //level of components
+                                            boolean contains = false;
+                                            for(int checker=0; checker < components.size(); checker++){ //checking if the currently created component node exists or not
+                                                ArrayList<Node> extract = components.get(checker);      //if it exists then it wont add it to the components list
+                                                Node check = extract.get(0);                            //we avoid repetition
+                                                if(r.getLabel().equals(check.getLabel())){
+                                                    contains = true;
+                                                }
+                                            }
+                                            
+                                            if(contains==false){
+                                                ArrayList<Node> component = new ArrayList<Node>();
+                                                component.add(r);
+                                                System.out.print(r.getLabel() + " ");
+                                                    
+                                                Node a = new Node("a" + (t+1), 6);
+                                                component.add(a);
+                                                components.add(component);
+                                                System.out.println(a.getLabel());
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            
+                            nozzles.add(nozzle);
                         }
                     }
                         
@@ -90,6 +120,8 @@ public class graphCreation {
         graph.add(modules);
         graph.add(heads);
         graph.add(slots);
+        graph.add(nozzles);
+        graph.add(components);
         
         return graph;
         
