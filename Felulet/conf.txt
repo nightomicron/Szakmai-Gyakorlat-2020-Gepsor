@@ -6,18 +6,18 @@ numH=2
 # number of nozzle types
 numN=3
 # number of component types
-numA=2
+numA=3
 # capacity of feeder
-capF=1
+capF=2
 # capacity of head types
-capH=6 6
+capH=2 1
 # width of the component types (in tapes)
-widthA=3 1
+widthA=1 1 2
 # traveling time of head types
-travTimeH=6 6
+travTimeH=1 1
 # pick-and-place time of head types
-ppTimeH=4 2
+ppTimeH=1 1
 # component-nozzle compatibility matrix
-compatAN=1 0 1;1 0 0;
+compatAN=1 1 0;0 1 1;0 0 1;
 # nozzle-head compatibility matrix
-compatNH=1 1;1 0;1 1;
+compatNH=1 0;1 1;0 1;

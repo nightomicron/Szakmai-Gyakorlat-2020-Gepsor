@@ -93,12 +93,10 @@ public class graphCreation {
                                             if(contains==false){
                                                 ArrayList<Node> component = new ArrayList<Node>();
                                                 component.add(r);
-                                                System.out.print(r.getLabel() + " ");
                                                     
                                                 Node a = new Node("a" + (t+1), 6);
                                                 component.add(a);
                                                 components.add(component);
-                                                System.out.println(a.getLabel());
                                             }
                                         }
                                     }
