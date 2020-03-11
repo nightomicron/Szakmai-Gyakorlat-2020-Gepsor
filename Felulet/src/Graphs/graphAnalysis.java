@@ -89,7 +89,7 @@ public class graphAnalysis {
         return list;
     }
     
-    public static double edges(ArrayList<ArrayList> graph){
+    public static double edgesSum(ArrayList<ArrayList> graph){
         double edge = 0;
         double nodeNum = 0;
         
@@ -107,5 +107,23 @@ public class graphAnalysis {
         
         return edge;
         
+    }
+    
+    public static ArrayList<Double> edgesAverage(ArrayList<ArrayList> graph){
+        ArrayList<Double> average = new ArrayList<Double>();
+        for(int i = 0; i<graph.size(); i++){
+            ArrayList<ArrayList> nodecategory = graph.get(i);
+            double nodeNum = nodecategory.size();
+            double edgeNum = 0;
+            for(int j = 0; j<nodecategory.size(); j++){
+                ArrayList<Node> nodeconnect = nodecategory.get(j);
+                for(int k=1; k<nodeconnect.size(); k++){
+                    edgeNum++;
+                }
+            }
+            double averageNum = edgeNum / nodeNum;
+            average.add(averageNum);
+        }
+        return average;
     }
 }
