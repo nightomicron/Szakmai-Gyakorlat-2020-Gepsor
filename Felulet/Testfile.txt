@@ -1,0 +1,17 @@
+Average edge Left
+M: 2.0 
+H: 2.0 
+S: 1.0 
+N: 1.0 
+R: 2.0 
+A: 1.0 
+_____________________________________
+Average edge Left
+M: 2.0 
+H: 2.0 
+S: 1.0 
+N: 1.0 
+R: 2.0 
+A: 1.0 
+_____________________________________
+javax.swing.JTextArea[,0,-21,501x272,layout=javax.swing.plaf.basic.BasicTextUI$UpdateHandler,alignmentX=0.0,alignmentY=0.0,border=javax.swing.plaf.basic.BasicBorders$MarginBorder@24a8b093,flags=296,maximumSize=,minimumSize=,preferredSize=,caretColor=sun.swing.PrintColorUIResource[r=51,g=51,b=51],disabledTextColor=javax.swing.plaf.ColorUIResource[r=184,g=207,b=229],editable=true,margin=javax.swing.plaf.InsetsUIResource[top=0,left=0,bottom=0,right=0],selectedTextColor=sun.swing.PrintColorUIResource[r=51,g=51,b=51],selectionColor=javax.swing.plaf.ColorUIResource[r=184,g=207,b=229],colums=20,columWidth=11,rows=5,rowHeight=16,word=false,wrap=false]

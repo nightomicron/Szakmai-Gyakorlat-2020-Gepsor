@@ -5,8 +5,15 @@ import Generator.feluletJFrame;
 import Start.MainMenu;
 import Start.SplashScreen;
 import Graphs.graphCreation;
+import java.awt.Desktop;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,11 +51,12 @@ public class graphJFrame extends javax.swing.JFrame {
         loadgraphButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboBox = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        textArea = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
         savetoFileButton = new javax.swing.JButton();
+        clearButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -102,31 +110,49 @@ public class graphJFrame extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/left menu bar komponensek.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 390));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "select item", "average edge Left", "average of independets route" }));
+        comboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxActionPerformed(evt);
+            }
+        });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        textArea.setColumns(20);
+        textArea.setRows(5);
+        jScrollPane1.setViewportView(textArea);
 
         jLabel4.setText("Choose:");
 
         savetoFileButton.setText("Save to File");
+        savetoFileButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                savetoFileButtonActionPerformed(evt);
+            }
+        });
+
+        clearButton.setText("Clear");
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(338, 338, 338))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(265, 265, 265)
-                        .addComponent(savetoFileButton)))
-                .addGap(0, 192, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(clearButton)
+                            .addGap(126, 126, 126)
+                            .addComponent(savetoFileButton)))
+                    .addComponent(jLabel4))
+                .addGap(0, 50, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,7 +161,9 @@ public class graphJFrame extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(clearButton))
                     .addComponent(savetoFileButton))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -215,11 +243,11 @@ public class graphJFrame extends javax.swing.JFrame {
 
     private void savegraphButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savegraphButtonActionPerformed
         JFileChooser fcconf=new JFileChooser();
-        fcconf.setDialogTitle("Save setup configuration");
+        fcconf.setDialogTitle("Save Graph");
         int retconf=fcconf.showSaveDialog(this);
         if(retconf==JFileChooser.APPROVE_OPTION)
         {
-            String fname=fcconf.getSelectedFile().getPath();
+            String fname=fcconf.getSelectedFile().getPath() + ".txt";
             try {
                 graphSave.saveGraph(graph, fname);
             } catch (FileNotFoundException ex) {
@@ -232,8 +260,8 @@ public class graphJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_savegraphButtonActionPerformed
 
     private void loadgraphButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadgraphButtonActionPerformed
-         JFileChooser fcconf=new JFileChooser();
-        fcconf.setDialogTitle("Save setup configuration");
+        JFileChooser fcconf=new JFileChooser();
+        fcconf.setDialogTitle("Load Graph");
         int retconf=fcconf.showSaveDialog(this);
         if(retconf==JFileChooser.APPROVE_OPTION)
         {
@@ -249,6 +277,55 @@ public class graphJFrame extends javax.swing.JFrame {
             savegraphButton.setEnabled(true);
         }
     }//GEN-LAST:event_loadgraphButtonActionPerformed
+
+    private void comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxActionPerformed
+        String C = String.valueOf(comboBox.getSelectedItem());
+        ArrayList<Double> average = graphAnalysis.edgesAverage(graph);
+        if(C == "average edge Left"){
+            textArea.append("Average edge Left");  
+            textArea.append("\n");
+            textArea.append("M: " + average.get(0).toString()+ " ");
+            textArea.append("\n");
+            textArea.append("H: " + average.get(1).toString()+ " ");
+            textArea.append("\n");
+            textArea.append("S: " + average.get(2).toString()+ " ");
+            textArea.append("\n");
+            textArea.append("N: " + average.get(3).toString()+ " ");
+            textArea.append("\n");
+            textArea.append("R: " + average.get(4).toString()+ " ");
+            textArea.append("\n");
+            textArea.append("A: " + average.get(5).toString()+ " ");
+            textArea.append("\n");  
+            textArea.append("_____________________________________");
+            textArea.append("\n");  
+        }
+    }//GEN-LAST:event_comboBoxActionPerformed
+
+    private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
+        textArea.setText("");
+    }//GEN-LAST:event_clearButtonActionPerformed
+
+    private void savetoFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savetoFileButtonActionPerformed
+
+        JFileChooser fc=new JFileChooser();
+        fc.setDialogTitle("Save to file");
+        int ret=fc.showSaveDialog(this);
+        if(ret==JFileChooser.APPROVE_OPTION)
+        {
+            String fname=fc.getSelectedFile().getPath() + ".txt";
+            try
+            {
+                FileWriter fw=new FileWriter(fname);
+                fw.write(textArea.getText());
+                fw.flush();
+                fw.close();
+            }
+            catch(Exception ex)
+            {
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_savetoFileButtonActionPerformed
 
     /**asdasdsadasd
      * @param args the command line arguments
@@ -286,18 +363,19 @@ public class graphJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton clearButton;
+    private javax.swing.JComboBox<String> comboBox;
     private javax.swing.JButton exitButton;
     private javax.swing.JButton homeButton;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton loadButton;
     private javax.swing.JButton loadgraphButton;
     private javax.swing.JButton savegraphButton;
     private javax.swing.JButton savetoFileButton;
+    private javax.swing.JTextArea textArea;
     // End of variables declaration//GEN-END:variables
 }

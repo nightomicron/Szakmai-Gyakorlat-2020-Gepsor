@@ -477,7 +477,6 @@ public class termekekJFrame extends javax.swing.JFrame {
     //generates both the conf and pcb files just like in feluletJFrame
     private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
         final ImageIcon icon = new ImageIcon("icon_small.png");
-      
         try {
             getproducts();
             SplashScreen.pcbsaved = true;
