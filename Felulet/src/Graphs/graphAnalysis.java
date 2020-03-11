@@ -106,5 +106,6 @@ public class graphAnalysis {
         edge = edge / nodeNum;
         
         return edge;
+        
     }
 }

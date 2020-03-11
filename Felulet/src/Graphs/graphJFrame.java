@@ -6,6 +6,7 @@ import Start.MainMenu;
 import Start.SplashScreen;
 import Graphs.graphCreation;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,7 +44,7 @@ public class graphJFrame extends javax.swing.JFrame {
         loadgraphButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<String>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
@@ -91,12 +92,17 @@ public class graphJFrame extends javax.swing.JFrame {
         jPanel1.add(savegraphButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 100, -1));
 
         loadgraphButton.setText("LoadGraph");
+        loadgraphButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadgraphButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(loadgraphButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 100, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/left menu bar komponensek.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 390));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -224,6 +230,25 @@ public class graphJFrame extends javax.swing.JFrame {
                                                 + "Save path: "+fname, "---Save---",JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_savegraphButtonActionPerformed
+
+    private void loadgraphButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadgraphButtonActionPerformed
+         JFileChooser fcconf=new JFileChooser();
+        fcconf.setDialogTitle("Save setup configuration");
+        int retconf=fcconf.showSaveDialog(this);
+        if(retconf==JFileChooser.APPROVE_OPTION)
+        {
+            String fname=fcconf.getSelectedFile().getPath();
+            try {
+                graph = graphLoad.loadGraph(fname);
+                
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(graphJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) { 
+                Logger.getLogger(graphJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            savegraphButton.setEnabled(true);
+        }
+    }//GEN-LAST:event_loadgraphButtonActionPerformed
 
     /**asdasdsadasd
      * @param args the command line arguments
