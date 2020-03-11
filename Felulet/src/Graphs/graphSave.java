@@ -28,11 +28,11 @@ public class graphSave {
         for(int i=0; i<comptypes.size(); i++){
             ArrayList<Node> a = comptypes.get(i);
             Node node = a.get(0);
-            System.out.print(node.getLabel() + ", ");
+            System.out.print(node.getLabel() + " ");
             for(int j=1; j<a.size(); j++){
                 node = a.get(j);
                 if(j != a.size()-1){
-                    System.out.print(node.getLabel() + ", ");
+                    System.out.print(node.getLabel() + " ");
                 }else{
                     System.out.println(node.getLabel());
                 }
@@ -41,11 +41,11 @@ public class graphSave {
         for(int i=0; i<modules.size(); i++){
             ArrayList<Node> m = modules.get(i);
             Node node = m.get(0);
-            System.out.print(node.getLabel() + ", ");
+            System.out.print(node.getLabel() + " ");
             for(int j=1; j<m.size(); j++){
                 node = m.get(j);
                 if(j != m.size()-1){
-                    System.out.print(node.getLabel() + ", ");
+                    System.out.print(node.getLabel() + " ");
                 }else{
                     System.out.println(node.getLabel());
                 }
@@ -54,11 +54,11 @@ public class graphSave {
         for(int i=0; i<heads.size(); i++){
             ArrayList<Node> h = heads.get(i);
             Node node = h.get(0);
-            System.out.print(node.getLabel() + ", ");
+            System.out.print(node.getLabel() + " ");
             for(int j=1; j<h.size(); j++){
                 node = h.get(j);
                 if(j != h.size()-1){
-                    System.out.print(node.getLabel() + ", ");
+                    System.out.print(node.getLabel() + " ");
                 }else{
                     System.out.println(node.getLabel());
                 }
@@ -67,11 +67,11 @@ public class graphSave {
         for(int i=0; i<slots.size(); i++){
             ArrayList<Node> s = slots.get(i);
             Node node = s.get(0);
-            System.out.print(node.getLabel() + ", ");
+            System.out.print(node.getLabel() + " ");
             for(int j=1; j<s.size(); j++){
                 node = s.get(j);
                 if(j != s.size()-1){
-                    System.out.print(node.getLabel() + ", ");
+                    System.out.print(node.getLabel() + " ");
                 }else{
                     System.out.println(node.getLabel());
                 }
@@ -80,11 +80,11 @@ public class graphSave {
         for(int i=0; i<nozzles.size(); i++){
             ArrayList<Node> n = nozzles.get(i);
             Node node = n.get(0);
-            System.out.print(node.getLabel() + ", ");
+            System.out.print(node.getLabel() + " ");
             for(int j=1; j<n.size(); j++){
                 node = n.get(j);
                 if(j != n.size()-1){
-                    System.out.print(node.getLabel() + ", ");
+                    System.out.print(node.getLabel() + " ");
                 }else{
                     System.out.println(node.getLabel());
                 }
@@ -93,11 +93,11 @@ public class graphSave {
         for(int i=0; i<components.size(); i++){
             ArrayList<Node> r = components.get(i);
             Node node = r.get(0);
-            System.out.print(node.getLabel() + ", ");
+            System.out.print(node.getLabel() + " ");
             for(int j=1; j<r.size(); j++){
                 node = r.get(j);
                 if(j != r.size()-1){
-                    System.out.print(node.getLabel() + ", ");
+                    System.out.print(node.getLabel() + " ");
                 }else{
                     System.out.println(node.getLabel());
                 }
