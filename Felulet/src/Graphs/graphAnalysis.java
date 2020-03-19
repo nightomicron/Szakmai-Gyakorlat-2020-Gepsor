@@ -126,4 +126,68 @@ public class graphAnalysis {
         }
         return average;
     }
+    
+    public static ArrayList<String[]> independentRoutes(ArrayList<ArrayList> graph){
+        ArrayList<ArrayList> modules = graph.get(1);
+        ArrayList<ArrayList> comptypes = graph.get(0);
+        ArrayList<ArrayList> heads = graph.get(2);
+        ArrayList<ArrayList> slots = graph.get(3);
+        ArrayList<ArrayList> nozzles = graph.get(4);
+        ArrayList<ArrayList> components = graph.get(5);
+        ArrayList<String[]> results = new ArrayList<String[]>();
+        double averageOfAll = 0;
+        
+        for(int i=0; i<components.size(); i++){
+            //setting up the variables, converting the component nodes to string
+            ArrayList<Node> nodes = components.get(i);
+            Node nodeComp = nodes.get(0);
+            String currentcomp = nodeComp.getLabel();
+            String[] nodeAverage = new String[2];
+            nodeAverage[0] = currentcomp;
+            double routes = 0;
+            //checking the current components parents
+            ArrayList<Node> compparents = parentNode(graph, currentcomp, 5);
+            for(int j=0; j<compparents.size(); j++){
+                Node nodeNozzle = compparents.get(j);
+                String currentnozzle = nodeNozzle.getLabel();
+                //checking the current nozzles parents
+                ArrayList<Node> nozzleparents = parentNode(graph, currentnozzle, 4);
+                for(int k=0; k<nozzleparents.size(); k++){
+                    Node nodeSlot = nozzleparents.get(k);
+                    String currentslot = nodeSlot.getLabel();
+                    //checking the current slots parents
+                    ArrayList<Node> slotparents = parentNode(graph, currentslot, 3);
+                    for(int l=0; l<slotparents.size(); l++){
+                        Node nodeHead = slotparents.get(l);
+                        String currenthead = nodeHead.getLabel();
+                        //checking the current heads parents
+                        ArrayList<Node> headparents = parentNode(graph, currenthead, 2);
+                        //adding the parents to the route counter
+                        routes += headparents.size();
+                    }
+                }
+            }
+            //checking if there are routes
+            if(routes != 0){
+                routes = routes/modules.size();
+                //adding the average of routes to the array
+                nodeAverage[1] = routes+"";
+                results.add(nodeAverage);
+                averageOfAll += routes;
+            }else{
+                System.out.println("There are no routes for " + currentcomp);
+            }
+        }
+        //counting the total average
+        if(averageOfAll != 0){
+            String[] nodeAverage = new String[2];
+            averageOfAll = averageOfAll/components.size();
+            nodeAverage[0] = "Total Average";
+            nodeAverage[1] = averageOfAll+"";
+            results.add(nodeAverage);
+        }else{
+            System.out.println("Something is not right, there are no routes between any components and modules at all");
+        }
+        return results;
+    }
 }
