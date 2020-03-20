@@ -182,12 +182,14 @@ public class graphAnalysis {
         if(averageOfAll != 0){
             String[] nodeAverage = new String[2];
             averageOfAll = averageOfAll/components.size();
-            nodeAverage[0] = "Total Average";
+            nodeAverage[0] = "Total Average: ";
             nodeAverage[1] = averageOfAll+"";
             results.add(nodeAverage);
         }else{
             System.out.println("Something is not right, there are no routes between any components and modules at all");
         }
         return results;
+        
+        
     }
 }

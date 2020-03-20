@@ -2,6 +2,7 @@ package Graphs;
 import Generator.Genconf;
 import Generator.Genpcb;
 import Generator.feluletJFrame;
+import static Graphs.graphAnalysis.independentRoutes;
 import Start.MainMenu;
 import Start.SplashScreen;
 import Graphs.graphCreation;
@@ -110,7 +111,7 @@ public class graphJFrame extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/left menu bar komponensek.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 390));
 
-        comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "select item", "average edge Left", "average of independets route" }));
+        comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "select item", "average edge Left", "average of independet route" }));
         comboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxActionPerformed(evt);
@@ -281,6 +282,8 @@ public class graphJFrame extends javax.swing.JFrame {
     private void comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxActionPerformed
         String C = String.valueOf(comboBox.getSelectedItem());
         ArrayList<Double> average = graphAnalysis.edgesAverage(graph);
+        ArrayList<String[]> list = graphAnalysis.independentRoutes(graph);
+        
         if(C == "average edge Left"){
             textArea.append("Average edge Left");  
             textArea.append("\n");
@@ -296,6 +299,18 @@ public class graphJFrame extends javax.swing.JFrame {
             textArea.append("\n");
             textArea.append("A: " + average.get(5).toString()+ " ");
             textArea.append("\n");  
+            textArea.append("_____________________________________");
+            textArea.append("\n");  
+        }
+        else if(C == "average of independet route"){
+        textArea.append("Average of independet route"); 
+        textArea.append("\n");
+            for(int i = 0; i < list.size();i++){
+                String [] sor = list.get(i);
+                textArea.append(sor[0] + sor[1]);
+                textArea.append("\n");
+                
+            } 
             textArea.append("_____________________________________");
             textArea.append("\n");  
         }
