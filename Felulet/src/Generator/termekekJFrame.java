@@ -7,6 +7,7 @@ import Start.SplashScreen;
 import Tube.Product;
 import Tube.SetUp;
 import java.io.FileNotFoundException;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -293,6 +294,11 @@ public class termekekJFrame extends javax.swing.JFrame {
             }
         ));
         pTable.setFocusTraversalPolicyProvider(true);
+        pTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pTableMouseClicked(evt);
+            }
+        });
         pTable.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 pTablePropertyChange(evt);
@@ -314,6 +320,11 @@ public class termekekJFrame extends javax.swing.JFrame {
         ));
         rTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         rTable.setRowSelectionAllowed(false);
+        rTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rTableMouseClicked(evt);
+            }
+        });
         rTable.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 rTablePropertyChange(evt);
@@ -588,6 +599,30 @@ public class termekekJFrame extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_rTablePropertyChange
+
+    private void rTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rTableMouseClicked
+        int row = rTable.rowAtPoint(evt.getPoint());
+        int col = rTable.columnAtPoint(evt.getPoint());
+        
+        Random rand = new Random(); 
+  
+        // Generate random integers in range 0 to 999 
+        int rand_int1 = rand.nextInt(100); 
+        rTable.setValueAt(rand_int1, row, col);
+        
+    }//GEN-LAST:event_rTableMouseClicked
+
+    private void pTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pTableMouseClicked
+        int row = pTable.rowAtPoint(evt.getPoint());
+        int col = pTable.columnAtPoint(evt.getPoint());
+        
+        Random rand = new Random(); 
+  
+        // Generate random integers in range 0 to 999 
+        int rand_int1 = rand.nextInt(100); 
+        pTable.setValueAt(rand_int1, row, col);
+        
+    }//GEN-LAST:event_pTableMouseClicked
 
     /**
      * @param args the command line arguments

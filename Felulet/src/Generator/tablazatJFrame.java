@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -334,6 +335,11 @@ public class tablazatJFrame extends javax.swing.JFrame {
                 "ID", "Component Width (W)"
             }
         ));
+        wTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                wTableMouseClicked(evt);
+            }
+        });
         wTable.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 wTablePropertyChange(evt);
@@ -353,6 +359,11 @@ public class tablazatJFrame extends javax.swing.JFrame {
                 "ID", "Head capacity (C)"
             }
         ));
+        cTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cTableMouseClicked(evt);
+            }
+        });
         cTable.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 cTablePropertyChange(evt);
@@ -378,6 +389,11 @@ public class tablazatJFrame extends javax.swing.JFrame {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        tppTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tppTableMouseClicked(evt);
             }
         });
         tppTable.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -444,6 +460,11 @@ public class tablazatJFrame extends javax.swing.JFrame {
                 "ID", "Time to travel (Ttr)"
             }
         ));
+        ttrTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ttrTableMouseClicked(evt);
+            }
+        });
         ttrTable.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 ttrTablePropertyChange(evt);
@@ -710,6 +731,52 @@ public class tablazatJFrame extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_ttrTablePropertyChange
+
+    private void cTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cTableMouseClicked
+        int row = cTable.rowAtPoint(evt.getPoint());
+        int col = cTable.columnAtPoint(evt.getPoint());
+        
+        Random rand = new Random(); 
+  
+        // Generate random integers in range 0 to 999 
+        int rand_int1 = rand.nextInt(100); 
+        cTable.setValueAt(rand_int1, row, col);
+    }//GEN-LAST:event_cTableMouseClicked
+
+    private void tppTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tppTableMouseClicked
+        int row = tppTable.rowAtPoint(evt.getPoint());
+        int col = tppTable.columnAtPoint(evt.getPoint());
+        
+        Random rand = new Random(); 
+  
+        // Generate random integers in range 0 to 999 
+        int rand_int1 = rand.nextInt(100); 
+        tppTable.setValueAt(rand_int1, row, col);
+    }//GEN-LAST:event_tppTableMouseClicked
+
+    private void wTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_wTableMouseClicked
+        int row = wTable.rowAtPoint(evt.getPoint());
+        int col = wTable.columnAtPoint(evt.getPoint());
+        
+        Random rand = new Random(); 
+  
+        // Generate random integers in range 0 to 999 
+        int rand_int1 = rand.nextInt(100); 
+        wTable.setValueAt(rand_int1, row, col);
+        
+    }//GEN-LAST:event_wTableMouseClicked
+
+    private void ttrTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ttrTableMouseClicked
+        int row = ttrTable.rowAtPoint(evt.getPoint());
+        int col = ttrTable.columnAtPoint(evt.getPoint());
+        
+        Random rand = new Random(); 
+  
+        // Generate random integers in range 0 to 999 
+        int rand_int1 = rand.nextInt(2); 
+        ttrTable.setValueAt(rand_int1, row, col);
+        
+    }//GEN-LAST:event_ttrTableMouseClicked
 
     /**
      * @param args the command line arguments
