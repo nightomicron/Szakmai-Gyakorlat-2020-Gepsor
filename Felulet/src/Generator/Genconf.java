@@ -120,7 +120,7 @@ public class Genconf {
     public static SetUp loadconf(String fname) throws FileNotFoundException{
         SetUp conf = new SetUp(0,0,0,0,0,null,null,null,null,null,null);
         
-        char temp = 0;
+        
         int m = 0;
         int h = 0;
         int n = 0;
@@ -135,49 +135,67 @@ public class Genconf {
             final String lineFromFile = scanner.nextLine();
             
             //M number of the machines
-            if(lineFromFile.contains("numM=")) { 
-                temp = lineFromFile.charAt(lineFromFile.length()-1);
-                m = temp-'0';
+            if(lineFromFile.contains("numM=")) {
+                String temp = "";
+                for(int i=5; i<lineFromFile.length(); i++){
+                    temp=temp+lineFromFile.charAt(i);
+                }
+                m = Integer.parseInt(temp);
                 conf.setM(m);
             }
             
             //H number of the heads
-            if(lineFromFile.contains("numH=")) { 
-                temp = lineFromFile.charAt(lineFromFile.length()-1);
-                h = temp-'0';
+            if(lineFromFile.contains("numH=")) {
+                String temp = "";
+                for(int i=5; i<lineFromFile.length(); i++){
+                    temp=temp+lineFromFile.charAt(i);
+                }
+                h = Integer.parseInt(temp);
                 conf.setH(h);
             }
             
             //N number of the nozzles
             if(lineFromFile.contains("numN=")) { 
-                temp = lineFromFile.charAt(lineFromFile.length()-1);
-                n = temp-'0';
+                String temp = "";
+                for(int i=5; i<lineFromFile.length(); i++){
+                    temp=temp+lineFromFile.charAt(i);
+                }
+                n = Integer.parseInt(temp);
                 conf.setN(n);
             }
             
             //A number of the components
             if(lineFromFile.contains("numA=")) { 
-                temp = lineFromFile.charAt(lineFromFile.length()-1);
-                a = temp-'0';
+                String temp = "";
+                for(int i=5; i<lineFromFile.length(); i++){
+                    temp=temp+lineFromFile.charAt(i);
+                }
+                a = Integer.parseInt(temp);
                 conf.setA(a);
             }
             
             //F number of the feeders
             if(lineFromFile.contains("capF=")) { 
-                temp = lineFromFile.charAt(lineFromFile.length()-1);
-                f = temp-'0';
+                String temp = "";
+                for(int i=5; i<lineFromFile.length(); i++){
+                    temp=temp+lineFromFile.charAt(i);
+                }
+                f = Integer.parseInt(temp);
                 conf.setF(f);
             }
             
             //C number of the capacity of the heads
             Object[] c = new Object[h];
             if(lineFromFile.contains("capH=")) {
+                String temp="";
                 int counter=0;
                 for(int i=0; i<lineFromFile.length()-5; i++){
                     if(lineFromFile.charAt(5+i)!=' '){
-                        temp = lineFromFile.charAt(5+i);
-                        c[counter] = temp-'0';
+                        temp = temp+lineFromFile.charAt(5+i);
+                        c[counter] = Integer.parseInt(temp);
+                    }else{
                         counter++;
+                        temp="";
                     }
                 }
                 conf.setC(c);
@@ -186,12 +204,15 @@ public class Genconf {
             //W number of the width of the components
             Object[] w = new Object[a];
             if(lineFromFile.contains("widthA=")) {
+                String temp="";
                 int counter=0;
                 for(int i=0; i<lineFromFile.length()-7; i++){
                     if(lineFromFile.charAt(7+i)!=' '){
-                        temp = lineFromFile.charAt(7+i);
-                        w[counter] = temp-'0';
+                        temp = temp+lineFromFile.charAt(7+i);
+                        w[counter] = Integer.parseInt(temp);
+                    }else{
                         counter++;
+                        temp="";
                     }
                 }
                 conf.setW(w);
@@ -200,12 +221,15 @@ public class Genconf {
             //TTR travel time of the heads
             Object[] ttr = new Object[h];
             if(lineFromFile.contains("travTimeH=")) {
+                String temp="";
                 int counter=0;
                 for(int i=0; i<lineFromFile.length()-10; i++){
                     if(lineFromFile.charAt(10+i)!=' '){
-                        temp = lineFromFile.charAt(10+i);
-                        ttr[counter] = temp-'0';
+                        temp = temp+lineFromFile.charAt(10+i);
+                        ttr[counter] = Integer.parseInt(temp);
+                    }else{
                         counter++;
+                        temp="";
                     }
                 }
                 conf.setTtr(ttr);
@@ -214,12 +238,15 @@ public class Genconf {
             //TPP pick and place time of the heads
             Object[] tpp = new Object[h];
             if(lineFromFile.contains("ppTimeH=")) {
+                String temp="";
                 int counter=0;
                 for(int i=0; i<lineFromFile.length()-8; i++){
                     if(lineFromFile.charAt(8+i)!=' '){
-                        temp = lineFromFile.charAt(8+i);
-                        tpp[counter] = temp-'0';
+                        temp = temp+lineFromFile.charAt(8+i);
+                        tpp[counter] = Integer.parseInt(temp);
+                    }else{
                         counter++;
+                        temp="";
                     }
                 }
                 conf.setTpp(tpp);
@@ -228,16 +255,20 @@ public class Genconf {
             //AN compatibility between the nozzles and components
             Object[][] an = new Object[a][n];
             if(lineFromFile.contains("compatAN=")) {
+                String temp = "";
                 int counterA=0;
                 int counterN=0;
                 for(int i=0; i<lineFromFile.length()-9; i++){
                     if(lineFromFile.charAt(9+i)==';'){
                         counterA++;
                         counterN=0;
+                        temp="";
                     }else if(lineFromFile.charAt(9+i)!=' '){
-                        temp = lineFromFile.charAt(9+i);
-                        an[counterA][counterN] = temp-'0';
+                        temp = temp+lineFromFile.charAt(9+i);
+                        an[counterA][counterN] = Integer.parseInt(temp);
+                    }else{
                         counterN++;
+                        temp="";
                     }
                 }
                 conf.setAn(an);
@@ -246,16 +277,20 @@ public class Genconf {
             //NH compatibility of the nozzles and the heads
             Object[][] nh = new Object[n][h];
             if(lineFromFile.contains("compatNH=")) {
+                String temp = "";
                 int counterN=0;
                 int counterH=0;
                 for(int i=0; i<lineFromFile.length()-9; i++){
                     if(lineFromFile.charAt(9+i)==';'){
                         counterN++;
                         counterH=0;
+                        temp="";
                     }else if(lineFromFile.charAt(9+i)!=' '){
-                        temp = lineFromFile.charAt(9+i);
-                        nh[counterN][counterH] = temp-'0';
+                        temp = temp+lineFromFile.charAt(9+i);
+                        nh[counterN][counterH] = Integer.parseInt(temp);
+                    }else{
                         counterH++;
+                        temp="";
                     }
                 }
                 conf.setNh(nh);

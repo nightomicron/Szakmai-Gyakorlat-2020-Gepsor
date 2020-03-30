@@ -52,7 +52,7 @@ public class graphJFrame extends javax.swing.JFrame {
         loadgraphButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        comboBox = new javax.swing.JComboBox<>();
+        comboBox = new javax.swing.JComboBox<String>();
         jScrollPane1 = new javax.swing.JScrollPane();
         textArea = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
@@ -111,7 +111,7 @@ public class graphJFrame extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/left menu bar komponensek.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 390));
 
-        comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "select item", "average edge Left", "average of independet route" }));
+        comboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "select item", "Average of left edges", "Average of independent routes" }));
         comboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxActionPerformed(evt);
@@ -263,7 +263,7 @@ public class graphJFrame extends javax.swing.JFrame {
     private void loadgraphButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadgraphButtonActionPerformed
         JFileChooser fcconf=new JFileChooser();
         fcconf.setDialogTitle("Load Graph");
-        int retconf=fcconf.showSaveDialog(this);
+        int retconf=fcconf.showOpenDialog(this);
         if(retconf==JFileChooser.APPROVE_OPTION)
         {
             String fname=fcconf.getSelectedFile().getPath();
@@ -284,30 +284,30 @@ public class graphJFrame extends javax.swing.JFrame {
         ArrayList<Double> average = graphAnalysis.edgesAverage(graph);
         ArrayList<String[]> list = graphAnalysis.independentRoutes(graph);
         
-        if(C == "average edge Left"){
-            textArea.append("Average edge Left");  
+        if(C == "Average of left edges"){
+            textArea.append("Average of left edges");  
             textArea.append("\n");
-            textArea.append("M: " + average.get(0).toString()+ " ");
+            textArea.append("A: " + average.get(0).toString()+ " ");
             textArea.append("\n");
-            textArea.append("H: " + average.get(1).toString()+ " ");
+            textArea.append("M: " + average.get(1).toString()+ " ");
             textArea.append("\n");
-            textArea.append("S: " + average.get(2).toString()+ " ");
+            textArea.append("H: " + average.get(2).toString()+ " ");
             textArea.append("\n");
-            textArea.append("N: " + average.get(3).toString()+ " ");
+            textArea.append("S: " + average.get(3).toString()+ " ");
             textArea.append("\n");
-            textArea.append("R: " + average.get(4).toString()+ " ");
+            textArea.append("N: " + average.get(4).toString()+ " ");
             textArea.append("\n");
-            textArea.append("A: " + average.get(5).toString()+ " ");
+            textArea.append("R: " + average.get(5).toString()+ " ");
             textArea.append("\n");  
             textArea.append("_____________________________________");
             textArea.append("\n");  
         }
-        else if(C == "average of independet route"){
-        textArea.append("Average of independet route"); 
+        else if(C == "Average of independent routes"){
+        textArea.append("Average of independent routes"); 
         textArea.append("\n");
             for(int i = 0; i < list.size();i++){
                 String [] sor = list.get(i);
-                textArea.append(sor[0] + sor[1]);
+                textArea.append(sor[0] + ": " + sor[1]);
                 textArea.append("\n");
                 
             } 
