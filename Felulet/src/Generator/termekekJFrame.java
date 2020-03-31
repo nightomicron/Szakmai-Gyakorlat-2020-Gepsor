@@ -193,6 +193,7 @@ public class termekekJFrame extends javax.swing.JFrame {
         homeButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
         headnozzlesButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         bTextfield = new javax.swing.JTextField();
@@ -270,6 +271,14 @@ public class termekekJFrame extends javax.swing.JFrame {
         });
         jPanel1.add(headnozzlesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 100, -1));
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 90, -1));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/left menu bar karfej.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -292,7 +301,15 @@ public class termekekJFrame extends javax.swing.JFrame {
             new String [] {
                 "ID", "1"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         pTable.setFocusTraversalPolicyProvider(true);
         pTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -317,7 +334,15 @@ public class termekekJFrame extends javax.swing.JFrame {
             new String [] {
                 "ID"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         rTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         rTable.setRowSelectionAllowed(false);
         rTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -571,7 +596,7 @@ public class termekekJFrame extends javax.swing.JFrame {
             String convertstring = pTable.getValueAt(i, 1).toString();
             try{
                 int convertint = Integer.parseInt(convertstring);
-                if(convertint < 1){
+                if(convertint < 0){
                     JOptionPane.showMessageDialog(null,"Only positive integers are valid");
                     pTable.setValueAt(1, i, 1);
                 }
@@ -588,7 +613,7 @@ public class termekekJFrame extends javax.swing.JFrame {
                 String convertstring = rTable.getValueAt(i, j).toString();
                 try{
                     int convertint = Integer.parseInt(convertstring);
-                    if(convertint < 1){
+                    if(convertint < 0){
                         JOptionPane.showMessageDialog(null,"Only positive integers are valid");
                         rTable.setValueAt(1, i, j);
                     }
@@ -606,8 +631,8 @@ public class termekekJFrame extends javax.swing.JFrame {
         
         Random rand = new Random(); 
   
-        // Generate random integers in range 0 to 999 
-        int rand_int1 = rand.nextInt(100); 
+         
+        int rand_int1 = rand.nextInt(5); 
         rTable.setValueAt(rand_int1, row, col);
         
     }//GEN-LAST:event_rTableMouseClicked
@@ -618,11 +643,25 @@ public class termekekJFrame extends javax.swing.JFrame {
         
         Random rand = new Random(); 
   
-        // Generate random integers in range 0 to 999 
-        int rand_int1 = rand.nextInt(100); 
+        
+        int rand_int1 = rand.nextInt(5); 
         pTable.setValueAt(rand_int1, row, col);
         
     }//GEN-LAST:event_pTableMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int b = SplashScreen.pcb.getB();
+        for(int i = 0; i < b; i++){
+                rTable.setValueAt((Object)(i+1), i, 0);
+                for(int j = 1 ; j < SplashScreen.conf.getA()+1; j++){
+
+                    Random rand = new Random(); 
+                    int rand_int1 = rand.nextInt(5); 
+                    
+                rTable.setValueAt((Object)rand_int1, i, j);
+                }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -669,6 +708,7 @@ public class termekekJFrame extends javax.swing.JFrame {
     public javax.swing.JButton generateButton;
     public javax.swing.JButton headnozzlesButton;
     public javax.swing.JButton homeButton;
+    public javax.swing.JButton jButton1;
     public javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabel3;
