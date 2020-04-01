@@ -652,13 +652,17 @@ public class termekekJFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int b = SplashScreen.pcb.getB();
         for(int i = 0; i < b; i++){
+                int tempVal=0;
                 rTable.setValueAt((Object)(i+1), i, 0);
                 for(int j = 1 ; j < SplashScreen.conf.getA()+1; j++){
 
                     Random rand = new Random(); 
                     int rand_int1 = rand.nextInt(5); 
-                    
+                    tempVal+=rand_int1;
                 rTable.setValueAt((Object)rand_int1, i, j);
+                }
+                if(tempVal!=50){
+                    i--;
                 }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
