@@ -63,7 +63,7 @@ public class Genpcb {
         
         int a = conf.getA();
         int b = 0;
-        char temp = 0;
+        //char temp = 0;
         
         //opens the file and creates a scanner than can search for character chains inside the lines of the file
         //once found the desired character chains, it will grab the content of the line and will place them into the instance
@@ -74,20 +74,26 @@ public class Genpcb {
 
             //B number of pcbs
             if(lineFromFile.contains("numPCB=")) { 
-                temp = lineFromFile.charAt(lineFromFile.length()-1);
-                b = temp-'0';
+                String temp = "";
+                for(int i=7; i<lineFromFile.length(); i++){
+                    temp=temp+lineFromFile.charAt(i);
+                }
+                b = Integer.parseInt(temp);
                 pcb.setB(b);
             }
             
             //P number of the pieces of pcbs
             Object[] p = new Object[b];
             if(lineFromFile.contains("numPiecesPCB=")) {
+                String temp="";
                 int counter=0;
                 for(int i=0; i<lineFromFile.length()-13; i++){
                     if(lineFromFile.charAt(13+i)!=' '){
-                        temp = lineFromFile.charAt(13+i);
-                        p[counter] = temp-'0';
+                        temp = temp+lineFromFile.charAt(13+i);
+                        p[counter] = Integer.parseInt(temp);
+                    }else{
                         counter++;
+                        temp="";
                     }
                 }
                 pcb.setP(p);
@@ -96,16 +102,20 @@ public class Genpcb {
             //R comptabibility between the pieces and the pcbs
             Object[][] r = new Object[b][a];
             if(lineFromFile.contains("numPiecesCompPCB=")) {
+                String temp="";
                 int counterB=0;
                 int counterA=0;
                 for(int i=0; i<lineFromFile.length()-17; i++){
                     if(lineFromFile.charAt(17+i)==';'){
                         counterB++;
                         counterA=0;
+                        temp="";
                     }else if(lineFromFile.charAt(17+i)!=' '){
-                        temp = lineFromFile.charAt(17+i);
-                        r[counterB][counterA] = temp-'0';
+                        temp = temp+lineFromFile.charAt(17+i);
+                        r[counterB][counterA] = Integer.parseInt(temp);
+                    }else{
                         counterA++;
+                        temp="";
                     }
                 }
                 pcb.setR(r);

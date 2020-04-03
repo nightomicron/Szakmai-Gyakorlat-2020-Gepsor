@@ -7,6 +7,7 @@ import Start.SplashScreen;
 import Tube.Product;
 import Tube.SetUp;
 import java.io.FileNotFoundException;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -107,7 +108,7 @@ public class termekekJFrame extends javax.swing.JFrame {
                 for(int j = 1 ; j < SplashScreen.conf.getA()+1; j++){
 
 
-                    String s = "1";
+                    String s = "0";
                 rTable.setValueAt((Object)s, i, j);
 
                 }
@@ -572,7 +573,7 @@ public class termekekJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_pTablePropertyChange
 
     private void rTablePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_rTablePropertyChange
-        for(int i = 0; i<rTable.getRowCount(); i++){
+        /*for(int i = 0; i<rTable.getRowCount(); i++){
             for(int j = 1; j <rTable.getColumnCount();j++){
                 String convertstring = rTable.getValueAt(i, j).toString();
                 try{
@@ -586,7 +587,7 @@ public class termekekJFrame extends javax.swing.JFrame {
                     rTable.setValueAt(1, i, j);
                 }
             }
-        }
+        }*/
     }//GEN-LAST:event_rTablePropertyChange
 
     /**

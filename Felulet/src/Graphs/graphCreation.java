@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 
 public class graphCreation {
+    //this method returns a graph converted from a configuration file and a pcb file
+    //parameters are: setup configuration file, pcb file
     public static ArrayList<ArrayList> create(SetUp conf, Product pcb){
         
         ArrayList<ArrayList> graph = new ArrayList<ArrayList>();

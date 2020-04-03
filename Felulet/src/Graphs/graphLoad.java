@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class graphLoad {
+    //this method loads a graph into the program from a file
     public static ArrayList<ArrayList> loadGraph(String fname) throws FileNotFoundException, IOException{
         ArrayList<ArrayList> modules = new ArrayList<ArrayList>();
         ArrayList<ArrayList> graph=new ArrayList<ArrayList>();
@@ -105,8 +106,9 @@ public class graphLoad {
                
                 
                 
-                //listába rakás helye 
+            
             }
+            //adding the lists to the graph
             graph.add(comptypes);
             graph.add(modules);
             graph.add(heads);

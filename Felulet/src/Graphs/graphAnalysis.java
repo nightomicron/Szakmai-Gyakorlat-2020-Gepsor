@@ -5,6 +5,9 @@ import Tube.Node;
 import java.util.ArrayList;
 
 public class graphAnalysis {
+    //this method returns the connecting nodes of the chosen parent node
+    //its parameters are: graph array, chosen parent node label, node type
+    //types are 1: module (m), 2: head (h), 3: slot (s), 4: nozzle (n), 5: components (r), 6: component types (a)
     public static ArrayList<Node> connections(ArrayList<ArrayList> graph, String search, int category){
         ArrayList<Node> list = new ArrayList<Node>();
         ArrayList<ArrayList> nodes = new ArrayList<ArrayList>();
@@ -46,7 +49,9 @@ public class graphAnalysis {
         
         return list;
     }
-    
+    //this method returns the parent node of a chosen node
+    //its parameters are: graph array, chosen node label, node type
+    //types are 1: module (m), 2: head (h), 3: slot (s), 4: nozzle (n), 5: components (r), 6: component types (a)
     public static ArrayList<Node> parentNode(ArrayList<ArrayList> graph, String search, int category){
         ArrayList<Node> list = new ArrayList<Node>();
         ArrayList<ArrayList> nodes = new ArrayList<ArrayList>();
@@ -88,7 +93,7 @@ public class graphAnalysis {
         
         return list;
     }
-    
+    //this method returns the average of the total sum of every edge of the graph
     public static double edgesSum(ArrayList<ArrayList> graph){
         double edge = 0;
         double nodeNum = 0;
@@ -108,7 +113,8 @@ public class graphAnalysis {
         return edge;
         
     }
-    
+    //this method returns the average of the sum of every single edge of the graph by type
+    //returns an arraylist
     public static ArrayList<Double> edgesAverage(ArrayList<ArrayList> graph){
         ArrayList<Double> average = new ArrayList<Double>();
         for(int i = 0; i<graph.size(); i++){
@@ -126,7 +132,7 @@ public class graphAnalysis {
         }
         return average;
     }
-    
+    //returns the average of the independent routes of a graph by type and also the total average
     public static ArrayList<String[]> independentRoutes(ArrayList<ArrayList> graph){
         ArrayList<ArrayList> modules = graph.get(1);
         ArrayList<ArrayList> comptypes = graph.get(0);
