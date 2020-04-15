@@ -3,6 +3,7 @@ package Start;
 
 import Generator.feluletJFrame;
 import Graphs.graphJFrame;
+import RuntimeCalc.RuntimeJframe;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.ImageIcon;
@@ -45,6 +46,7 @@ public class MainMenu extends javax.swing.JFrame {
         genButton = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        runtimeCalcButton = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -72,7 +74,7 @@ public class MainMenu extends javax.swing.JFrame {
                 exitButtonMouseExited(evt);
             }
         });
-        jPanel1.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 390, 280, 60));
+        jPanel1.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 400, 280, 60));
 
         graphButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graph button.png"))); // NOI18N
         graphButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -86,7 +88,7 @@ public class MainMenu extends javax.swing.JFrame {
                 graphButtonMouseExited(evt);
             }
         });
-        jPanel1.add(graphButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 320, -1, -1));
+        jPanel1.add(graphButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 270, -1, -1));
 
         genButton.setBackground(new java.awt.Color(255, 51, 51));
         genButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/generator button.png"))); // NOI18N
@@ -102,7 +104,7 @@ public class MainMenu extends javax.swing.JFrame {
                 genButtonMouseExited(evt);
             }
         });
-        jPanel1.add(genButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 250, 190, 50));
+        jPanel1.add(genButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 220, 190, 50));
 
         jLabel2.setFont(new java.awt.Font("Consolas", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -113,6 +115,20 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("What would you like to do?");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, -1, -1));
+
+        runtimeCalcButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Start/Runtime Calc.png"))); // NOI18N
+        runtimeCalcButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                runtimeCalcButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                runtimeCalcButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                runtimeCalcButtonMouseExited(evt);
+            }
+        });
+        jPanel1.add(runtimeCalcButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 320, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
@@ -192,6 +208,21 @@ public class MainMenu extends javax.swing.JFrame {
         exitButton.setIcon(icon);
     }//GEN-LAST:event_exitButtonMouseExited
 
+    private void runtimeCalcButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_runtimeCalcButtonMouseEntered
+        ImageIcon icon = new ImageIcon("material/Runtime Calc click.png");
+        runtimeCalcButton.setIcon(icon);
+    }//GEN-LAST:event_runtimeCalcButtonMouseEntered
+
+    private void runtimeCalcButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_runtimeCalcButtonMouseExited
+        ImageIcon icon = new ImageIcon("material/Runtime Calc.png");
+        runtimeCalcButton.setIcon(icon);
+    }//GEN-LAST:event_runtimeCalcButtonMouseExited
+
+    private void runtimeCalcButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_runtimeCalcButtonMouseClicked
+        new RuntimeJframe().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_runtimeCalcButtonMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -238,5 +269,6 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel runtimeCalcButton;
     // End of variables declaration//GEN-END:variables
 }
