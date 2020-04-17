@@ -35,10 +35,12 @@ public class graphCreation {
             for(int j = 1; j<conf.getM()+1; j++){
                 Node m = new Node("m" + j, 1);
                 al.add(m);
+                SplashScreen.g.setConA();
             }
             comptypes.add(al);
         }
         graph.add(comptypes);
+        SplashScreen.g.setComponenttypes(comptypes);
         
         //modules and their connections into arraylist
         //level of initialization
@@ -52,6 +54,7 @@ public class graphCreation {
                 ArrayList<Node> head = new ArrayList<Node>();
                 Node h = new Node("h" + (i+1) + "_" + (j+1), 2); //creating the connecting nodes of the current module
                 mod.add(h); //adding connections to the current module node
+                SplashScreen.g.setConM();
                 
                 head.add(h); //naming the current head node
                 int currentc = Integer.parseInt(c[j].toString()); //slots of the currently checked head
@@ -61,6 +64,7 @@ public class graphCreation {
                     ArrayList<Node> slot = new ArrayList<Node>();
                     Node s = new Node("s" + (i+1) + "_" + (j+1) + "_" + (k+1), 3); //creating connecting nodes of the current head
                     head.add(s); //adding connections to the current head node
+                    SplashScreen.g.setConH();
                     
                     slot.add(s); //naming the current slot node (as the currently created connection)
                     
@@ -69,7 +73,8 @@ public class graphCreation {
                         if(Integer.parseInt(nh[row][j].toString()) == 1){
                             Node n = new Node("n" + (i+1) + "_" + (j+1) + "_" + (k+1) + "_" + (row+1), 4);
                             slot.add(n); //adding connections to the current slot node
-                                
+                            SplashScreen.g.setConS();
+                            
                             ArrayList<Node> nozzle = new ArrayList<Node>();
                             nozzle.add(n); //naming the current nozzle node
                             
@@ -81,6 +86,7 @@ public class graphCreation {
                                         for(int counter=0; counter<counterd; counter++){
                                             Node r = new Node("r" + (t+1) + "_" + (v+1) + "_" + (counter+1), 5);
                                             nozzle.add(r); //adding connections to the current nozzle node
+                                            SplashScreen.g.setConN();
                                             
                                             //level of components
                                             boolean contains = false;
@@ -98,6 +104,7 @@ public class graphCreation {
                                                     
                                                 Node a = new Node("a" + (t+1), 6);
                                                 component.add(a);
+                                                SplashScreen.g.setConR();
                                                 components.add(component);
                                             }
                                         }
@@ -122,6 +129,12 @@ public class graphCreation {
         graph.add(slots);
         graph.add(nozzles);
         graph.add(components);
+        
+        SplashScreen.g.setModules(modules);
+        SplashScreen.g.setHeads(heads);
+        SplashScreen.g.setSlots(slots);
+        SplashScreen.g.setNozzles(nozzles);
+        SplashScreen.g.setComponents(components);
         
         return graph;
         

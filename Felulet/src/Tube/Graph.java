@@ -19,6 +19,8 @@ public class Graph {
     private int conH;
     private int numS;
     private int conS;
+    private int conN;
+    private int conR;
     
     public Graph() {
         numA = 0;
@@ -29,6 +31,8 @@ public class Graph {
         conH = 0;
         numS = 0;
         conS = 0;
+        conN = 0;
+        conR = 0;
     }
     
     public void setModules(ArrayList<ArrayList> modules) {
@@ -141,5 +145,21 @@ public class Graph {
 
     public void setConS() {
         conS++;
+    }
+
+    public int getConN() {
+        return conN;
+    }
+
+    public int getConR() {
+        return conR;
+    }
+    
+    public void setConN() {
+        conN++;
+    }
+    
+    public void setConR() {
+        conR++;
     }
 }

@@ -124,8 +124,35 @@ public class SetUp {
         this.f = f;
     }
     
+    //checks if nozzle and head are compatible at the given spot
+    public boolean isCompatibleNozzleTHeadT(int y, int h){
+        if(Integer.parseInt(nh[y][h].toString()) == 1){
+            return true;
+        }else{
+            return false;
+        }  
+    }
     
-
-   
-
+    public boolean isCompatibleCompTNozzleT(int cV, int yV){
+        if(Integer.parseInt(an[cV][yV].toString()) == 1){
+            return true;
+        }else{
+            return false;
+        } 
+    }
+    
+    public int getCompWidth(int aV){
+        int wV = Integer.parseInt(w[aV].toString());
+        return wV;
+    }
+    
+    public int getTravelingTimeHead(int num){
+        int ttrV = Integer.parseInt(ttr[num].toString());
+        return ttrV;
+    }
+    
+    public int getPickPlaceTimeHead(int hV){
+        int tppV = Integer.parseInt(tpp[hV].toString());
+        return tppV;
+    }
 }

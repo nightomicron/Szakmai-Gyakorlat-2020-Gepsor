@@ -1,6 +1,7 @@
 
 package Graphs;
 
+import Start.SplashScreen;
 import Tube.Node;
 import java.awt.List;
 import java.io.BufferedReader;
@@ -40,6 +41,7 @@ public class graphLoad {
                         for(int i = 1 ; i < a.length; i++){
                             Node child = new Node(a[i],1);
                             alist.add(child);
+                            SplashScreen.g.setConA();
                             System.out.print(child.getLabel() + " ");
                         }
                         System.out.println();
@@ -53,6 +55,7 @@ public class graphLoad {
                         for(int i = 1 ; i < m.length; i++){
                             Node child = new Node(m[i],2);
                             mlist.add(child);
+                            SplashScreen.g.setConM();
                         }
                         modules.add(mlist);
                         break;
@@ -65,6 +68,7 @@ public class graphLoad {
                         for(int i = 1 ; i < h.length; i++){
                             Node child = new Node(h[i],3);
                             hlist.add(child);
+                            SplashScreen.g.setConH();
                         }
                         heads.add(hlist);
                         break;
@@ -76,6 +80,7 @@ public class graphLoad {
                         for(int i = 1 ; i < s.length; i++){
                             Node child = new Node(s[i],3);
                             slist.add(child);
+                            SplashScreen.g.setConS();
                         }
                         slots.add(slist);
                         break;
@@ -87,6 +92,7 @@ public class graphLoad {
                         for(int i = 1 ; i < n.length; i++){
                             Node child = new Node(n[i],3);
                             nlist.add(child);
+                            SplashScreen.g.setConN();
                         }
                         nozzles.add(nlist);
                         break;
@@ -98,6 +104,7 @@ public class graphLoad {
                         for(int i = 1 ; i < r.length; i++){
                             Node child = new Node(r[i],3);
                             rlist.add(child);
+                            SplashScreen.g.setConR();
                         }
                         components.add(rlist);
                         break;
@@ -115,6 +122,13 @@ public class graphLoad {
             graph.add(slots);
             graph.add(nozzles);
             graph.add(components);
+            
+            SplashScreen.g.setComponenttypes(comptypes);
+            SplashScreen.g.setModules(modules);
+            SplashScreen.g.setHeads(heads);
+            SplashScreen.g.setSlots(slots);
+            SplashScreen.g.setNozzles(nozzles);
+            SplashScreen.g.setComponents(components);
         }
         catch(Exception ex)
         {

@@ -44,5 +44,15 @@ public class Product {
         this.p = p;
     }
     
+    public int getPiecesComps(int bV, int cV){
+        int rValue = Integer.parseInt(r[bV][cV].toString());
+        return rValue;
+    }
+    
+    public int getPiecesPCBs(int bV){
+        int pValue = Integer.parseInt(p[bV].toString());
+        return pValue;
+    }
+    
     
 }

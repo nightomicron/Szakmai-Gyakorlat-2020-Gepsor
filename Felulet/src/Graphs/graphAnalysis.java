@@ -93,6 +93,24 @@ public class graphAnalysis {
         
         return list;
     }
+    
+    /*public static ArrayList<Integer> SumByType(ArrayList<ArrayList> graph){
+        ArrayList<Integer> sum = new ArrayList<Integer>();
+        for(int i = 0; i<graph.size(); i++){
+            ArrayList<ArrayList> nodecategory = graph.get(i);
+            int nodeNum = nodecategory.size();
+            int edgeNum = 0;
+            for(int j = 0; j<nodecategory.size(); j++){
+                ArrayList<Node> nodeconnect = nodecategory.get(j);
+                for(int k=1; k<nodeconnect.size(); k++){
+                    edgeNum++;
+                }
+            }
+            sum.add(edgeNum);
+        }
+        return sum;
+    }*/
+    
     //this method returns the average of the total sum of every edge of the graph
     public static double edgesSum(ArrayList<ArrayList> graph){
         double edge = 0;

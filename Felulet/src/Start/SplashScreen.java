@@ -1,6 +1,7 @@
 package Start;
 
 
+import Tube.Graph;
 import Tube.Node;
 import Tube.Product;
 import Tube.SetUp;
@@ -27,6 +28,7 @@ public class SplashScreen extends javax.swing.JFrame {
     public static Product pcb = new Product (0,null,null);
     //Graph graphs is an instance of the Graph class. This is the connection between the graph sheet and the saving / loading methods
     //public static Node graphs = new Node();
+    public static Graph g = new Graph();
     /**
      * Creates new form SplashScreen
      */
