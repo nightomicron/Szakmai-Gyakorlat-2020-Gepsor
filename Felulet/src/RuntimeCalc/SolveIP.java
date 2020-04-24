@@ -6,7 +6,6 @@ import java.util.HashMap;
 
 //import configuration.ConfGraph;
 import Tube.Graph;
-//import configuration.LabelException;
 import ilog.concert.IloException;
 import ilog.concert.IloLPMatrix;
 import ilog.concert.IloLinearNumExpr;
@@ -322,7 +321,7 @@ public class SolveIP {
 			//until this
 			// ADDITIONAL CONSTRAINTS
 			// Fix some variables by the summarized and excluded configuration graph
-                        
+                        /*
 			int numFixed = 0;
 			int numExcl = 0;
 			for (int i=numVarX;i<numVarX+numVarY+numVarZ+numVarQ;i++){
@@ -347,7 +346,7 @@ public class SolveIP {
 					System.err.println("Error in adding constraints: wrong label reference:"+e.getLabel());
 				}
 			}
-			
+			*/
 			
 			
 			// OBJECTIVE: minimize the number of cycles weighted by the number of PCBs
@@ -372,23 +371,23 @@ public class SolveIP {
 			//cplex.setParam(IloCplex.Param.Threads,1);			// use only one thread
 			//cplex.setParam(IloCplex.Param.MIP.Tolerances.MIPGap, 1.0e-2);
 			//cplex.setParam(IloCplex.Param.MIP.Limits.Solutions, 1);	// stop after first feasible integer solution - h�lyes�g 
-		    cplex.setParam(IloCplex.DoubleParam.TiLim, timeLimit);	// time limit second
-		    cplex.setOut(null);	// output during run - comment for output
-		    //OutputStream s = new FileOutputStream("log.txt");
-		    //cplex.setOut(s);
-		    //s.close();
-		    //System.out.println("\tNumber of variables = "+numVarTotal+"\tNumber of constraints = "+numConstraints);
-		    /*
-		    if (numFixed>0){
-		    	System.out.println("\tNumber of fixed edges = "+numFixed+"\texcluded edges = "+numExcl);
-		    }
-		    */
-		    try {
-		    	cplex.solve();	// start
-		    } catch (IloException e){
-		    	// ???
-		    	System.err.println(e.getMessage());
-		    }
+                        cplex.setParam(IloCplex.DoubleParam.TiLim, timeLimit);	// time limit second
+                        cplex.setOut(null);	// output during run - comment for output
+                        //OutputStream s = new FileOutputStream("log.txt");
+                        //cplex.setOut(s);
+                        //s.close();
+                        //System.out.println("\tNumber of variables = "+numVarTotal+"\tNumber of constraints = "+numConstraints);
+                        /*
+                        if (numFixed>0){
+                            System.out.println("\tNumber of fixed edges = "+numFixed+"\texcluded edges = "+numExcl);
+                        }
+                        */
+                        try {
+                            cplex.solve();	// start
+                        } catch (IloException e){
+                            // ???
+                            System.err.println(e.getMessage());
+                        }
 			
 			end = System.currentTimeMillis();
 			
@@ -428,11 +427,11 @@ public class SolveIP {
 						}
 						*/
 						for (int i=numVarX;i<numVarX+numVarY+numVarZ+numVarQ+numVarC;i++){
-							if (Math.round(xValues[i])>0){
+							/*if (Math.round(xValues[i])>0){
 								if (!confG.setEdgeValue(xVars[i].getName(), 1)){
 									System.err.println("Error: "+xVars[i].getName());
 								}
-							}
+							}*/
 						}
 					}
 					catch (Exception e){
