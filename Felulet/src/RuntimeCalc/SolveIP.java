@@ -19,6 +19,8 @@ import Tube.Product;
 
 public class SolveIP {
 	private static int K = 100000;	// big constant	
+
+    
 	private SetUp pConf;
 	private Product pPCB;
 	private int[] boards;	// solve for which boards 
