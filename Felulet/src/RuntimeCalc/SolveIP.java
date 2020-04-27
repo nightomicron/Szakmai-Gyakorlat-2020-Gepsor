@@ -21,10 +21,10 @@ public class SolveIP {
 	private static int K = 100000;	// big constant	
 
     
-	private SetUp pConf;
-	private Product pPCB;
-	private int[] boards;	// solve for which boards 
-	private Graph confG; 
+	private static SetUp pConf;
+	private static Product pPCB;
+	private static int[] boards;	// solve for which boards 
+	private static Graph confG; 
 	
 	//public SolveIP(ParamsConf pc, ParamsPCB pb, int[] b){
 	public SolveIP(SetUp pc, Product pb, int[] b, Graph g){
@@ -45,7 +45,7 @@ public class SolveIP {
 		confG = g;
 	}
 	
-	public double solve(int timeLimit){
+	public static double solve(int timeLimit){
 		double objValue = -1;
  		//confG.showGraph();
 		ArrayList<String> namesListX = new ArrayList<String>();	// edge placement - nozzles

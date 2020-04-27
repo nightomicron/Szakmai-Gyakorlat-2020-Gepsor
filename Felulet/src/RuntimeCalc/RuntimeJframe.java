@@ -315,11 +315,17 @@ public class RuntimeJframe extends javax.swing.JFrame {
                 i++;
                 System.out.println("Time: "+ i);
             }
+            //converting b to an array
+            int boardNum = SplashScreen.pcb.getB();
+            int[] boards = new int[boardNum];
+            for(int j=0;j<boardNum;j++){
+                boards[j] = j;
+            }
             
-//            SolveIP solveIp = new SolveIp();
-//            System.out.println(time);
-//            
-//            SolveIP.solve(time);
+            SolveIP solveIp = new SolveIP(SplashScreen.conf,SplashScreen.pcb,boards,SplashScreen.g);
+            System.out.println(time);
+            
+            SolveIP.solve(time);
         }
         
         
