@@ -19,8 +19,8 @@ import Tube.Product;
 
 public class SolveIP {
 	private static int K = 100000;	// big constant	
-
-    
+        public static double seconds;
+        public  static boolean ok = true;
 	private static SetUp pConf;
 	private static Product pPCB;
 	private static int[] boards;	// solve for which boards 
@@ -46,7 +46,11 @@ public class SolveIP {
 	}
 	
 	public static double solve(int timeLimit){
-		double objValue = -1;
+	 long startTime = System.nanoTime();
+	
+            int t = 0;
+                
+                double objValue = -1;
  		//confG.showGraph();
 		ArrayList<String> namesListX = new ArrayList<String>();	// edge placement - nozzles
 		ArrayList<String> namesListY = new ArrayList<String>();	// edge nozzles - headslots
@@ -395,11 +399,13 @@ public class SolveIP {
 			
 			if (cplex.getStatus().equals(IloCplex.Status.Error) || cplex.getStatus().equals(IloCplex.Status.Unknown)){
 				System.err.println("Error in cplex Solve");
+                                ok = false;
 				//System.exit(1);
 			}
 			if (cplex.getStatus().equals(IloCplex.Status.Unbounded) || cplex.getStatus().equals(IloCplex.Status.Infeasible))
 			{ 
 				System.out.println("\tNo solution: Unbounded or Infeasible");
+                                ok = false;
 				//cplex.exportModel("model_infeasible.lp");
 				//System.exit(1);
 			}
@@ -438,6 +444,7 @@ public class SolveIP {
 					}
 					catch (Exception e){
 						e.printStackTrace();
+                                                ok = false;
 					}
 				}
 			}
@@ -447,10 +454,18 @@ public class SolveIP {
 			
 			//System.out.println("... Done in "+(end-start)/1000+" sec");
 			cplex.end();
+                       
+                        
 		}
 		catch (Exception e){
  			e.printStackTrace();
  		}
+                long endTime   = System.nanoTime();
+                long totalTime = endTime - startTime;
+                seconds = (double)totalTime / 1_000_000_000.0;
+                System.out.println(seconds);
+                        
+                
 		return objValue;
 		
 	}

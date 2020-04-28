@@ -19,14 +19,18 @@ import static Start.SplashScreen.g;
 import Tube.Graph;
 import Tube.Product;
 import Tube.SetUp;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import static java.lang.String.valueOf;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -38,11 +42,14 @@ public class RuntimeJframe extends javax.swing.JFrame {
     /**
      * Creates new form Runtime
      */
+    
     protected ArrayList<ArrayList> graph = new ArrayList<ArrayList>();
     public RuntimeJframe() {
         initComponents();
+        loadingLabel.setVisible(false);
     }
-
+    public static String res;
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,9 +78,11 @@ public class RuntimeJframe extends javax.swing.JFrame {
         elapsedTime = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         SuccessFail = new javax.swing.JLabel();
+        loadingLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Runtime calculator");
+        setBackground(new java.awt.Color(51, 51, 51));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
@@ -154,6 +163,8 @@ public class RuntimeJframe extends javax.swing.JFrame {
         SuccessFail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         SuccessFail.setText("Succesfull!");
 
+        loadingLabel.setText("Loading...");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -173,20 +184,26 @@ public class RuntimeJframe extends javax.swing.JFrame {
                             .addComponent(PcbPath, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(ConfPath, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(89, 89, 89)
-                                .addComponent(timeLimit, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(89, 89, 89)
+                                        .addComponent(timeLimit, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
+                                    .addComponent(runButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(elapsedTime))
+                                    .addComponent(SuccessFail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(runButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(elapsedTime))
-                            .addComponent(SuccessFail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
+                                .addGap(92, 92, 92)
+                                .addComponent(loadingLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(11, 11, 11))
         );
@@ -212,8 +229,10 @@ public class RuntimeJframe extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(runButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(loadingLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(SuccessFail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -306,15 +325,12 @@ public class RuntimeJframe extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void runButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runButtonActionPerformed
-        int i = 0;
+        //loading indicator --NOT WORK--
         int time = Integer.parseInt(timeLimit.getText());
         if(SplashScreen.pcbloaded && SplashScreen.confloaded){
-            
-            
-            for(int b = 0;  b < 10 ; b++){
-                i++;
-                System.out.println("Time: "+ i);
-            }
+            loadingLabel.setVisible(true);
+         // ---------------------------------------------------   
+
             //converting b to an array
             int boardNum = SplashScreen.pcb.getB();
             int[] boards = new int[boardNum];
@@ -325,21 +341,62 @@ public class RuntimeJframe extends javax.swing.JFrame {
             SolveIP solveIp = new SolveIP(SplashScreen.conf,SplashScreen.pcb,boards,SplashScreen.g);
             System.out.println(time);
             
-            SolveIP.solve(time);
+           
+            System.out.println("The result: " + solveIp.solve(time));
+            res = valueOf(solveIp.solve(time));
+            
         }
         
-        
-        
-        elapsedTime.setText(Integer.toString(i)+"s ");
-        if(i > time){
+
+        double elapse = SolveIP.seconds;
+        double timeD = time;
+        //time to string
+        String s=String.valueOf(elapse);  
+        //cut string
+        String a = s.substring(0, 6);
+        //Success - Failed indicator
+        Result.setText("");
+        if(elapse > timeD || SolveIP.ok == false){
+            Result.setText("");
             System.out.println("Nem sikerült");
             SuccessFail.setText("Failed!");
             SuccessFail.setForeground(Color.red);
+            elapsedTime.setText(a + "s");
+            elapsedTime.setForeground(Color.red);
+            Result.append("Time limit: " + time);
+            Result.append("\n");
+            Result.append("_______");
+            Result.append("\n");
+            Result.append("Failed");
+            Result.append("\n");
+            Result.append("_______");
+            Result.append("\n");
+            Result.append("\n");
+            Result.append("The result: " + res);
+            Result.append("\n");
         }else{
+            Result.setText("");
             System.out.println("Sikerült");
             SuccessFail.setText("Success!");
             SuccessFail.setForeground(Color.green);
+            elapsedTime.setText(a + "s");
+            Result.append("Time limit: " + time + "s");
+            Result.append("\n");
+            Result.append("_______");
+            Result.append("\n");
+            Result.append("Success");
+            Result.append("\n");
+            Result.append("_______");
+            Result.append("\n");
+            Result.append("The result: " + res);
+            Result.append("\n");
         }
+        
+        Result.append("Elapsed time: " + a + "s");
+        Result.append("\n");
+        loadingLabel.setVisible(false);
+        
+        
     }//GEN-LAST:event_runButtonActionPerformed
 
     /**
@@ -374,6 +431,8 @@ public class RuntimeJframe extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new RuntimeJframe().setVisible(true);
+                
+                
             }
         });
     }
@@ -396,6 +455,7 @@ public class RuntimeJframe extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JButton loadButton;
+    private javax.swing.JLabel loadingLabel;
     private javax.swing.JButton runButton;
     private javax.swing.JTextField timeLimit;
     // End of variables declaration//GEN-END:variables
