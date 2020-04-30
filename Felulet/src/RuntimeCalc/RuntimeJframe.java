@@ -12,6 +12,7 @@ import Generator.tablazatJFrame;
 import Graphs.graphCreation;
 import Graphs.graphJFrame;
 import Graphs.graphLoad;
+import Graphs.graphSave;
 import Start.CommonMethods;
 import Start.MainMenu;
 import Start.SplashScreen;
@@ -21,9 +22,13 @@ import Tube.Product;
 import Tube.SetUp;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Dimension;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import static java.lang.String.valueOf;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -44,10 +49,15 @@ public class RuntimeJframe extends javax.swing.JFrame {
      */
     
     protected ArrayList<ArrayList> graph = new ArrayList<ArrayList>();
+    
     public RuntimeJframe() {
         initComponents();
-        loadingLabel.setVisible(false);
+        
     }
+    
+ 
+    
+  
     public static String res;
     
     /**
@@ -63,6 +73,7 @@ public class RuntimeJframe extends javax.swing.JFrame {
         homeButton = new javax.swing.JButton();
         loadButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
+        saveButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         timeLimit = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -78,7 +89,8 @@ public class RuntimeJframe extends javax.swing.JFrame {
         elapsedTime = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         SuccessFail = new javax.swing.JLabel();
-        loadingLabel = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        graphPath = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Runtime calculator");
@@ -115,6 +127,14 @@ public class RuntimeJframe extends javax.swing.JFrame {
             }
         });
         jPanel1.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 100, -1));
+
+        saveButton.setText("Save");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(saveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 100, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/left menu bar komponensek.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -159,11 +179,13 @@ public class RuntimeJframe extends javax.swing.JFrame {
         jLabel6.setText("Elapsed time:");
 
         SuccessFail.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        SuccessFail.setForeground(new java.awt.Color(0, 204, 51));
+        SuccessFail.setForeground(new java.awt.Color(51, 153, 255));
         SuccessFail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        SuccessFail.setText("Succesfull!");
+        SuccessFail.setText("Running...");
 
-        loadingLabel.setText("Loading...");
+        jLabel7.setText("Loaded Graph:");
+
+        graphPath.setText("Graph file path...");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -175,36 +197,36 @@ public class RuntimeJframe extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(PcbPath, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(ConfPath, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(89, 89, 89)
-                                        .addComponent(timeLimit, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
-                                    .addComponent(runButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel5))
+                                .addGap(176, 176, 176))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(jLabel6)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(elapsedTime))
                                     .addComponent(SuccessFail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(92, 92, 92)
-                                .addComponent(loadingLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(runButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(89, 89, 89)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(timeLimit))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel7))
+                        .addGap(13, 13, 13)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(graphPath)
+                            .addComponent(PcbPath)
+                            .addComponent(ConfPath))))
                 .addGap(11, 11, 11))
         );
         layout.setVerticalGroup(
@@ -219,8 +241,12 @@ public class RuntimeJframe extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PcbPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(graphPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
@@ -231,15 +257,13 @@ public class RuntimeJframe extends javax.swing.JFrame {
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(runButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(loadingLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(82, 82, 82)
                         .addComponent(SuccessFail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(elapsedTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -291,7 +315,7 @@ public class RuntimeJframe extends javax.swing.JFrame {
             String fname=gconf.getSelectedFile().getPath();
             try {
                 graph = graphLoad.loadGraph(fname);
-                
+                graphPath.setText(fname);
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(graphJFrame.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) { 
@@ -328,7 +352,7 @@ public class RuntimeJframe extends javax.swing.JFrame {
         //loading indicator --NOT WORK--
         int time = Integer.parseInt(timeLimit.getText());
         if(SplashScreen.pcbloaded && SplashScreen.confloaded){
-            loadingLabel.setVisible(true);
+            
          // ---------------------------------------------------   
 
             //converting b to an array
@@ -394,10 +418,31 @@ public class RuntimeJframe extends javax.swing.JFrame {
         
         Result.append("Elapsed time: " + a + "s");
         Result.append("\n");
-        loadingLabel.setVisible(false);
+        
         
         
     }//GEN-LAST:event_runButtonActionPerformed
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+    int retval = fileChooser.showSaveDialog(saveButton);
+    if (retval == JFileChooser.APPROVE_OPTION) {
+      File file = fileChooser.getSelectedFile();
+      if (file == null) {
+        return;
+      }
+      if (!file.getName().toLowerCase().endsWith(".txt")) {
+        file = new File(file.getParentFile(), file.getName() + ".txt");
+      }
+      try {
+        Result.write(new OutputStreamWriter(new FileOutputStream(file),
+            "utf-8"));
+        Desktop.getDesktop().open(file);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
+    }//GEN-LAST:event_saveButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -444,6 +489,7 @@ public class RuntimeJframe extends javax.swing.JFrame {
     private javax.swing.JLabel SuccessFail;
     private javax.swing.JTextField elapsedTime;
     private javax.swing.JButton exitButton;
+    private javax.swing.JTextField graphPath;
     private javax.swing.JButton homeButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -451,12 +497,13 @@ public class RuntimeJframe extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JButton loadButton;
-    private javax.swing.JLabel loadingLabel;
     private javax.swing.JButton runButton;
+    private javax.swing.JButton saveButton;
     private javax.swing.JTextField timeLimit;
     // End of variables declaration//GEN-END:variables
 
