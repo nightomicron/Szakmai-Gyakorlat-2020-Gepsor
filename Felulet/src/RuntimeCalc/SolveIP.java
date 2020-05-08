@@ -1,5 +1,7 @@
 package RuntimeCalc;
 
+import static RuntimeCalc.RuntimeJframe.checked;
+import static RuntimeCalc.RuntimeJframe.save;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -25,7 +27,9 @@ public class SolveIP {
 	private static Product pPCB;
 	private static int[] boards;	// solve for which boards 
 	private static Graph confG; 
-	
+	//public static boolean check = false;
+        
+        
 	//public SolveIP(ParamsConf pc, ParamsPCB pb, int[] b){
 	public SolveIP(SetUp pc, Product pb, int[] b, Graph g){
 		pConf = pc;
@@ -45,6 +49,7 @@ public class SolveIP {
 		confG = g;
 	}
 	
+        
 	public static double solve(int timeLimit){
 	 long startTime = System.nanoTime();
 	
@@ -327,32 +332,31 @@ public class SolveIP {
 			//until this
 			// ADDITIONAL CONSTRAINTS
 			// Fix some variables by the summarized and excluded configuration graph
-                        /*
+                        //saveMath.isSelected();
+                        
+                       /*
 			int numFixed = 0;
 			int numExcl = 0;
 			for (int i=numVarX;i<numVarX+numVarY+numVarZ+numVarQ;i++){
-				try {
-					double edgeValue = confG.getEdgeValue(xVars[i].getName());
-					if (edgeValue == 1){
-						IloLinearNumExpr cExtra = cplex.linearNumExpr();
-						cExtra.addTerm(xVars[i], 1);
-						cplex.addEq(cExtra, 1);
-						numConstraints++;
-						numFixed++;
-					}
-					else if (edgeValue == -1){
-						IloLinearNumExpr cExtra = cplex.linearNumExpr();
-						cExtra.addTerm(xVars[i], 1);
-						cplex.addEq(cExtra, 0);
-						numConstraints++;
-						numExcl++;
-					}
-				}
-				catch (LabelException e){
-					System.err.println("Error in adding constraints: wrong label reference:"+e.getLabel());
-				}
+                            double edgeValue = confG.getEdgeValue(xVars[i].getName());
+                            if (edgeValue == 1){
+                                IloLinearNumExpr cExtra = cplex.linearNumExpr();
+                                cExtra.addTerm(xVars[i], 1);
+                                cplex.addEq(cExtra, 1);
+                                numConstraints++;
+                                numFixed++;
+                            }
+                            else if (edgeValue == -1){
+                                IloLinearNumExpr cExtra = cplex.linearNumExpr();
+                                cExtra.addTerm(xVars[i], 1);
+                                cplex.addEq(cExtra, 0);
+                                numConstraints++;
+                                numExcl++;
+                            }
 			}
-			*/
+                        }
+                        */
+			
 			
 			
 			// OBJECTIVE: minimize the number of cycles weighted by the number of PCBs
@@ -361,9 +365,12 @@ public class SolveIP {
 				obj.addTerm(xVars[numVarTotal-numB+b], pPCB.getPiecesPCBs(boards[b]));
 			}
 			cplex.addMinimize(obj);
-			
-			//cplex.exportModel("model.lp");
-			
+			if(checked && save){
+                            cplex.exportModel("model.lp");
+                        }
+                        else{
+                                System.out.println("dont save math");
+                            }
 			long end = System.currentTimeMillis();
 			//System.out.println("\t... Done in "+(end-start)/1000+" sec");
 			//System.out.println("Start optmizing ...");

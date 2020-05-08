@@ -31,6 +31,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import static java.lang.String.valueOf;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -49,11 +50,21 @@ public class RuntimeJframe extends javax.swing.JFrame {
      */
     
     protected ArrayList<ArrayList> graph = new ArrayList<ArrayList>();
+    public static boolean checked = false;
+    public static boolean save = false;
     
     public RuntimeJframe() {
         initComponents();
-        
+        saveMath.setEnabled(false);
     }
+    
+    public void setSelected(boolean selected) {
+    this.checked = selected;
+}
+
+public boolean isSelected() {
+    return checked;
+}
     
  
     
@@ -83,14 +94,18 @@ public class RuntimeJframe extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        Result = new javax.swing.JTextArea();
         runButton = new javax.swing.JButton();
         elapsedTime = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         SuccessFail = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         graphPath = new javax.swing.JTextField();
+        saveMath = new javax.swing.JCheckBox();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Result = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        mathFormula = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Runtime calculator");
@@ -165,10 +180,6 @@ public class RuntimeJframe extends javax.swing.JFrame {
 
         jLabel5.setText("Set MIPGap:");
 
-        Result.setColumns(20);
-        Result.setRows(5);
-        jScrollPane1.setViewportView(Result);
-
         runButton.setText("Run");
         runButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -187,6 +198,25 @@ public class RuntimeJframe extends javax.swing.JFrame {
 
         graphPath.setText("Graph file path...");
 
+        saveMath.setText("Save math formula");
+        saveMath.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveMathActionPerformed(evt);
+            }
+        });
+
+        Result.setColumns(20);
+        Result.setRows(5);
+        jScrollPane1.setViewportView(Result);
+
+        jTabbedPane1.addTab("Result", jScrollPane1);
+
+        mathFormula.setColumns(20);
+        mathFormula.setRows(5);
+        jScrollPane2.setViewportView(mathFormula);
+
+        jTabbedPane1.addTab("Math formula", jScrollPane2);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -197,28 +227,6 @@ public class RuntimeJframe extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel5))
-                                .addGap(176, 176, 176))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(elapsedTime))
-                                    .addComponent(SuccessFail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(runButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(89, 89, 89)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(timeLimit))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
                             .addComponent(jLabel7))
@@ -226,8 +234,29 @@ public class RuntimeJframe extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(graphPath)
                             .addComponent(PcbPath)
-                            .addComponent(ConfPath))))
-                .addGap(11, 11, 11))
+                            .addComponent(ConfPath)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel5))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(elapsedTime))
+                            .addComponent(SuccessFail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(runButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(89, 89, 89)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(saveMath, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(timeLimit, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,9 +274,9 @@ public class RuntimeJframe extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(graphPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(timeLimit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -256,14 +285,18 @@ public class RuntimeJframe extends javax.swing.JFrame {
                             .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(saveMath)
+                        .addGap(3, 3, 3)
                         .addComponent(runButton)
-                        .addGap(82, 82, 82)
+                        .addGap(55, 55, 55)
                         .addComponent(SuccessFail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(elapsedTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -340,7 +373,7 @@ public class RuntimeJframe extends javax.swing.JFrame {
     }//GEN-LAST:event_homeButtonActionPerformed
 
     private void timeLimitKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_timeLimitKeyReleased
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_timeLimitKeyReleased
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -419,7 +452,7 @@ public class RuntimeJframe extends javax.swing.JFrame {
         Result.append("Elapsed time: " + a + "s");
         Result.append("\n");
         
-        
+        saveMath.setEnabled(true);
         
     }//GEN-LAST:event_runButtonActionPerformed
 
@@ -442,7 +475,42 @@ public class RuntimeJframe extends javax.swing.JFrame {
         e.printStackTrace();
       }
     }
+        save = true;
+    
     }//GEN-LAST:event_saveButtonActionPerformed
+
+    private void saveMathActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMathActionPerformed
+        //saveMath.isSelected()
+        if(checked){
+            checked = false;
+        }else{
+            checked = true; 
+             }
+        
+        try {
+            File myObj = new File("model.lp");
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                System.out.println(data);
+              
+                String[] temp;
+                String delimiter = "\\n";
+                temp = data.split(delimiter);
+                for(int i =0; i < temp.length ; i++)
+                    mathFormula.append(temp[i]+ "\n");
+            }
+            myReader.close();
+          } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+          }
+        
+        
+                       
+        
+       
+    }//GEN-LAST:event_saveMathActionPerformed
 
     /**
      * @param args the command line arguments
@@ -500,10 +568,14 @@ public class RuntimeJframe extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JButton loadButton;
+    private javax.swing.JTextArea mathFormula;
     private javax.swing.JButton runButton;
     private javax.swing.JButton saveButton;
+    private javax.swing.JCheckBox saveMath;
     private javax.swing.JTextField timeLimit;
     // End of variables declaration//GEN-END:variables
 
